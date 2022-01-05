@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "react-bootstrap-icons";
 import Image from "next/image";
 import server from "../static/images/server.svg";
-import HomeInfo from "../components/HomeInfo";
+import HomeInfo from "../components/Home/HomeInfo";
+import Simple from "../components/Home/Simple";
 
 export default function Home({ data }) {
   return (
@@ -21,13 +22,13 @@ export default function Home({ data }) {
         </p>
         <div className="flex mt-5 min-w-fit">
           <Link href="/">
-            <a className="pl-10 pr-10 p-2 bg-rose-600 rounded-md text-white border border-rose-600 flex items-center w-fit mr-2 hover:bg-rose-700 hover:border-rose-700 transition-all duration-300">
+            <a className="pl-10 pr-10 p-2  bg-rose-600 rounded-md text-white border border-rose-600 flex items-center w-fit mr-2 hover:bg-rose-700 hover:border-rose-700 transition-all duration-300">
               start free trial
               <ArrowRight className="ml-2" />
             </a>
           </Link>
           <Link href="/">
-            <a className="pl-10 pr-10 p-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition-all duration-300">
+            <a className="pl-10 pr-10 p-2 border shadow-md border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition-all duration-300">
               pricing
             </a>
           </Link>
@@ -36,6 +37,7 @@ export default function Home({ data }) {
       <Image src={server}  height={650} width={650} layout="fixed"/>
     </div>
     <HomeInfo />
+    <Simple />
     </>
   );
 }
