@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Nav = () => {
   return (
-    <div className="w-full bg-gray-50">
+    <div className="w-full bg-white">
       <div className="max-w-7xl w-full flex justify-between mx-auto pl-4 pr-4 pt-6 pb-6">
         <p className="font-medium text-gray-900 text-xl">
           prismpro<span className="text-gray-500">.io</span>

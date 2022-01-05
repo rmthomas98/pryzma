@@ -2,7 +2,7 @@ import {Search, Building} from 'react-bootstrap-icons'
 
 const Simple = () => {
   return (
-    <div className="bg-gray-50 w-full">
+    <div className="bg-white w-full">
       <div className="mx-auto max-w-7xl p-4 pt-20 pb-20 flex items-center justify-between">
         <div className="w-1/2 mr-14">
           <p className="text-gray-400 text-2xl mb-2">company overview</p>
