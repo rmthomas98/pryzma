@@ -15,7 +15,7 @@ const Nav = () => {
             </a>
           </Link>
           <Link href="/">
-            <a className="text-white font-medium text-sm border border-rose-600 bg-rose-600 rounded-md p-2 pl-6 pr-6 hover:bg-rose-700 hover:border-rose-700 transition-all duration-300">
+            <a className="text-white font-medium text-sm  bg-gradient-to-r from-rose-600 to-indigo-600 rounded-md p-[9px] pl-6 pr-6 hover:shadow-md hover:shadow-gray-500 transition-all duration-300">
               sign up
             </a>
           </Link>
