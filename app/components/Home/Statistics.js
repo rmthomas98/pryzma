@@ -1,6 +1,6 @@
 const Statistics = () => {
   return (
-    <div className="bg-white before:h-1 before:w-full before:max-w-7xl before:bg-gradient-to-r before:from-rose-600 before:to-indigo-600 before:block before:rounded-full before:mx-auto">
+    <div className="bg-white before:h-[2px] before:w-full before:max-w-3xl before:bg-gradient-to-r before:from-rose-600 before:to-indigo-600 before:block before:rounded-full before:mx-auto">
       <div className="mx-auto max-w-7xl p-4 pt-20 pb-20 flex items-center">
         <div className="w-1/2 bg-gray-100 rounded-lg shadow-xl shadow-gray-300 p-6">
           

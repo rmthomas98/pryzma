@@ -1,6 +1,6 @@
 const Financials = () => {
   return (
-    <div className="bg-white before:h-1 before:w-full before:max-w-7xl before:bg-gradient-to-r before:from-rose-600 before:to-indigo-600 before:block before:rounded-full before:mx-auto">
+    <div className="bg-white before:h-[2px] before:w-full before:max-w-3xl before:bg-gradient-to-r before:from-rose-600 before:to-indigo-600 before:block before:rounded-full before:mx-auto">
       <div className="mx-auto max-w-5xl p-4 pt-20 pb-20">
       <div className="w-2/3 mx-auto">
           <p className="text-4xl font-bold text-gray-700 mb-6 text-center">
