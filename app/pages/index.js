@@ -7,6 +7,7 @@ import HomeInfo from "../components/Home/HomeInfo";
 import Simple from "../components/Home/Simple";
 import Statistics from "../components/Home/Statistics";
 import Financials from "../components/Home/Financials";
+import Footer from "../components/Home/Footer";
 
 export default function Home({ data }) {
   return (
@@ -42,6 +43,7 @@ export default function Home({ data }) {
     <Simple />
     <Statistics />
     <Financials />
+    <Footer />
     </>
   );
 }

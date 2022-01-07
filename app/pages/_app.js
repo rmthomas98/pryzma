@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="h-screen">
       <Nav />
       <Component {...pageProps} />
     </div>
