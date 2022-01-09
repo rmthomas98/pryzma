@@ -24,7 +24,7 @@ export default function Home({ data }) {
           engineered for stock traders
         </p>
         <div className="flex mt-5 min-w-fit">
-          <Link href="/">
+          <Link href="/signup">
             <a className="pl-10 pr-10 p-2 bg-gradient-to-r from-rose-600 to-indigo-600 rounded-md text-white  flex items-center w-fit mr-2 transition-all duration-300 hover:shadow-md hover:shadow-gray-500">
               start free trial
               <ArrowRight className="ml-2" />

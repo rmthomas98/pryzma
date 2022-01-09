@@ -1,4 +1,7 @@
-import { useReducer, useState } from "react";
+import { useReducer, useRef, useState } from "react";
+import ContactInformation from "../components/SignUpForm/ContactInformation";
+import Plan from "../components/SignUpForm/Plan";
+import ElementsProvider from "../components/SignUpForm/ElementsProvider";
 
 // reducer function
 const reducer = (state, action) => {
@@ -14,35 +17,27 @@ const reducer = (state, action) => {
 
 const Signup = () => {
 
-  const [pricingSelection, pricingSelection] = useState();
+  // keep track of step user is in on sign up form
+  const [step, dispatch] = useReducer(reducer, {step: 1});
+  // setting user email so we can look up when choosing plan
+  const email = useRef();
+  // go to next step
+  const increment = () => {
+    dispatch({type: 'increment'})
+  }
 
   return (
     <div className="mt-24 mb-20">
       <div className="w-full max-w-screen-sm mx-auto">
-        <p className="text-gray-900 text-4xl">Sign Up Now</p>
-        <form className="w-full">
-          <div>
-            <p className="text-sm mt-8 pb-1">First Name</p>
-            <input type="text" placeholder="First Name" className="border border-gray-300 rounded-md p-2 outline-none w-full"/>
-          </div>
-          <div>
-            <p className="text-sm mt-5 pb-1">Last Name</p>
-            <input type="text" placeholder="Last Name" className="border border-gray-300 rounded-md p-2 outline-none w-full"/>
-          </div>
-          <div>
-            <p className="text-sm mt-5 pb-1">Email</p>
-            <input type="email" placeholder="Email" className="border border-gray-300 rounded-md p-2 outline-none w-full"/>
-          </div>
-          <div>
-            <p className="text-sm mt-5 pb-1">Password</p>
-            <input type="password" placeholder="Password" className="border border-gray-300 rounded-md p-2 outline-none w-full"/>
-          </div>
-          <div>
-            <p className="text-sm mt-5 pb-1">Confirm Password</p>
-            <input type="password" placeholder="Confirm Password" className="border border-gray-300 rounded-md p-2 outline-none mb-6 w-full"/>
-          </div>
-          <button type="submit" className="p-2 pl-6 pr-6 text-white font-medium text-sm bg-gradient-to-r from-rose-600 to-indigo-600 rounded-md hover:shadow-md hover:shadow-gray-500 transition-all duration-300">Sign up</button>
-        </form>
+      <div className='mb-2 font-medium text-gray-800'>Step {step.step}/3</div>
+      <div className='flex mb-6'>
+        <span className={`h-0.5 w-full mr-2 rounded-full bg-gradient-to-r from-rose-600 to-indigo-600`}></span>
+        <span className={`h-0.5 w-full mr-2 rounded-full ${step.step >= 2 ? 'bg-gradient-to-r from-rose-600 to-indigo-600' : 'bg-gray-300'}`}></span>
+        <span className={`h-0.5 w-full mr-2 rounded-full ${step.step === 3 ? 'bg-gradient-to-r from-rose-600 to-indigo-600' : 'bg-gray-300'}`}></span>
+      </div>
+        {step.step === 1 && <ContactInformation increment={increment} email={email}/>}
+        {step.step === 2 && <Plan increment={increment} email={email}/>}
+        {step.step === 3 && <ElementsProvider email={email}/>}
       </div>
     </div>
   );

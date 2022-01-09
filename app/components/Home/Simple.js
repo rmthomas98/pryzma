@@ -1,4 +1,3 @@
-import { Search, Building } from "react-bootstrap-icons";
 
 const Simple = () => {
   return (

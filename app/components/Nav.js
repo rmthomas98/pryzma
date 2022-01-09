@@ -5,10 +5,10 @@ const Nav = () => {
     <div className="w-full bg-white">
       <div className="max-w-7xl w-full flex justify-between mx-auto pl-4 pr-4 pt-6 pb-6">
         <Link href="/">
-          <a className="font-medium text-gray-900 text-xl">prismpro<span className="text-gray-500">.io</span></a>
+          <a className="font-medium text-gray-900 text-xl">prizmpro<span className="text-gray-500">.io</span></a>
         </Link>
         <div>
-          <Link href="/">
+          <Link href="/login">
             <a className="text-indigo-600 font-medium text-sm border border-indigo-600 rounded-md p-2 pl-6 pr-6 mr-2 hover:bg-indigo-600 hover:text-white transition-all duration-300">
               login
             </a>
