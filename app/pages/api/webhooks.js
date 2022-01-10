@@ -42,15 +42,18 @@ const handler = async (req, res) => {
       break;
     // CASE FOR PAYMENT SUCCEEDED
     case "invoice.payment_succeeded":
+      console.log(event);
       customer = event.data.object.customer;
       user = await users.findOne({ stripeCustomerId: customer });
-      updatePaymentStatus = {
-        $set: {
-          paymentStatus: "succeeded",
-        },
-      };
-      await users.updateOne(user, updatePaymentStatus);
-      console.log("Payment Succeeded!");
+      if (user.paymentStatus) {
+        updatePaymentStatus = {
+          $set: {
+            paymentStatus: "succeeded",
+          },
+        };
+        await users.updateOne(user, updatePaymentStatus);
+        console.log("Payment Succeeded!");
+      }
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);

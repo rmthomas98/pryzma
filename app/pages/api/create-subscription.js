@@ -8,7 +8,7 @@ const handler = async (req, res) => {
   const email = req.body.email;
   // get priceId
   const priceId = req.body.priceId;
-  
+  const plan = req.body.plan;
   try {
 
     // FETCH USER FROM MONGODB
@@ -29,7 +29,8 @@ const handler = async (req, res) => {
     
     const updateSubscription = {
       $set: {
-        subscriptionId: subscription.id
+        subscriptionId: subscription.id,
+        subscriptionType: plan
       }
     }
 

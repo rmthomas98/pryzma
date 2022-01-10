@@ -1,4 +1,5 @@
 import clientPromise from "../../lib/mongodb";
+const bcrypt = require('bcryptjs')
 const stripe = require("stripe")(
   "sk_test_51JAxp2F124ucKAQocBFd1Ivxxpj4YRPSHcNVnZWdB5rhpBXegcyNigbf6E4tEuPDsrj7XzX0dh6xKK12QK8M8Qa900TYmxILAG"
 );
@@ -22,7 +23,7 @@ const handler = async (req, res) => {
 
     // IF USER DOES NOT EXIST IN DATABASE, CREATE USER MONGODB AND CREATE NEW STRIPE CUSTOMER
     const customer = await stripe.customers.create({
-      name: `${req.body.data.first} ${req.body.data.last}`,
+      name: `${req.body.data.first.charAt(0).toUpperCase() + req.body.data.first.slice(1)} ${req.body.data.last.charAt(0).toUpperCase() + req.body.data.last.slice(1)}`,
       email: req.body.data.email,
     });
 
@@ -30,11 +31,13 @@ const handler = async (req, res) => {
     const newUser = {
       stripeCustomerId: customer.id,
       subscriptionId: null,
-      paymentStatus: '',
-      firstName: req.body.data.first,
-      lastName: req.body.data.last,
+      subscriptionType: null,
+      paymentStatus: null,
+      firstName: req.body.data.first.charAt(0).toUpperCase() + req.body.data.first.slice(1),
+      lastName: req.body.data.last.charAt(0).toUpperCase() + req.body.data.last.slice(1),
       email: req.body.data.email,
-      password: req.body.data.password,
+      password: bcrypt.hashSync(req.body.data.password),
+      dateJoined: new Date(),
     };
 
     // INSERT CUSTOMER INTO MONGODB

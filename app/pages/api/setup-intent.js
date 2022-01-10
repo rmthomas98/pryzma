@@ -21,8 +21,6 @@ const handler = async (req, res) => {
       customer: customerId,
       payment_method_types: ['card']
     });
-
-    console.log(setUpIntent)
   
     // SEND INTENT TO FRONT END
     res.status(200).json(setUpIntent);

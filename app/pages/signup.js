@@ -2,6 +2,7 @@ import { useReducer, useRef, useState } from "react";
 import ContactInformation from "../components/SignUpForm/ContactInformation";
 import Plan from "../components/SignUpForm/Plan";
 import ElementsProvider from "../components/SignUpForm/ElementsProvider";
+import { withIronSession } from "next-iron-session";
 
 // reducer function
 const reducer = (state, action) => {
@@ -42,5 +43,28 @@ const Signup = () => {
     </div>
   );
 };
+
+export const getServerSideProps = withIronSession(
+  ({req, res}) => {
+    const user = req.session.get('user');
+
+    if (!user) return {props: {}}
+
+    return {
+      redirect: {
+        permanant: false,
+        destination: '/admin'
+      },
+      props: {}
+    }
+  },
+  {
+    password: process.env.IRON_SESSION_PASSWORD,
+    cookieName: 'user',
+    cookieOptions: {
+      secure: process.env.NODE_ENV === 'production'
+    }
+  }
+)
 
 export default Signup;

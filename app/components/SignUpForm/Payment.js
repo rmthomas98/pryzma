@@ -43,8 +43,8 @@ const Payment = () => {
       <p className="mb-6 text-sm text-gray-500">You will not be charged until your 7 day free trial period is over.</p>
       <PaymentElement />
       <div className="w-full flex mt-8">
-      <button disabled={!stripe || isSubmitting ? true : false} onClick={handleSubmit} className={`h-[40px] w-[100px] flex justify-center items-center text-sm text-white font-medium rounded-md hover:bg-indigo-700 transition-all duration-300 ${
-              isSubmitting ? "bg-gray-400 hover:bg-gray-400" : "bg-indigo-600"
+      <button disabled={!stripe || isSubmitting ? true : false} onClick={handleSubmit} className={`h-[40px] w-[100px] flex justify-center items-center text-sm text-white font-medium rounded-md transition-all duration-300 ${
+              isSubmitting ? "bg-indigo-400 hover:bg-indigo-400" : "bg-indigo-600 hover:bg-indigo-700"
             }`}>
         {isSubmitting ? <ButtonSpinner /> : 'Submit'}
       </button>

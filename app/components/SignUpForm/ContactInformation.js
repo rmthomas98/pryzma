@@ -149,11 +149,11 @@ const ContactInformation = ({ increment, email }) => {
           <button
             disabled={isSubmitting ? true : false}
             type="submit"
-            className={`h-[40px] w-[100px] text-sm text-center text-white flex justify-center items-center font-medium rounded-md hover:bg-indigo-700 transition-all duration-300 ${
-              isSubmitting ? "bg-gray-400 hover:bg-gray-400" : "bg-indigo-600"
+            className={`h-[40px] w-[180px] text-sm text-center text-white flex justify-center items-center font-medium rounded-md hover:bg-indigo-700 transition-all duration-300 ${
+              isSubmitting ? "bg-indigo-400 hover:bg-indigo-400" : "bg-indigo-600"
             }`}
           >
-            {isSubmitting ? <ButtonSpinner /> : 'Next'}
+            {isSubmitting ? <ButtonSpinner /> : 'Create Account'}
           </button>
         </div>
       </form>
