@@ -14,6 +14,7 @@ const handler = async (req, res) => {
   const db = client.db();
   const users = db.collection("users");
 
+  console.log(event);
   // Handle the event
   switch (event.type) {
     // CASE FOR WHEN USER SETTING UP ACCOUNT FOR FREE TRIAL
@@ -23,9 +24,18 @@ const handler = async (req, res) => {
       updatePaymentStatus = {
         $set: {
           paymentStatus: "succeeded",
+          defaultPaymentMethod: event.data.object.payment_method,
         },
       };
+
+      await stripe.customers.update(user.stripeCustomerId, {
+        invoice_settings: {
+          default_payment_method: event.data.object.payment_method,
+        },
+      });
+
       await users.updateOne(user, updatePaymentStatus);
+
       console.log("Setup intent was successfull!");
       break;
     // CASE FOR PAYMENT FAILED
@@ -42,7 +52,6 @@ const handler = async (req, res) => {
       break;
     // CASE FOR PAYMENT SUCCEEDED
     case "invoice.payment_succeeded":
-      console.log(event);
       customer = event.data.object.customer;
       user = await users.findOne({ stripeCustomerId: customer });
       if (user.paymentStatus) {
@@ -54,6 +63,28 @@ const handler = async (req, res) => {
         await users.updateOne(user, updatePaymentStatus);
         console.log("Payment Succeeded!");
       }
+      break;
+    // IF CUSTOMER CANCELS THERE SUBSCRIPTION
+    case "customer.subscription.deleted":
+      customer = event.data.object.customer;
+      user = await users.findOne({ stripeCustomerId: customer });
+      const updateSubscriptionDeleted = {
+        $set: {
+          priceId: null,
+          subscriptionId: null,
+          subscriptionType: "canceled",
+          paymentStatus: null,
+          defaultPaymentMethod: null,
+        },
+      };
+      await stripe.customers.update(user.stripeCustomerId, {
+        invoice_settings: {
+          default_payment_method: null
+        },
+      });
+
+      await users.updateOne(user, updateSubscriptionDeleted);
+      console.log('Subscription Canceled!')
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);

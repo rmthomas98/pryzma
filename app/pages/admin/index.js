@@ -8,15 +8,29 @@ export const getServerSideProps = withIronSession(
   ({req, res}) => {
     const user = req.session.get('user');
 
-    if (user) return {props: user}
-
-    return {
-      redirect: {
-        permanant: false,
-        destination: '/login'
-      },
-      props: {}
+    // IF NO USER IN SESSION, REDIRECT TO LOGIN PAGE
+    if (!user) {
+      return {
+        redirect: {
+          permanant: false,
+          destination: '/login'
+        },
+        props: {}
+      }
     }
+
+    // IF USER HAS NO SUBSCRIPTION OR USER HAS CANCELED THEIR SUBSCRIPTION
+    // REDIRECT TO CHOOSE PLAN PAGE
+    if (!user.subscriptionType || user.subscriptionType === 'canceled') {
+      return {
+        redirect: {
+          permanant: false,
+          destination: '/admin/choose-plan'
+        },
+        props: {}
+      }
+    }
+
   },
   {
     password: process.env.IRON_SESSION_PASSWORD,

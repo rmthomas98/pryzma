@@ -41,6 +41,7 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
           {userData.email}
         </p>
       )}
+      { !router.pathname.endsWith('/choose-plan') || !router.pathname.endsWith('/payment') &&
       <Link href="/admin/manage-account">
         <a
           onClick={() => setDropDownActive(false)}
@@ -49,7 +50,7 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
           <Person className="mr-2 text-lg" />
           Manage Account
         </a>
-      </Link>
+      </Link>}
         <p
           onClick={handleLogout}
           className="cursor-pointer p-3 pl-6 pr-6 text-sm w-full font-medium text-rose-600 flex justify-center items-center hover:bg-gray-200 transition-all duration-300"

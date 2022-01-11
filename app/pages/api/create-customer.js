@@ -30,9 +30,11 @@ const handler = async (req, res) => {
     // CREATE THE CUSTOMER FOR MONGODB
     const newUser = {
       stripeCustomerId: customer.id,
+      priceId: null,
       subscriptionId: null,
       subscriptionType: null,
       paymentStatus: null,
+      defaultPaymentMethod: null,
       firstName: req.body.data.first.charAt(0).toUpperCase() + req.body.data.first.slice(1),
       lastName: req.body.data.last.charAt(0).toUpperCase() + req.body.data.last.slice(1),
       email: req.body.data.email,

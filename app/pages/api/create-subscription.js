@@ -23,14 +23,15 @@ const handler = async (req, res) => {
       customer: customerId,
       items: [{price: priceId}],
       payment_behavior: 'default_incomplete',
-      trial_period_days: 7,
+      trial_period_days: user.subscriptionType ? 0 : 7,
       expand: ['latest_invoice.payment_intent']
     })
     
     const updateSubscription = {
       $set: {
         subscriptionId: subscription.id,
-        subscriptionType: plan
+        subscriptionType: plan,
+        priceId: priceId
       }
     }
 
