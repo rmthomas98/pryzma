@@ -41,7 +41,7 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
           {userData.email}
         </p>
       )}
-      { !router.pathname.endsWith('/choose-plan') || !router.pathname.endsWith('/payment') &&
+      { !router.pathname.endsWith('/admin/choose-plan') || !router.pathname.endsWith('/admin/payment') &&
       <Link href="/admin/manage-account">
         <a
           onClick={() => setDropDownActive(false)}

@@ -21,7 +21,7 @@ export const getServerSideProps = withIronSession(
 
     // IF USER HAS NO SUBSCRIPTION OR USER HAS CANCELED THEIR SUBSCRIPTION
     // REDIRECT TO CHOOSE PLAN PAGE
-    if (!user.subscriptionType || user.subscriptionType === 'canceled') {
+    if (!user.user.subscriptionType || user.user.subscriptionType === 'canceled') {
       return {
         redirect: {
           permanant: false,
@@ -31,6 +31,7 @@ export const getServerSideProps = withIronSession(
       }
     }
 
+    return {props: {}}
   },
   {
     password: process.env.IRON_SESSION_PASSWORD,

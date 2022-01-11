@@ -2,6 +2,7 @@ import clientPromise from "../../lib/mongodb";
 const stripe = require("stripe")(
   "sk_test_51JAxp2F124ucKAQocBFd1Ivxxpj4YRPSHcNVnZWdB5rhpBXegcyNigbf6E4tEuPDsrj7XzX0dh6xKK12QK8M8Qa900TYmxILAG"
 );
+import { withIronSession } from "next-iron-session";
 
 const handler = async (req, res) => {
   let customer;
@@ -35,7 +36,12 @@ const handler = async (req, res) => {
       });
 
       await users.updateOne(user, updatePaymentStatus);
-
+      user = await users.findOne({stripeCustomerId: customer});
+      req.session.set('user', {
+        id: user._id,
+        user: user
+      })
+      await req.session.save();
       console.log("Setup intent was successfull!");
       break;
     // CASE FOR PAYMENT FAILED
@@ -48,6 +54,12 @@ const handler = async (req, res) => {
         },
       };
       await users.updateOne(user, updatePaymentStatus);
+      user = await users.findOne({stripeCustomerId: customer});
+      req.session.set('user', {
+        id: user._id,
+        user: user
+      })
+      await req.session.save();
       console.log("Payment Failed!");
       break;
     // CASE FOR PAYMENT SUCCEEDED
@@ -61,6 +73,12 @@ const handler = async (req, res) => {
           },
         };
         await users.updateOne(user, updatePaymentStatus);
+        user = await users.findOne({stripeCustomerId: customer});
+        req.session.set('user', {
+          id: user._id,
+          user: user
+        })
+        await req.session.save();
         console.log("Payment Succeeded!");
       }
       break;
@@ -84,8 +102,15 @@ const handler = async (req, res) => {
       });
 
       await users.updateOne(user, updateSubscriptionDeleted);
+      user = await users.findOne({stripeCustomerId: customer});
+      req.session.set('user', {
+        id: user._id,
+        user: user
+      })
+      await req.session.save();
       console.log('Subscription Canceled!')
       break;
+
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
