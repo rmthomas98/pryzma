@@ -20,9 +20,11 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
 
   const handleLogout = async () => {
     setDropDownActive(false);
-    const response = await axios.get('/api/logout').catch(e => console.error(e));
-    if (response.data === 'user logged out') router.push('/login')
-  }
+    const response = await axios
+      .get("/api/logout")
+      .catch((e) => console.error(e));
+    if (response.data === "user logged out") router.push("/login");
+  };
 
   return (
     <div
@@ -41,7 +43,6 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
           {userData.email}
         </p>
       )}
-      { !router.pathname.endsWith('/admin/choose-plan') || !router.pathname.endsWith('/admin/payment') &&
       <Link href="/admin/manage-account">
         <a
           onClick={() => setDropDownActive(false)}
@@ -50,14 +51,14 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
           <Person className="mr-2 text-lg" />
           Manage Account
         </a>
-      </Link>}
-        <p
-          onClick={handleLogout}
-          className="cursor-pointer p-3 pl-6 pr-6 text-sm w-full font-medium text-rose-600 flex justify-center items-center hover:bg-gray-200 transition-all duration-300"
-        >
-          <BoxArrowLeft className="mr-2 text-lg" />
-          Logout
-        </p>
+      </Link>
+      <p
+        onClick={handleLogout}
+        className="cursor-pointer p-3 pl-6 pr-6 text-sm w-full font-medium text-rose-600 flex justify-center items-center hover:bg-gray-200 transition-all duration-300"
+      >
+        <BoxArrowLeft className="mr-2 text-lg" />
+        Logout
+      </p>
     </div>
   );
 };
