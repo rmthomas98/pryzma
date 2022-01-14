@@ -1,14 +1,12 @@
 import { format } from "date-fns";
+import { useState } from "react";
 
-const AccountInformation = ({
-  firstName,
-  lastName,
-  email,
-  setFirstName,
-  setLastName,
-  setEmail,
-  user,
-}) => {
+const AccountInformation = ({ user }) => {
+
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [email, setEmail] = useState(user.email);
+
   return (
     <>
       <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6">
