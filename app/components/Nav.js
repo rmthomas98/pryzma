@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 import { CaretDownFill } from "react-bootstrap-icons";
 import DropDownNavMenu from "./DropDownNavMenu";
+import { Router } from "next/router";
 
 const Nav = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const Nav = () => {
         setName(
           response.data.user.firstName
         );
-        const {firstName, lastName, email,} = response.data.user;
+        const {firstName, lastName, email} = response.data.user;
         setUserData({firstName, lastName, email}) 
     };
     getUser();

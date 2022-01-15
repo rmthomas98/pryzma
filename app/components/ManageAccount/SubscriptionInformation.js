@@ -11,15 +11,13 @@ const SubscriptionInformation = ({ user }) => {
         Subscription Information
       </p>
       <div className="border-gray-300 border p-3 w-full rounded-md shadow-sm text-sm shadow-gray-300 flex justify-between items-center mb-4">
-        <p className="text-gray-800 font-medium">Prizm Pro Monthly</p>
-        <p className="text-gray-800">$19.99/mo</p>
+        <p className="text-gray-800"><span className="font-medium">Prizm Pro Monthly</span> <span>($19.99/mo)</span></p>
         <button className="p-2 pl-4 pr-4 bg-gradient-to-r from-rose-600 to-indigo-600 rounded-md text-white font-medium ">
           Current Plan
         </button>
       </div>
       <div className="border-gray-300 border p-3 w-full rounded-md shadow-sm text-sm shadow-gray-300 flex justify-between items-center">
-        <p className="text-gray-800 font-medium">Prizm Pro Annual</p>
-        <p className="text-gray-800">$199.99/yr</p>
+      <p className="text-gray-800"><span className="font-medium">Prizm Pro Annual</span> <span>($199.99/mo)</span></p>
         <button className="p-2 pl-4 pr-4 border border-indigo-600 rounded-md text-indigo-600 font-medium">
           Change Plan
         </button>
