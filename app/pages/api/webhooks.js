@@ -2,7 +2,6 @@ import clientPromise from "../../lib/mongodb";
 const stripe = require("stripe")(
   "sk_test_51JAxp2F124ucKAQocBFd1Ivxxpj4YRPSHcNVnZWdB5rhpBXegcyNigbf6E4tEuPDsrj7XzX0dh6xKK12QK8M8Qa900TYmxILAG"
 );
-import { withIronSession } from "next-iron-session";
 
 const handler = async (req, res) => {
   let customer;
@@ -22,6 +21,7 @@ const handler = async (req, res) => {
     case "setup_intent.succeeded":
       customer = event.data.object.customer;
       user = await users.findOne({ stripeCustomerId: customer });
+
       updatePaymentStatus = {
         $set: {
           paymentStatus: "succeeded",
@@ -35,13 +35,7 @@ const handler = async (req, res) => {
         },
       });
 
-      await users.updateOne(user, updatePaymentStatus);
-      user = await users.findOne({stripeCustomerId: customer});
-      req.session.set('user', {
-        id: user._id,
-        user: user
-      })
-      await req.session.save();
+      await users.updateOne({email: user.email}, updatePaymentStatus);
       console.log("Setup intent was successfull!");
       break;
     // CASE FOR PAYMENT FAILED
@@ -53,13 +47,7 @@ const handler = async (req, res) => {
           paymentStatus: "failed",
         },
       };
-      await users.updateOne(user, updatePaymentStatus);
-      user = await users.findOne({stripeCustomerId: customer});
-      req.session.set('user', {
-        id: user._id,
-        user: user
-      })
-      await req.session.save();
+      await users.updateOne({email: user.email}, updatePaymentStatus);
       console.log("Payment Failed!");
       break;
     // CASE FOR PAYMENT SUCCEEDED
@@ -72,13 +60,7 @@ const handler = async (req, res) => {
             paymentStatus: "succeeded",
           },
         };
-        await users.updateOne(user, updatePaymentStatus);
-        user = await users.findOne({stripeCustomerId: customer});
-        req.session.set('user', {
-          id: user._id,
-          user: user
-        })
-        await req.session.save();
+        await users.updateOne({email: user.email}, updatePaymentStatus);
         console.log("Payment Succeeded!");
       }
       break;
@@ -93,24 +75,37 @@ const handler = async (req, res) => {
           subscriptionType: "canceled",
           paymentStatus: null,
           defaultPaymentMethod: null,
+          cardDetails: null,
+          cancelAtPeriodEnd: false
         },
       };
+
       await stripe.customers.update(user.stripeCustomerId, {
         invoice_settings: {
           default_payment_method: null
         },
       });
 
-      await users.updateOne(user, updateSubscriptionDeleted);
-      user = await users.findOne({stripeCustomerId: customer});
-      req.session.set('user', {
-        id: user._id,
-        user: user
-      })
-      await req.session.save();
+      await users.updateOne({email: user.email}, updateSubscriptionDeleted);
       console.log('Subscription Canceled!')
       break;
+    // GET CARD DETAILS
+    case 'payment_method.attached':
+      customer = event.data.object.customer;
+      user = await users.findOne({stripeCustomerId: customer});
 
+      // update card details in mongodb
+      const cardDetails = {
+        $set: {
+          cardDetails: {brand: event.data.object.card.brand, last4: event.data.object.card.last4}
+        }
+      }
+
+      // update customer in mongodb
+      await users.updateOne({stripeCustomerId: customer}, cardDetails);
+
+      console.log('Payment method attached!')
+    // unhandled event types get logged to the console  
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

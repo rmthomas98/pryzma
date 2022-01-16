@@ -2,9 +2,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
-import { CaretDownFill } from "react-bootstrap-icons";
+import { CaretDownFill, Person } from "react-bootstrap-icons";
 import DropDownNavMenu from "./DropDownNavMenu";
-import { Router } from "next/router";
 
 const Nav = () => {
   const router = useRouter();
@@ -29,7 +28,7 @@ const Nav = () => {
         setUserData({firstName, lastName, email}) 
     };
     getUser();
-  }, [router.pathname]);
+  }, [router.pathname, router.query]);
 
   return (
     <div className="w-full bg-white">
@@ -41,7 +40,7 @@ const Nav = () => {
         </Link>
         {router.pathname.startsWith("/admin") ? (
           <div className="flex">
-            {name && <p ref={button} onClick={() => dropDownActive ? setDropDownActive(false) : setDropDownActive(true)} className={`text-xs flex text-gray-600 items-center cursor-pointer border border-gray-200 rounded-md p-1.5 pl-4 pr-4 hover:bg-gray-100 transition-all duration-200 ${dropDownActive && 'bg-gray-100'}`}>{name}<CaretDownFill className={`pointer-events-none ml-1 text-xs relative top-[1px] text-gray-400 transition-all duration-300 ${dropDownActive ? 'rotate-180' : 'rotate-0'}`}/></p>}
+            {name && <p ref={button} onClick={() => dropDownActive ? setDropDownActive(false) : setDropDownActive(true)} className={`text-xs flex text-gray-600 items-center cursor-pointer border border-gray-200 rounded-md p-1.5 pl-4 pr-4 hover:bg-gray-100 transition-all duration-200 ${dropDownActive && 'bg-gray-100'}`}><Person className="mr-1 text-lg pointer-events-none"/>{name}<CaretDownFill className={`pointer-events-none ml-2 text-xs relative top-[1px] text-gray-400 transition-all duration-300 ${dropDownActive ? 'rotate-180' : 'rotate-0'}`}/></p>}
             <DropDownNavMenu userData={userData} active={dropDownActive} setDropDownActive={setDropDownActive} button={button}/>
           </div>
         ) : (

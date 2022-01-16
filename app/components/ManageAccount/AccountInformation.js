@@ -1,11 +1,14 @@
 import axios from "axios";
-import { format, setSeconds } from "date-fns";
-import Router from "next/router";
+import { format } from "date-fns";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonSpinner from "../ButtonSpinner";
 
 const AccountInformation = ({ user }) => {
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -18,6 +21,7 @@ const AccountInformation = ({ user }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState();
   const [errorMessage, setErrorMessage] = useState();
+  const [success, setSuccess] = useState(false);
 
   const onSubmit = async (data) => {
     setIsSubmitting(true)
@@ -30,7 +34,11 @@ const AccountInformation = ({ user }) => {
       })
       .catch((e) => console.error(e));
     console.log(response);
-    if (response.data !== "email is already in use") return Router.reload();
+    if (response.data !== "email is already in use") {
+      setIsSubmitting(false);
+      setSuccess(true)
+      return router.replace(router.asPath, {query: {updatedAccount: `${data.firstName},${data.lastName},${data.email}`}})
+    }
     if (response.data === 'email is already in use') {
       setIsSubmitting(false)
       return setEmailError("*email already in use")
@@ -47,6 +55,18 @@ const AccountInformation = ({ user }) => {
             {errorMessage}
           </p>
         </div> }
+        {success && (
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+          <p className="text-xs font-bold text-center text-white leading-5">
+            Your account has been updated.
+          </p>
+        </div>
+      )}
+      {router.query.paymentMethodUpdated && !success &&  <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+          <p className="text-xs font-bold text-center text-white leading-5">
+            Your Payment method has been updated.
+          </p>
+        </div>}
       <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6 mt-12">
         Account Information
       </p>
@@ -111,9 +131,9 @@ const AccountInformation = ({ user }) => {
         <button
         disabled={isSubmitting ? true : false}
           type="submit"
-          className={`text-sm mt-8 bg-indigo-600 text-white font-medium rounded-md h-[40px] w-[166px] flex items-center justify-center transition-all duration-300 ${
+          className={`text-sm mt-8 text-white font-medium rounded-md h-[40px] w-[166px] flex items-center justify-center transition-all duration-300 ${
             isSubmitting
-              ? "bg-indigo-400 hover:bg-indigo-400"
+              ? "bg-indigo-400 hover:none"
               : "bg-indigo-600 hover:bg-indigo-700"
           }`}
         >

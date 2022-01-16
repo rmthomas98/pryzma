@@ -1,17 +1,19 @@
 import { withIronSession } from "next-iron-session";
-import { useState } from "react";
-import { BoxArrowUpRight } from "react-bootstrap-icons";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import ButtonSpinner from "../../components/ButtonSpinner";
 import AccountInformation from "../../components/ManageAccount/AccountInformation";
 import Password from "../../components/ManageAccount/Password";
 import SubscriptionInformation from "../../components/ManageAccount/SubscriptionInformation";
+import clientPromise from "../../lib/mongodb";
 
 const ManageAccount = ({ user }) => {
   const router = useRouter();
 
   const [page, setPage] = useState("account");
+
+  useEffect(() => {
+    router.query.paymentMethodUpdated && router.replace(router.asPath);
+  },[router.pathname])
 
   return (
     <div className="pr-4 pl-4">
@@ -22,7 +24,7 @@ const ManageAccount = ({ user }) => {
           <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'subscription' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('subscription')}>Subscription</p>
         </div>
         {page === "account" && <AccountInformation user={user} />}
-        {page === "password" && <Password />}
+        {page === "password" && <Password user={user}/>}
         {page === "subscription" && <SubscriptionInformation user={user} />}
       </div>
     </div>
@@ -30,10 +32,24 @@ const ManageAccount = ({ user }) => {
 };
 
 export const getServerSideProps = withIronSession(
-  ({ req, res }) => {
-    const user = req.session.get("user");
+  async ({ req, res }) => {
+    let user = req.session.get("user");
 
-    if (user) return { props: user };
+    if (user) {
+      const client = await clientPromise;
+      const db = client.db();
+      const collection = db.collection('users');
+
+      user = await collection.findOne({stripeCustomerId: user.user.stripeCustomerId});
+      req.session.set('user', {
+        id: user._id,
+        user: user
+      })
+      await req.session.save()
+      user = req.session.get('user')
+      user = JSON.parse(JSON.stringify(user))
+      return {props: user}
+    }
 
     return {
       redirect: {
