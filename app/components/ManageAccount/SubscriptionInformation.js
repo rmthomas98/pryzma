@@ -161,7 +161,7 @@ const SubscriptionInformation = ({ user }) => {
             Renew Plan
           </button>
         ): ''}
-        {!user.cancelAtPeriodEnd && user.subscriptionType || user.subscriptionType === 'canceled' ? (
+        {!user.cancelAtPeriodEnd && user.subscriptionType !== 'canceled' ? (
           <button
             onClick={() => setCancelModalActive(true)}
             className="p-2.5 pl-4 pr-4 rounded-md border border-rose-600 text-xs font-medium text-rose-600 flex items-center hover:text-white hover:bg-rose-600 transition-all duration-300"
