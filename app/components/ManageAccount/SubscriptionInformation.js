@@ -9,8 +9,10 @@ import {
 import { useRouter } from "next/router";
 import ButtonSpinner from "../ButtonSpinner";
 import PaymentElementProvider from "./PaymentMethodModal";
+import ChangeSubscriptionModal from "./ChangeSubscriptionModal";
+import SetupSubscription from "./SetupSubscription";
 
-const SubscriptionInformation = ({ user }) => {
+const SubscriptionInformation = ({ user, accountMessage }) => {
   // router
   const router = useRouter();
 
@@ -30,6 +32,9 @@ const SubscriptionInformation = ({ user }) => {
   const [paymentElementActive, setPaymentElementActive] = useState(false);
   // change payment button loading
   const [paymentLoading, setPaymentLoading] = useState(false);
+  // change subscription modal
+  const [changeSubscriptionActive, setChangeSubscriptionActive] = useState(false);
+  const [priceId, setPriceId] = useState();
 
   // function allows customer to cancel and renew their subscription
   const updateRenewal = async (e) => {
@@ -62,9 +67,18 @@ const SubscriptionInformation = ({ user }) => {
 
   // handle payment method update
   const handlePaymentMethodClick = () => {
-    setPaymentElementActive(true)
-    setPaymentLoading(true)
-  }
+    setPaymentElementActive(true);
+    setPaymentLoading(true);
+  };
+
+  // handle subscription change
+  const handleSubscriptionChange = async (e) => {
+    setChangeSubscriptionActive(true);
+    setPriceId(e.target.value);
+  };
+
+  // if user has no plan, make them choose plan
+  if (user.subscriptionType === null ) return <SetupSubscription accountMessage={accountMessage}/>
 
   return (
     <div>
@@ -84,12 +98,24 @@ const SubscriptionInformation = ({ user }) => {
               You will continue to be billed normally.
             </p>
           )}
+          {success === "subscription updated" && (
+            <p className="text-xs font-bold text-center text-white leading-5">
+              Your subscription has been updated.
+            </p>
+          )}
         </div>
       )}
       {errorMessage && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             Something went wrong, please try again.
+          </p>
+        </div>
+      )}
+      {accountMessage && (
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-yellow-700 border-2 border-yellow-400 rounded-lg shadow-lg shadow-gray-400">
+          <p className="text-xs font-bold text-center text-white leading-5">
+            {accountMessage}
           </p>
         </div>
       )}
@@ -102,6 +128,7 @@ const SubscriptionInformation = ({ user }) => {
           <span>($19.99/mo)</span>
         </p>
         <button
+          onClick={handleSubscriptionChange}
           value="price_1KFhUZF124ucKAQoKJD5oDgr"
           disabled={plan === "monthly" ? true : false}
           className={`p-2 w-[116px] rounded-md font-medium transition-all duration-300 ${
@@ -112,7 +139,7 @@ const SubscriptionInformation = ({ user }) => {
         >
           {plan === "monthly" && "Current Plan"}
           {plan === "annual" && "Change Plan"}
-          {plan === 'canceled' || plan === null ? 'Select Plan' : ''}
+          {plan === "canceled" || plan === null ? "Select Plan" : ""}
         </button>
       </div>
       <div className="border-gray-300 border p-3 w-full rounded-md shadow-sm text-sm shadow-gray-300 flex justify-between items-center">
@@ -121,6 +148,7 @@ const SubscriptionInformation = ({ user }) => {
           <span>($199.99/yr)</span>
         </p>
         <button
+          onClick={handleSubscriptionChange}
           value="price_1KFhV3F124ucKAQoEPMNXfBN"
           disabled={plan === "annual" ? true : false}
           className={`p-2 w-[116px] rounded-md font-medium transition-all duration-300 ${
@@ -131,27 +159,43 @@ const SubscriptionInformation = ({ user }) => {
         >
           {plan === "annual" && "Current Plan"}
           {plan === "monthly" && "Change Plan"}
-          {plan === 'canceled' || plan === null ? 'Select Plan' : ''}
+          {plan === "canceled" || plan === null ? "Select Plan" : ""}
         </button>
       </div>
-      {user.cancelAtPeriodEnd === false && user.subscriptionType && user.subscriptionType !== 'canceled' || user.subscriptionType === null ?
-      <p className="text-gray-800 mt-6 text-sm flex items-center">
-        <span className="font-medium mr-4">Default Payment Method</span>
-        <span className="rounded-md border border-gray-300 p-2 pl-4 pr-4 flex items-center">
-          <span className="mr-4 uppercase italic flex items-center">
-            <CreditCard className="mr-2 text-xl" />
-            {user.cardDetails.brand}
+      {user.cardDetails ? (
+        <p className="text-gray-800 mt-6 text-sm flex items-center">
+          <span className="font-medium mr-4">Default Payment Method</span>
+          <span className="rounded-md border border-gray-300 p-2 pl-4 pr-4 flex items-center">
+            <span className="mr-4 uppercase italic flex items-center">
+              <CreditCard className="mr-2 text-xl" />
+              {user.cardDetails.brand}
+            </span>
+            <span>****{user.cardDetails.last4}</span>
           </span>
-          <span>****{user.cardDetails.last4}</span>
-        </span>
-      </p> : ''}
+        </p>
+      ) : (
+        ""
+      )}
       <div className="mt-8 flex">
-        {user.cancelAtPeriodEnd === false && user.subscriptionType && user.subscriptionType !== 'canceled' || user.subscriptionType === null ? (
-          <button disabled={paymentLoading ? true : false} onClick={handlePaymentMethodClick} className={`p-2.5 pl-4 pr-4 rounded-md border transition-all duration-300 text-sm font-medium text-white flex items-center mr-4 ${paymentLoading? 'bg-indigo-400 hover:none border-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700'}`}>
+        {(user.cancelAtPeriodEnd === false &&
+          user.subscriptionType &&
+          user.subscriptionType !== "canceled") ||
+        user.subscriptionType === null ? (
+          <button
+            disabled={paymentLoading ? true : false}
+            onClick={handlePaymentMethodClick}
+            className={`p-2.5 pl-4 pr-4 rounded-md border transition-all duration-300 text-sm font-medium text-white flex items-center mr-4 ${
+              paymentLoading
+                ? "bg-indigo-400 hover:none border-indigo-400"
+                : "bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700"
+            }`}
+          >
             <CreditCard className="mr-2 text-xl" />
-            {user.defaultPaymentMethod === null ? 'Add Payment Method' : 'Update Payment Method'}
+            Update Payment Method
           </button>
-        ) : ''}
+        ) : (
+          ""
+        )}
         {user.cancelAtPeriodEnd && user.subscriptionId ? (
           <button
             onClick={() => setRenewModalActive(true)}
@@ -160,8 +204,10 @@ const SubscriptionInformation = ({ user }) => {
             <ArrowRepeat className="mr-2 text-xl" />
             Renew Plan
           </button>
-        ): ''}
-        {!user.cancelAtPeriodEnd && user.subscriptionType !== 'canceled' ? (
+        ) : (
+          ""
+        )}
+        {!user.cancelAtPeriodEnd && user.subscriptionType !== "canceled" ? (
           <button
             onClick={() => setCancelModalActive(true)}
             className="p-2.5 pl-4 pr-4 rounded-md border border-rose-600 text-xs font-medium text-rose-600 flex items-center hover:text-white hover:bg-rose-600 transition-all duration-300"
@@ -169,7 +215,9 @@ const SubscriptionInformation = ({ user }) => {
             <XCircle className="mr-2 text-xl" />
             Cancel Plan
           </button>
-        ) : ''}
+        ) : (
+          ""
+        )}
       </div>
       <CancelModal
         updateRenewal={updateRenewal}
@@ -183,9 +231,25 @@ const SubscriptionInformation = ({ user }) => {
         renewModalActive={renewModalActive}
         setRenewModalActive={setRenewModalActive}
       />
-      {paymentElementActive &&
-      <PaymentElementProvider paymentElementActive={paymentElementActive} setPaymentElementActive={setPaymentElementActive} user={user} paymentLoading={paymentLoading} setPaymentLoading={setPaymentLoading}/>
-}
+      {paymentElementActive && (
+        <PaymentElementProvider
+          paymentElementActive={paymentElementActive}
+          setPaymentElementActive={setPaymentElementActive}
+          user={user}
+          paymentLoading={paymentLoading}
+          setPaymentLoading={setPaymentLoading}
+        />
+      )}
+      <ChangeSubscriptionModal
+        plan={plan}
+        changeSubscriptionActive={changeSubscriptionActive}
+        setChangeSubscriptionActive={setChangeSubscriptionActive}
+        priceId={priceId}
+        setPlan={setPlan}
+        user={user}
+        setErrorMessage={setErrorMessage}
+        setSuccess={setSuccess}
+      />
     </div>
   );
 };
@@ -202,16 +266,12 @@ const CancelModal = ({
       <div
         onClick={() => setCancelModalActive(false)}
         className={`fixed h-screen w-screen top-0 left-0 bg-black/75 transition-all ${
-          cancelModalActive
-            ? "opacity-100 z-[10] backdrop-blur-lg"
-            : "opacity-0 z-[-1]"
+          cancelModalActive ? "opacity-100 z-[10]" : "opacity-0 z-[-1]"
         }`}
       ></div>
       <div
         className={`w-[320px] bg-gray-100 p-6 pt-10 pb-10 rounded-lg fixed transition-all top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] ${
-          cancelModalActive
-            ? "opacity-100 z-[10] backdrop-blur-lg"
-            : "opacity-0 z-[-1]"
+          cancelModalActive ? "opacity-100 z-[10]" : "opacity-0 z-[-1]"
         }`}
       >
         <p className="text-gray-800 text-center leading-7 mb-10">
@@ -263,16 +323,12 @@ const RenewModal = ({
       <div
         onClick={() => setRenewModalActive(false)}
         className={`fixed h-screen w-screen top-0 left-0 bg-black/75 transition-all ${
-          renewModalActive
-            ? "opacity-100 z-[10] backdrop-blur-lg"
-            : "opacity-0 z-[-1]"
+          renewModalActive ? "opacity-100 z-[10]" : "opacity-0 z-[-1]"
         }`}
       ></div>
       <div
         className={`w-[320px] bg-gray-100 p-6 pt-10 pb-10 rounded-lg fixed transition-all top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] ${
-          renewModalActive
-            ? "opacity-100 z-[10] backdrop-blur-lg"
-            : "opacity-0 z-[-1]"
+          renewModalActive ? "opacity-100 z-[10]" : "opacity-0 z-[-1]"
         }`}
       >
         <p className="text-gray-800 text-center leading-7 mb-10">

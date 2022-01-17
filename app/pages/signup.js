@@ -26,7 +26,7 @@ const Signup = () => {
   const increment = () => {
     dispatch({type: 'increment'})
   }
-
+  
   return (
     <div className="mt-24 mb-20">
       <div className="w-full max-w-screen-sm mx-auto">

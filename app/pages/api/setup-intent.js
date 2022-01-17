@@ -5,7 +5,6 @@ const stripe = require("stripe")(
 
 const handler = async (req, res) => {
   try {
-
     // GET EMAIL FROM CLIENT SIDE 
     const email = req.body.email;
     // FETCH USER FROM MONGODB DATABASE

@@ -19,6 +19,19 @@ export const getServerSideProps = withIronSession(
       };
     }
 
+    if (user) {
+      // if user subscription is canceled, redirect to manage acccount page to update payment method
+      if (user.user.subscriptionType === 'canceled' || user.user.paymentStatus === 'failed' || user.user.subscriptionType === null) {
+        return {
+          redirect: {
+            permanant: false,
+            destination: '/admin/manage-account'
+          },
+          props: {}
+        }
+      }
+    }
+
     return { props: {} };
   },
   {

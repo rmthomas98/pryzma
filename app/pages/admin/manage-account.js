@@ -10,10 +10,28 @@ const ManageAccount = ({ user }) => {
   const router = useRouter();
 
   const [page, setPage] = useState("account");
+  const [accountMessage, setAccountMessage] = useState(false);
 
   useEffect(() => {
     router.query.paymentMethodUpdated && router.replace(router.asPath);
   },[router.pathname])
+
+  useEffect(() => {
+    if (user.paymentStatus === 'failed') {
+      if (router.query.paymentMethodUpdated) return setAccountMessage(false);
+      setAccountMessage('You payment has failed. Please update your payment method.')
+      return setPage('subscription')
+    }
+    if (user.subscriptionType === 'canceled') {
+      setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
+      setPage('subscription')
+    }
+    if (user.subscriptionType === null) {
+      setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
+      setPage('subscription')
+    }
+  },[])
+  
 
   return (
     <div className="pr-4 pl-4">
@@ -25,7 +43,7 @@ const ManageAccount = ({ user }) => {
         </div>
         {page === "account" && <AccountInformation user={user} />}
         {page === "password" && <Password user={user}/>}
-        {page === "subscription" && <SubscriptionInformation user={user} />}
+        {page === "subscription" && <SubscriptionInformation user={user} accountMessage={accountMessage}/>}
       </div>
     </div>
   );
@@ -35,7 +53,17 @@ export const getServerSideProps = withIronSession(
   async ({ req, res }) => {
     let user = req.session.get("user");
 
+    if (!user) {
+      return {
+        redirect: {
+          permanant: false,
+          destination: '/login'
+        }
+      }
+    }
+
     if (user) {
+
       const client = await clientPromise;
       const db = client.db();
       const collection = db.collection('users');
@@ -50,14 +78,6 @@ export const getServerSideProps = withIronSession(
       user = JSON.parse(JSON.stringify(user))
       return {props: user}
     }
-
-    return {
-      redirect: {
-        permanant: false,
-        destination: "/login",
-      },
-      props: {},
-    };
   },
   {
     password: process.env.IRON_SESSION_PASSWORD,

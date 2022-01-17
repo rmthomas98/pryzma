@@ -110,7 +110,7 @@ const handler = async (req, res) => {
       console.log(`Unhandled event type ${event.type}`);
   }
   // returning recieved to acknowledge receipt of the event
-  res.json({ received: true });
+  res.status(200).json({ received: true });
 };
 
 export default handler;
