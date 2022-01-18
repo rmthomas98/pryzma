@@ -13,7 +13,14 @@ const ManageAccount = ({ user }) => {
   const [accountMessage, setAccountMessage] = useState(false);
 
   useEffect(() => {
-    router.query.paymentMethodUpdated && router.replace(router.asPath);
+    if (router.query.paymentMethodUpdated) {
+      router.replace(router.asPath);
+      setPage('subscription')
+    }
+    if (router.query.subscriptionCreated) {
+      router.replace(router.asPath);
+      setPage('subscription')
+    }
   },[router.pathname])
 
   useEffect(() => {

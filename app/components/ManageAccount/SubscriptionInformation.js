@@ -39,13 +39,27 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
   // function allows customer to cancel and renew their subscription
   const updateRenewal = async (e) => {
     setIsSubmitting(true);
+    //check if payment is failed, if failed, we are canceling subscription right now
+    if (user.paymentStatus === 'failed') {
+      const response = await axios.post('/api/cancel-subscription', {subscriptionId: user.subscriptionId}).catch(e => console.error(e));
+      if (response?.data === 'subscription deleted') {
+        setIsSubmitting(false);
+        setCancelModalActive(false);
+        router.replace(router.asPath);
+        return setSuccess('deleted')
+      } else {
+        setIsSubmitting(false);
+        setCancelModalActive(false);
+        return setErrorMessage(true)
+      }
+    }
+    
     // send info to backend to update plan info
     const response = await axios.post("/api/auto-renew-subscription", {
       email: user.email,
       subscriptionId: user.subscriptionId,
       status: e.target.value,
     });
-    console.log(response.data);
     // if response comes back renewed show message
     if (response.data === "subscription renewed") {
       setIsSubmitting(false);
@@ -61,6 +75,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
       // if something goes wrong, show error message
     } else {
       setIsSubmitting(false);
+      setCancelModalActive(false);
       return setErrorMessage(true);
     }
   };
@@ -78,7 +93,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
   };
 
   // if user has no plan, make them choose plan
-  if (user.subscriptionType === null ) return <SetupSubscription accountMessage={accountMessage}/>
+  if (user.subscriptionType === null  ) return <SetupSubscription accountMessage={accountMessage} user={user}/>
 
   return (
     <div>
@@ -100,7 +115,13 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
           )}
           {success === "subscription updated" && (
             <p className="text-xs font-bold text-center text-white leading-5">
-              Your subscription has been updated.
+              Your subscription has been updated!
+            </p>
+          )}
+          {success === "subscription updated" && (
+            <p className="text-xs font-bold text-center text-white leading-5">
+              Your subscription has been canceled.<br />
+              We hope you come back soon!
             </p>
           )}
         </div>
@@ -112,7 +133,18 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
           </p>
         </div>
       )}
-      {accountMessage && (
+      {router.query.paymentMethodUpdated && !success && !accountMessage && <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+          <p className="text-xs font-bold text-center text-white leading-5">
+            Your Payment method has been updated!
+          </p>
+        </div>}
+        {router.query.subscriptionCreated && !success && !accountMessage &&  <div className="absolute top-[100px] left-[50%] translate-x-[-50%] min-w-[300px] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+          <p className="text-xs font-bold text-center text-white leading-5">
+            Your 7 day free trial has started! <br />
+            Your card will not be charged until the trial is over.
+          </p>
+        </div>}
+      {accountMessage && !success && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-yellow-700 border-2 border-yellow-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             {accountMessage}
@@ -130,12 +162,12 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         <button
           onClick={handleSubscriptionChange}
           value="price_1KFhUZF124ucKAQoKJD5oDgr"
-          disabled={plan === "monthly" ? true : false}
+          disabled={plan === "monthly" || user.paymentStatus === 'failed' ? true : false}
           className={`p-2 w-[116px] rounded-md font-medium transition-all duration-300 ${
             plan === "monthly"
               ? "bg-gradient-to-r from-rose-600 to-indigo-600 text-white"
               : "border border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white"
-          }`}
+          } ${user.paymentStatus === 'failed' ? 'cursor-not-allowed hover' : 'hover:bg-transparent'}`}
         >
           {plan === "monthly" && "Current Plan"}
           {plan === "annual" && "Change Plan"}
@@ -150,12 +182,12 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         <button
           onClick={handleSubscriptionChange}
           value="price_1KFhV3F124ucKAQoEPMNXfBN"
-          disabled={plan === "annual" ? true : false}
+          disabled={plan === "annual" || user.paymentStatus === 'failed' ? true : false}
           className={`p-2 w-[116px] rounded-md font-medium transition-all duration-300 ${
             plan === "annual"
               ? "bg-gradient-to-r from-rose-600 to-indigo-600 text-white"
               : "border border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white"
-          }`}
+          } ${user.paymentStatus === 'failed' ? 'cursor-not-allowed hover:bg-transparent' : ''}`}
         >
           {plan === "annual" && "Current Plan"}
           {plan === "monthly" && "Change Plan"}
@@ -224,6 +256,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         isSubmitting={isSubmitting}
         cancelModalActive={cancelModalActive}
         setCancelModalActive={setCancelModalActive}
+        user={user}
       />
       <RenewModal
         updateRenewal={updateRenewal}
@@ -260,6 +293,7 @@ const CancelModal = ({
   isSubmitting,
   cancelModalActive,
   setCancelModalActive,
+  user
 }) => {
   return (
     <>
@@ -275,8 +309,8 @@ const CancelModal = ({
         }`}
       >
         <p className="text-gray-800 text-center leading-7 mb-10">
-          Are you sure you want to cancel your subscription? You will still have
-          access to your current services until the next billing period.
+          { user.paymentStatus !== 'failed' && 'Are you sure you want to cancel your subscription? You will still have access to your current services until the next billing period.'}
+          {user.paymentStatus === 'failed' && 'Are you sure you want to cancel your subscription? You will lose all access to features immediately.'}
         </p>
         <div className="flex justify-center">
           <button

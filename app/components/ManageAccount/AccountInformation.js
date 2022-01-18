@@ -62,11 +62,6 @@ const AccountInformation = ({ user }) => {
           </p>
         </div>
       )}
-      {router.query.paymentMethodUpdated && !success &&  <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
-          <p className="text-xs font-bold text-center text-white leading-5">
-            Your Payment method has been updated.
-          </p>
-        </div>}
       <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6 mt-12">
         Account Information
       </p>

@@ -17,13 +17,27 @@ const handler = async (req, res) => {
     const collection = db.collection('users');
     const user = await collection.find({email: email}).toArray();
     const customerId = user[0].stripeCustomerId;
+
+    // checking is user already has an exisitng subscription to
+    if (user[0].subscriptionId) {
+      const subscription = await stripe.subscriptions.retrieve(user[0].subscriptionId);
+      await stripe.subscriptions.update(user[0].subscriptionId, {
+        cancel_at_period_end: false,
+        proration_behavior: 'always_invoice',
+        items: [{
+          id: subscription.items.data[0].id,
+          price: priceId,
+        }]
+      });
+      return res.status(200).json('subscription updated')
+    }
   
     // //CREATE SUBSCRIPTION FOR USER
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
       items: [{price: priceId}],
       payment_behavior: 'default_incomplete',
-      trial_period_days: user.subscriptionType ? 0 : 7,
+      trial_period_days: user.subscriptionType === 'canceled' ? 0 : 7,
       expand: ['latest_invoice.payment_intent']
     })
     

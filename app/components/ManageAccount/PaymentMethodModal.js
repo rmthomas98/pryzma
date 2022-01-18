@@ -33,7 +33,6 @@ const PaymentElementProvider = ({
     getClientSecret();
   }, []);
 
-  console.log(clientSecret);
   const options = {
     clientSecret: clientSecret,
   };
@@ -42,12 +41,12 @@ const PaymentElementProvider = ({
 
   return (
     <Elements stripe={stripeLoader} options={options}>
-      <PaymentModal paymentElementActive={paymentElementActive} setPaymentElementActive={setPaymentElementActive} paymentLoadin={paymentLoading} setPaymentLoading={setPaymentLoading}/>
+      <PaymentModal paymentElementActive={paymentElementActive} setPaymentElementActive={setPaymentElementActive} setPaymentLoading={setPaymentLoading}/>
     </Elements>
   );
 };
 
-const PaymentModal = ({paymentElementActive, setPaymentElementActive, paymentLoading, setPaymentLoading}) => {
+const PaymentModal = ({paymentElementActive, setPaymentElementActive, setPaymentLoading}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -84,7 +83,7 @@ const PaymentModal = ({paymentElementActive, setPaymentElementActive, paymentLoa
   return (
     <>
     <div onClick={handleOutsideClick} className={`fixed h-screen w-screen top-0 left-0 bg-black/75 ${paymentElementActive ? 'opacity-100 z-[10]' : 'opacity-0 z-[-1]'}`}></div>
-    <form className={`bg-white w-full max-w-screen-sm p-8 rounded-lg top-1/2 translate-y-[-50%] mx-auto absolute ${paymentElementActive ? 'opacity-100 z-[9999]' : 'opacity-0 z-[-1]'}`}>
+    <form className={`bg-white flex flex-col justify-between min-h-[500px] w-full max-w-screen-sm p-8 rounded-lg top-1/2 translate-y-[-50%] mx-auto absolute ${paymentElementActive ? 'opacity-100 z-[9999]' : 'opacity-0 z-[-1]'}`}>
       <p className="text-gray-700 font-bold text-2xl mb-6">
         Update Payment Method
       </p>

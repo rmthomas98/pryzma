@@ -32,8 +32,8 @@ const SetupSubscription = ({user, accountMessage}) => {
           </p>
         </div>
       )}
-      {step.step === 1 && <ChoosePlan />}
-      {step.step === 2 && <AddPayment />}
+      {step.step === 1 && <ChoosePlan increment={increment} user={user}/>}
+      {step.step === 2 && <AddPayment user={user}/>}
     </div>
   )
 }
