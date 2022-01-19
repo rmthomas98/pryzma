@@ -21,7 +21,7 @@ export const getServerSideProps = withIronSession(
 
     if (user) {
       // if user subscription is canceled, redirect to manage acccount page to update payment method
-      if (user.user.subscriptionType === 'canceled' || user.user.paymentStatus === 'failed' || user.user.subscriptionType === null) {
+      if (user.user.isCanceled || user.user.paymentStatus === 'failed' || user.user.subscriptionType === null || !user.user.defaultPaymentMethod) {
         return {
           redirect: {
             permanant: false,

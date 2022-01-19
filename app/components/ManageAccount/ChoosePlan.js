@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {Dot, Router} from 'react-bootstrap-icons';
 import ButtonSpinner from '../ButtonSpinner';
 
-const ChoosePlan = ({increment, user}) => {
+const ChoosePlan = ({increment, user, setPrice}) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -13,10 +13,12 @@ const ChoosePlan = ({increment, user}) => {
   const handleButtonClick = async (e) => {
     setIsSubmitting(true)
     const plan = e.target.value === "price_1KFhUZF124ucKAQoKJD5oDgr" ? 'monthly' : 'annual';
+    setPrice(plan)
     plan === 'monthly' ? setMonthlyLoader(true) : setAnnualLoader(true);
-    const response = await axios.post('/api/create-subscription', {email: user.email, priceId: e.target.value, plan: plan}).catch(e => console.error(e));
+    const response = await axios.post('/api/create-subscription', {email: user.email, priceId: e.target.value, plan: plan, trial: user.trial, isCanceled: user.isCanceled}).catch(e => console.error(e));
 
     if (response) {
+      console.log(response)
       if (response.data === 'subscription created' || response.data === 'subscription updated') {
         setIsSubmitting(false);
         setMonthlyLoader(false);
@@ -34,7 +36,7 @@ const ChoosePlan = ({increment, user}) => {
   return (
     <>
     <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-8 mt-12">
-        Subscription Information
+        Choose Subscription
       </p>
     <div className="flex mt-6">
     <div className="w-full mr-6 bg-gray-100 shadow-lg shadow-gray-300 rounded-lg p-6">

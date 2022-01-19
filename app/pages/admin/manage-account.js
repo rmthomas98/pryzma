@@ -1,10 +1,11 @@
 import { withIronSession } from "next-iron-session";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import AccountInformation from "../../components/ManageAccount/AccountInformation";
 import Password from "../../components/ManageAccount/Password";
 import SubscriptionInformation from "../../components/ManageAccount/SubscriptionInformation";
 import clientPromise from "../../lib/mongodb";
+
 
 const ManageAccount = ({ user }) => {
   const router = useRouter();
@@ -15,13 +16,16 @@ const ManageAccount = ({ user }) => {
   useEffect(() => {
     if (router.query.paymentMethodUpdated) {
       router.replace(router.asPath);
+      setAccountMessage(false);
       setPage('subscription')
     }
     if (router.query.subscriptionCreated) {
+      console.log('hello')
       router.replace(router.asPath);
+      setAccountMessage(false);
       setPage('subscription')
     }
-  },[router.pathname])
+  },[router.pathname, router.query.subscriptionCreated, router.query.paymentMethodUpdated])
 
   useEffect(() => {
     if (user.paymentStatus === 'failed') {
@@ -29,11 +33,11 @@ const ManageAccount = ({ user }) => {
       setAccountMessage('You payment has failed. Please update your payment method.')
       return setPage('subscription')
     }
-    if (user.subscriptionType === 'canceled') {
+    if (user.isCanceled) {
       setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
       setPage('subscription')
     }
-    if (user.subscriptionType === null) {
+    if (user.subscriptionType === null || !user.defaultPaymentMethod) {
       setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
       setPage('subscription')
     }

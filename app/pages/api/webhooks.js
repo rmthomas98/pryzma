@@ -26,6 +26,7 @@ const handler = async (req, res) => {
         $set: {
           paymentStatus: "succeeded",
           defaultPaymentMethod: event.data.object.payment_method,
+          trial: true
         },
       };
 
@@ -37,6 +38,26 @@ const handler = async (req, res) => {
 
       await users.updateOne({email: user.email}, updatePaymentStatus);
       console.log("Setup intent was successfull!");
+      break;
+    case 'payment_intent.succeeded':
+      customer = event.data.object.customer;
+      user = await users.findOne({ stripeCustomerId: customer });
+
+      updatePaymentStatus = {
+        $set: {
+          paymentStatus: "succeeded",
+          defaultPaymentMethod: event.data.object.payment_method,
+        },
+      };
+
+      await stripe.customers.update(user.stripeCustomerId, {
+        invoice_settings: {
+          default_payment_method: event.data.object.payment_method,
+        },
+      });
+
+      await users.updateOne({email: user.email}, updatePaymentStatus);
+      console.log("Payment intent was successfull!");
       break;
     // CASE FOR PAYMENT FAILED
     case "invoice.payment_failed":
@@ -54,15 +75,14 @@ const handler = async (req, res) => {
     case "invoice.payment_succeeded":
       customer = event.data.object.customer;
       user = await users.findOne({ stripeCustomerId: customer });
-      if (user.paymentStatus) {
         updatePaymentStatus = {
           $set: {
             paymentStatus: "succeeded",
+            isCanceled: false
           },
         };
         await users.updateOne({email: user.email}, updatePaymentStatus);
         console.log("Payment Succeeded!");
-      }
       break;
     // IF CUSTOMER CANCELS THERE SUBSCRIPTION
     case "customer.subscription.deleted":
@@ -72,11 +92,13 @@ const handler = async (req, res) => {
         $set: {
           priceId: null,
           subscriptionId: null,
-          subscriptionType: "canceled",
+          subscriptionType: null,
           paymentStatus: null,
           defaultPaymentMethod: null,
           cardDetails: null,
-          cancelAtPeriodEnd: false
+          cancelAtPeriodEnd: false,
+          isCanceled: true,
+          clientSecret: null
         },
       };
 
@@ -105,6 +127,7 @@ const handler = async (req, res) => {
       await users.updateOne({stripeCustomerId: customer}, cardDetails);
 
       console.log('Payment method attached!')
+      break;
     // unhandled event types get logged to the console  
     default:
       console.log(`Unhandled event type ${event.type}`);

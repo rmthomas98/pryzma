@@ -1,4 +1,4 @@
-import {useReducer} from 'react';
+import {useReducer, useState} from 'react';
 import ChoosePlan from './ChoosePlan';
 import AddPayment from './AddPayment';
 
@@ -19,6 +19,9 @@ const SetupSubscription = ({user, accountMessage}) => {
   // keep track of step user is in on sign up form
   const [step, dispatch] = useReducer(reducer, {step: 1});
 
+  // setting price to show customer
+  const [price, setPrice] = useState();
+
   const increment = () => {
     dispatch({type: 'increment'})
   }
@@ -32,8 +35,8 @@ const SetupSubscription = ({user, accountMessage}) => {
           </p>
         </div>
       )}
-      {step.step === 1 && <ChoosePlan increment={increment} user={user}/>}
-      {step.step === 2 && <AddPayment user={user}/>}
+      {step.step === 1 && <ChoosePlan increment={increment} user={user} setPrice={setPrice}/>}
+      {step.step === 2 && <AddPayment user={user} price={price}/>}
     </div>
   )
 }

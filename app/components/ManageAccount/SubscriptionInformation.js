@@ -6,7 +6,7 @@ import {
   XCircle,
   ArrowReturnLeft,
 } from "react-bootstrap-icons";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import ButtonSpinner from "../ButtonSpinner";
 import PaymentElementProvider from "./PaymentMethodModal";
 import ChangeSubscriptionModal from "./ChangeSubscriptionModal";
@@ -92,8 +92,9 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
     setPriceId(e.target.value);
   };
 
-  // if user has no plan, make them choose plan
-  if (user.subscriptionType === null  ) return <SetupSubscription accountMessage={accountMessage} user={user}/>
+  // if user has no plan, has canceled in the past, or has no payment method
+  // make them choose a plan
+  if (user.subscriptionType === null || user.isCanceled || !user.defaultPaymentMethod ) return <SetupSubscription accountMessage={accountMessage} user={user}/>
 
   return (
     <div>
@@ -118,7 +119,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
               Your subscription has been updated!
             </p>
           )}
-          {success === "subscription updated" && (
+          {success === "deleted" && (
             <p className="text-xs font-bold text-center text-white leading-5">
               Your subscription has been canceled.<br />
               We hope you come back soon!
@@ -138,13 +139,12 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
             Your Payment method has been updated!
           </p>
         </div>}
-        {router.query.subscriptionCreated && !success && !accountMessage &&  <div className="absolute top-[100px] left-[50%] translate-x-[-50%] min-w-[300px] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+        {router.query.subscriptionCreated && !success &&  <div className="absolute top-[100px] left-[50%] translate-x-[-50%] min-w-[300px] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
-            Your 7 day free trial has started! <br />
-            Your card will not be charged until the trial is over.
+            Your subscription has been created!
           </p>
         </div>}
-      {accountMessage && !success && (
+      {accountMessage && !success && !router.query.subscriptionCreated && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-yellow-700 border-2 border-yellow-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             {accountMessage}
@@ -167,7 +167,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
             plan === "monthly"
               ? "bg-gradient-to-r from-rose-600 to-indigo-600 text-white"
               : "border border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white"
-          } ${user.paymentStatus === 'failed' ? 'cursor-not-allowed hover' : 'hover:bg-transparent'}`}
+          } ${user.paymentStatus === 'failed' ? 'cursor-not-allowed' : ''}`}
         >
           {plan === "monthly" && "Current Plan"}
           {plan === "annual" && "Change Plan"}
@@ -187,7 +187,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
             plan === "annual"
               ? "bg-gradient-to-r from-rose-600 to-indigo-600 text-white"
               : "border border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white"
-          } ${user.paymentStatus === 'failed' ? 'cursor-not-allowed hover:bg-transparent' : ''}`}
+          } ${user.paymentStatus === 'failed' ? 'cursor-not-allowed' : ''}`}
         >
           {plan === "annual" && "Current Plan"}
           {plan === "monthly" && "Change Plan"}
@@ -211,7 +211,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
       <div className="mt-8 flex">
         {(user.cancelAtPeriodEnd === false &&
           user.subscriptionType &&
-          user.subscriptionType !== "canceled") ||
+          !user.isCanceled) ||
         user.subscriptionType === null ? (
           <button
             disabled={paymentLoading ? true : false}
@@ -239,7 +239,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         ) : (
           ""
         )}
-        {!user.cancelAtPeriodEnd && user.subscriptionType !== "canceled" ? (
+        {!user.cancelAtPeriodEnd && !user.isCanceled ? (
           <button
             onClick={() => setCancelModalActive(true)}
             className="p-2.5 pl-4 pr-4 rounded-md border border-rose-600 text-xs font-medium text-rose-600 flex items-center hover:text-white hover:bg-rose-600 transition-all duration-300"
@@ -283,6 +283,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         setErrorMessage={setErrorMessage}
         setSuccess={setSuccess}
       />
+      <p className="text-gray-600 text-xs mt-10 leading-5">Please note that we do not provide refunds. If you downgrade from annual to monthly, we will keep a credit on your account (ex. if you downgrade from Annual to Monthly, we will apply the pro-rated credit to your next bill), but we do not issue refunds to your card.</p>
     </div>
   );
 };

@@ -9,6 +9,9 @@ const handler = async (req, res) => {
   // get priceId
   const priceId = req.body.priceId;
   const plan = req.body.plan;
+  const trial = req.body.trial;
+  const canceled = req.body.isCanceled;
+
   try {
 
     // FETCH USER FROM MONGODB
@@ -20,24 +23,26 @@ const handler = async (req, res) => {
 
     // checking is user already has an exisitng subscription to
     if (user[0].subscriptionId) {
-      const subscription = await stripe.subscriptions.retrieve(user[0].subscriptionId);
-      await stripe.subscriptions.update(user[0].subscriptionId, {
-        cancel_at_period_end: false,
-        proration_behavior: 'always_invoice',
-        items: [{
-          id: subscription.items.data[0].id,
-          price: priceId,
-        }]
-      });
-      return res.status(200).json('subscription updated')
+      if (!user[0].trial || !user[0].isCanceled) {
+        const subscription = await stripe.subscriptions.retrieve(user[0].subscriptionId);
+        await stripe.subscriptions.update(user[0].subscriptionId, {
+          cancel_at_period_end: false,
+          proration_behavior: 'always_invoice',
+          items: [{
+            id: subscription.items.data[0].id,
+            price: priceId,
+          }]
+        });
+        return res.status(200).json('subscription updated')
+      }
     }
   
-    // //CREATE SUBSCRIPTION FOR USER
+    //CREATE SUBSCRIPTION FOR USER
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
       items: [{price: priceId}],
       payment_behavior: 'default_incomplete',
-      trial_period_days: user.subscriptionType === 'canceled' ? 0 : 7,
+      trial_period_days: trial && canceled ? 0 : 7,
       expand: ['latest_invoice.payment_intent']
     })
     
@@ -45,13 +50,14 @@ const handler = async (req, res) => {
       $set: {
         subscriptionId: subscription.id,
         subscriptionType: plan,
-        priceId: priceId
+        priceId: priceId,
       }
     }
 
     // update user by adding subscription id in mongodb
     await collection.updateOne({email: email}, updateSubscription)
     // SEND SUBSCRIPTION BACK TO FRONT END TO GET PAYMENT DETAILS
+
     res.status(200).json('subscription created')
     
   } catch (e) {

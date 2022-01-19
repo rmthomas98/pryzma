@@ -45,8 +45,8 @@ const ChangeSubscriptionModal = ({
       <div className={`bg-gray-100 rounded-lg p-6 pt-10 pb-10 z-[10] absolute w-[320px] top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] transition-all ${changeSubscriptionActive ? 'opacity-100 z-[10]' : 'z-[-1] opacity-0'}`}>
         <p className="text-gray-800 text-center leading-7 mb-10">
           {plan === "monthly"
-            ? "Are you sure you want to upgrade to the annual plan? You will be charged $199.99 during the next billing period."
-            : "Are you sure you want to downgrade to the monthly plan? You will be charged $19.99 during the next billing period."}
+            ? "Are you sure you want to upgrade to the annual plan? You will be pro-rated from the monthly plan."
+            : "Are you sure you want to downgrade to the monthly plan? Your subscription will be pro-rated and will go towards your next bills."}
         </p>
         <div className="flex justify-center">
           <button disabled={isSubmitting ? true : false} onClick={handleSubscriptionChange} className={`p-2.5 h-[40px] w-full mr-2 rounded-md transition-all duration-300 text-white font-medium text-sm flex items-center justify-center ${isSubmitting ? 'bg-indigo-400 hover:none' : 'bg-indigo-600 hover:bg-indigo-700'}`}>{isSubmitting ? <ButtonSpinner /> : <><CheckCircle className="mr-2 text-xl"/>Confirm</>}</button>
