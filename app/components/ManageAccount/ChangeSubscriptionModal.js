@@ -45,7 +45,7 @@ const ChangeSubscriptionModal = ({
       <div className={`bg-gray-100 rounded-lg p-6 pt-10 pb-10 z-[10] absolute w-[320px] top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] transition-all ${changeSubscriptionActive ? 'opacity-100 z-[10]' : 'z-[-1] opacity-0'}`}>
         <p className="text-gray-800 text-center leading-7 mb-10">
           {plan === "monthly"
-            ? "Are you sure you want to upgrade to the annual plan? You will be pro-rated from the monthly plan."
+            ? "Are you sure you want to upgrade to the annual plan? You will be pro-rated from the monthly plan, and your card will be charged immediately."
             : "Are you sure you want to downgrade to the monthly plan? Your subscription will be pro-rated and will go towards your next bills."}
         </p>
         <div className="flex justify-center">

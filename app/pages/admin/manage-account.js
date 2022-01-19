@@ -14,32 +14,36 @@ const ManageAccount = ({ user }) => {
   const [accountMessage, setAccountMessage] = useState(false);
 
   useEffect(() => {
-    if (router.query.paymentMethodUpdated) {
-      router.replace(router.asPath);
-      setAccountMessage(false);
-      setPage('subscription')
+    const getRouter = async () => {
+      if (router.query.paymentMethodUpdated) {
+        await router.replace(router.asPath);
+        setAccountMessage(false);
+        setPage('subscription')
+      }
+      if (router.query.subscriptionCreated) {
+        await router.replace(router.asPath);
+        setAccountMessage(false);
+        setPage('subscription')
+      }
     }
-    if (router.query.subscriptionCreated) {
-      console.log('hello')
-      router.replace(router.asPath);
-      setAccountMessage(false);
-      setPage('subscription')
-    }
-  },[router.pathname, router.query.subscriptionCreated, router.query.paymentMethodUpdated])
+    getRouter();
+  },[router.pathname])
 
   useEffect(() => {
-    if (user.paymentStatus === 'failed') {
-      if (router.query.paymentMethodUpdated) return setAccountMessage(false);
-      setAccountMessage('You payment has failed. Please update your payment method.')
-      return setPage('subscription')
-    }
-    if (user.isCanceled) {
-      setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
-      setPage('subscription')
-    }
-    if (user.subscriptionType === null || !user.defaultPaymentMethod) {
-      setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
-      setPage('subscription')
+    if (!router.query.paymentMethodUpdated && !router.query.subscriptionCreated) {
+      if (user.paymentStatus === 'failed') {
+        if (router.query.paymentMethodUpdated) return setAccountMessage(false);
+        setAccountMessage('You payment has failed. Please update your payment method.')
+        return setPage('subscription')
+      }
+      if (user.isCanceled) {
+        setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
+        setPage('subscription')
+      }
+      if (user.subscriptionType === null || !user.defaultPaymentMethod) {
+        setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
+        setPage('subscription')
+      }
     }
   },[])
   
