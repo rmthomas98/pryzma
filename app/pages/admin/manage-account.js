@@ -13,12 +13,16 @@ const ManageAccount = ({ user }) => {
   const [page, setPage] = useState("account");
   const [accountMessage, setAccountMessage] = useState(false);
 
+  const refreshData = () => {
+    router.replace(router.asPath)
+  }
+
   useEffect(() => {
     if (router.query.paymentMethodUpdated) {
       router.replace(router.asPath);
       setPage('subscription')
     }
-  },[router.query])
+  },[router.query.paymentMethodUpdated])
 
   useEffect(() => {
       if (user.paymentStatus === 'failed') {
@@ -45,7 +49,7 @@ const ManageAccount = ({ user }) => {
         </div>
         {page === "account" && <AccountInformation user={user} />}
         {page === "password" && <Password user={user}/>}
-        {page === "subscription" && <SubscriptionInformation user={user} accountMessage={accountMessage}/>}
+        {page === "subscription" && <SubscriptionInformation user={user} accountMessage={accountMessage} refreshData={refreshData}/>}
       </div>
     </div>
   );

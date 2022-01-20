@@ -12,10 +12,9 @@ const ChangeSubscriptionModal = ({
   setPlan,
   user,
   setErrorMessage,
-  setSuccess
+  setSuccess,
+  refreshData
 }) => {
-
-  const router = useRouter();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -24,12 +23,15 @@ const ChangeSubscriptionModal = ({
     const response = await axios.post('/api/update-subscription', {subscriptionId: user.subscriptionId, email: user.email, priceId: priceId}).catch(e => console.error(e));
     if (!response) return setErrorMessage(true)
     if (response.data === 'subscription updated') {
-      await router.replace(router.asPath)
       priceId === 'price_1KFhUZF124ucKAQoKJD5oDgr' ? setPlan('monthly') : setPlan('annual')
       setChangeSubscriptionActive(false)
       setIsSubmitting(false)
       setSuccess('subscription updated')
       setErrorMessage(false)
+      setTimeout(() => {
+
+        refreshData();
+      }, 1000)
     }
     if (response.data === 'something went wrong') {
       setIsSubmitting(false);

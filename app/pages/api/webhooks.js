@@ -74,11 +74,15 @@ const handler = async (req, res) => {
     // CASE FOR PAYMENT SUCCEEDED
     case "invoice.payment_succeeded":
       customer = event.data.object.customer;
+      const subId = event.data.object.subscription;
+      const subscription = await stripe.subscriptions.retrieve(subId);
+      const periodEnd = subscription.current_period_end
       user = await users.findOne({ stripeCustomerId: customer });
         updatePaymentStatus = {
           $set: {
             paymentStatus: "succeeded",
-            isCanceled: false
+            isCanceled: false,
+            nextInvoice: periodEnd
           },
         };
         await users.updateOne({email: user.email}, updatePaymentStatus);
@@ -98,7 +102,8 @@ const handler = async (req, res) => {
           cardDetails: null,
           cancelAtPeriodEnd: false,
           isCanceled: true,
-          clientSecret: null
+          clientSecret: null,
+          nextInvoice: null
         },
       };
 
@@ -128,6 +133,20 @@ const handler = async (req, res) => {
 
       console.log('Payment method attached!')
       break;
+    case 'customer.subscription.updated':
+      customer = event.data.object.customer;
+      user = await users.findOne({stripeCustomerId: customer});
+      const nextBillingPeriod = event.data.object.current_period_end;
+
+      const updateBillingPeriod = {
+        $set: {
+          nextInvoice: nextBillingPeriod
+        }
+      }
+
+      //update in mongodb
+      await users.update({stripeCustomerId: customer}, updateBillingPeriod)
+      console.log('subscription updated')
     // unhandled event types get logged to the console  
     default:
       console.log(`Unhandled event type ${event.type}`);

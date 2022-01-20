@@ -5,14 +5,16 @@ import {
   ArrowRepeat,
   XCircle,
   ArrowReturnLeft,
+  DashLg
 } from "react-bootstrap-icons";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import ButtonSpinner from "../ButtonSpinner";
 import PaymentElementProvider from "./PaymentMethodModal";
 import ChangeSubscriptionModal from "./ChangeSubscriptionModal";
 import SetupSubscription from "./SetupSubscription";
+import { format } from "date-fns";
 
-const SubscriptionInformation = ({ user, accountMessage }) => {
+const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
   // router
   const router = useRouter();
 
@@ -144,7 +146,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
       <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-8 mt-12">
         Subscription Information
       </p>
-      <div className="border-gray-300 border p-3 w-full rounded-md shadow-sm text-sm shadow-gray-300 flex justify-between items-center mb-4">
+      <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center mb-4">
         <p className="text-gray-800">
           <span className="font-medium">Prizm Pro Monthly</span>{" "}
           <span>($19.99/mo)</span>
@@ -164,7 +166,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
           {plan === "canceled" || plan === null ? "Select Plan" : ""}
         </button>
       </div>
-      <div className="border-gray-300 border p-3 w-full rounded-md shadow-sm text-sm shadow-gray-300 flex justify-between items-center">
+      <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center">
         <p className="text-gray-800">
           <span className="font-medium">Prizm Pro Annual</span>{" "}
           <span>($199.99/yr)</span>
@@ -184,20 +186,19 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
           {plan === "canceled" || plan === null ? "Select Plan" : ""}
         </button>
       </div>
-      {user.cardDetails ? (
-        <p className="text-gray-800 mt-6 text-sm flex items-center">
-          <span className="font-medium mr-4">Default Payment Method</span>
-          <span className="rounded-md border border-gray-300 p-2 pl-4 pr-4 flex items-center">
-            <span className="mr-4 uppercase flex items-center">
-              <CreditCard className="mr-2 text-xl" />
-              {user.cardDetails.brand}
-            </span>
-            <span>****{user.cardDetails.last4}</span>
-          </span>
-        </p>
-      ) : (
-        ""
-      )}
+      <div className="flex mt-6">
+        <div className="border border-gray-300 p-4 w-full mr-4 rounded-md">
+        <p className="text-gray font-medium text-center mb-4 text-indigo-600">Payment Method</p>
+        <div className="flex items-center justify-center">
+        <p className="mr-4 flex items-center"><CreditCard className="mr-2 text-xl"/><span className="uppercase text-sm text-gray-800">{user.cardDetails.brand}</span></p>
+        <p className="text-gray-800 text-sm">****{user.cardDetails.last4}</p>
+        </div>
+        </div>
+        <div className="p-4 border border-gray-300 w-full rounded-md">
+          <p className="text-gray font-medium text-center mb-4 text-indigo-600">Next Billing Period</p>
+          {user.cancelAtPeriodEnd ? <DashLg className="text-xl text-gray-800 mx-auto"/> : <p className="text-gray-800 text-center text-sm">{format(new Date(user.nextInvoice * 1000), "MMMM dd, yyyy")}</p>}
+        </div>
+      </div>
       <div className="mt-8 flex">
         {(user.cancelAtPeriodEnd === false &&
           user.subscriptionType &&
@@ -272,6 +273,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         user={user}
         setErrorMessage={setErrorMessage}
         setSuccess={setSuccess}
+        refreshData={refreshData}
       />
       <p className="text-gray-600 text-xs mt-10 leading-5">Please note that we do not provide refunds. If you downgrade from annual to monthly, we will keep a credit on your account (ex. if you downgrade from Annual to Monthly, we will apply the pro-rated credit to your next bill), but we do not issue refunds to your card.</p>
     </div>

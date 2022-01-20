@@ -29,7 +29,6 @@ const Login = () => {
       .catch((e) => console.error(e));
     // if successfull login, redirect user to admin
     if (response?.data === "successfull login") {
-      setIsSubmitting(false);
       router.push('/admin')
     } else if (response?.data === "incorrect password") {
       setIsSubmitting(false);
@@ -110,7 +109,7 @@ const Login = () => {
           </button>
         </form>
         <div className="text-xs flex justify-center mt-6 w-4/5 mx-auto min-w-fit text-gray-600">
-          <Link href="/">
+          <Link href="/forgot-password">
             <a className="pr-2 text-center border-r border-gray-400 hover:text-indigo-600 transition-all hover:underline">Forgot Password</a>
           </Link>
           <Link href="/signup"><a className="pl-2 text-center hover:text-indigo-600 transition-all hover:underline">Sign up now</a></Link>
