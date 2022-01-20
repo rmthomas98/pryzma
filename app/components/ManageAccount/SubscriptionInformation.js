@@ -45,8 +45,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
       if (response?.data === 'subscription deleted') {
         setIsSubmitting(false);
         setCancelModalActive(false);
-        router.replace(router.asPath);
-        return setSuccess('deleted')
+        return router.push('/admin/subscription-deleted')
       } else {
         setIsSubmitting(false);
         setCancelModalActive(false);
@@ -64,13 +63,13 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
     if (response.data === "subscription renewed") {
       setIsSubmitting(false);
       setRenewModalActive(false);
-      router.replace(router.asPath);
+      router.replace(router.asPath)
       return setSuccess("renewed");
       // if response comes back canceled show message
     } else if (response.data === "subscription canceled") {
       setIsSubmitting(false);
       setCancelModalActive(false);
-      router.replace(router.asPath);
+      router.replace(router.asPath)
       return setSuccess("canceled");
       // if something goes wrong, show error message
     } else {
@@ -100,29 +99,23 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
     <div>
       {success && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
-          {success === "canceled" && (
+          {success === "canceled" && !errorMessage && (
             <p className="text-xs font-bold text-center text-white leading-5">
               Your Subscription has been canceled.
               <br />
               You will have access until the next billing period.
             </p>
           )}
-          {success === "renewed" && (
+          {success === "renewed" && !errorMessage && (
             <p className="text-xs font-bold text-center text-white leading-5">
               Your subscription has been renewed.
               <br />
               You will continue to be billed normally.
             </p>
           )}
-          {success === "subscription updated" && (
+          {success === "subscription updated" && !errorMessage && (
             <p className="text-xs font-bold text-center text-white leading-5">
               Your subscription has been updated!
-            </p>
-          )}
-          {success === "deleted" && (
-            <p className="text-xs font-bold text-center text-white leading-5">
-              Your subscription has been canceled.<br />
-              We hope you come back soon!
             </p>
           )}
         </div>
@@ -134,17 +127,14 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
           </p>
         </div>
       )}
-      {router.query.paymentMethodUpdated && !success && !accountMessage && <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+      {router.query.paymentMethodUpdated && !success && !errorMessage && (
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
-            Your Payment method has been updated!
+            Payment method updated.
           </p>
-        </div>}
-        {router.query.subscriptionCreated && !success &&  <div className="absolute top-[100px] left-[50%] translate-x-[-50%] min-w-[300px] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
-          <p className="text-xs font-bold text-center text-white leading-5">
-            Your subscription has been created!
-          </p>
-        </div>}
-      {accountMessage && !success && !router.query.subscriptionCreated && (
+        </div>
+      )}
+      {accountMessage && !success && !errorMessage && !router.query.paymentMethodUpdated && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-yellow-700 border-2 border-yellow-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             {accountMessage}
@@ -198,7 +188,7 @@ const SubscriptionInformation = ({ user, accountMessage }) => {
         <p className="text-gray-800 mt-6 text-sm flex items-center">
           <span className="font-medium mr-4">Default Payment Method</span>
           <span className="rounded-md border border-gray-300 p-2 pl-4 pr-4 flex items-center">
-            <span className="mr-4 uppercase italic flex items-center">
+            <span className="mr-4 uppercase flex items-center">
               <CreditCard className="mr-2 text-xl" />
               {user.cardDetails.brand}
             </span>

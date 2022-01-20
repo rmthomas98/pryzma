@@ -14,25 +14,14 @@ const ManageAccount = ({ user }) => {
   const [accountMessage, setAccountMessage] = useState(false);
 
   useEffect(() => {
-    const getRouter = async () => {
-      if (router.query.paymentMethodUpdated) {
-        await router.replace(router.asPath);
-        setAccountMessage(false);
-        setPage('subscription')
-      }
-      if (router.query.subscriptionCreated) {
-        await router.replace(router.asPath);
-        setAccountMessage(false);
-        setPage('subscription')
-      }
+    if (router.query.paymentMethodUpdated) {
+      router.replace(router.asPath);
+      setPage('subscription')
     }
-    getRouter();
-  },[router.pathname])
+  },[router.query])
 
   useEffect(() => {
-    if (!router.query.paymentMethodUpdated && !router.query.subscriptionCreated) {
       if (user.paymentStatus === 'failed') {
-        if (router.query.paymentMethodUpdated) return setAccountMessage(false);
         setAccountMessage('You payment has failed. Please update your payment method.')
         return setPage('subscription')
       }
@@ -44,9 +33,7 @@ const ManageAccount = ({ user }) => {
         setAccountMessage('Please select a subscription plan in order to use Prizm Pro.')
         setPage('subscription')
       }
-    }
   },[])
-  
 
   return (
     <div className="pr-4 pl-4">

@@ -78,7 +78,7 @@ const Payment = ({user, price}) => {
       const result = await stripe.confirmSetup({
         elements,
         confirmParams: {
-          return_url: "http://localhost:3000/admin/manage-account?subscriptionCreated=true",
+          return_url: "http://localhost:3000/admin/subscription-created",
         },
       });
       
@@ -92,7 +92,7 @@ const Payment = ({user, price}) => {
       const result = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: "http://localhost:3000/admin/manage-account?subscriptionCreated=true",
+          return_url: "http://localhost:3000/admin/subscription-created",
         },
       });
       
