@@ -45,7 +45,7 @@ const handler = async (req, res) => {
       email: req.body.data.email,
       password: bcrypt.hashSync(req.body.data.password),
       dateJoined: new Date(),
-      resetPasswordLink: ''
+      resetPasswordLink: null
     };
 
     // INSERT CUSTOMER INTO MONGODB

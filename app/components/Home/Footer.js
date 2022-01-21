@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="max-w-7xl mx-auto flex justify-between pl-4 pr-4 pt-8 pb-8 border-t border-gray-300">
       <p className="font-medium text-gray-900 text-xl">
-        prizmpro<span className="text-gray-500">.io</span>
+        pryzma<span className="text-gray-500">.io</span>
       </p>
       <div>
         <div className="flex justify-center">

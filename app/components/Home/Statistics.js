@@ -1,40 +1,45 @@
+import {BarChart} from 'react-bootstrap-icons';
+
 const Statistics = () => {
   return (
-    <div className="bg-white before:h-[2px] before:w-full before:max-w-3xl before:bg-gradient-to-r before:from-rose-600 before:to-indigo-600 before:block before:rounded-full before:mx-auto">
+    <div className="bg-white">
       <div className="mx-auto max-w-7xl p-4 pt-20 pb-20 flex items-center">
-        <div className="w-1/2 bg-gray-100 rounded-lg shadow-xl shadow-gray-300 p-6">
-          
+        <div className="w-1/2 bg-gray-100 rounded-lg shadow-xl shadow-gray-300 overflow-hidden">
           <div className="rounded-lg">
             <div>
-              <p className="mb-4 pb-1 border-b border-gray-300 text-gray-700 font-medium text-lg">
-                Statistical data for <span>AAPL</span>
+              <p className="p-5 pl-8 pr-8 font-medium text-lg bg-gray-800 flex items-center text-blue-400">
+                <BarChart className="mr-4 text-2xl"/>Statistical Data for AAPL
               </p>
               <div>
-                <div className="flex items-center border-b border-gray-300 text-sm pb-2 justify-between">
-                  <p className="uppercase text-indigo-600 w-36">Market Cap</p>
-                  <p className="text-gray-900">2.8 Trillion</p>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-200">
+                  <p className="w-36 text-gray-600 font-semibold">Market Cap</p>
+                  <p className="text-gray-800 font-semibold">2.8 Trillion</p>
                 </div>
-                <div className="flex items-center border-b border-gray-300 text-sm pt-2 pb-2 justify-between">
-                  <p className="uppercase text-indigo-600">shares outstanding</p>
-                  <p className="text-gray-900">16.49 Billion</p>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between">
+                  <p className="text-gray-600 font-semibold">Shares Outstanding</p>
+                  <p className="text-gray-800 font-semibold">16.49 Billion</p>
                 </div>
                 
-                <div className="flex items-center border-b border-gray-300 text-sm pt-2 pb-2 justify-between">
-                  <p className="uppercase text-indigo-600 w-36">Shares float</p>
-                  <p className="text-gray-900">16.39 Billion</p>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-200">
+                  <p className="font-semibold w-36 text-gray-600">Shares float</p>
+                  <p className="text-gray-800 font-semibold">16.39 Billion</p>
                 </div>
               
-                <div className="flex items-center text-sm pt-2 pb-2 border-b border-gray-300 justify-between">
-                  <p className="uppercase text-indigo-600 w-36">short float</p>
-                  <p className="text-gray-900">0.69%</p>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between ">
+                  <p className="font-semibold w-36 text-gray-600">Short Float</p>
+                  <p className="text-gray-800 font-semibold">0.69%</p>
                 </div>
-                <div className="flex items-center border-b border-gray-300 text-sm pt-2 pb-2 justify-between">
-                  <p className="uppercase text-indigo-600 w-36">insider ownership</p>
-                  <p className="text-gray-900">0.07%</p>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-200">
+                  <p className="font-semibold w-36 text-gray-600">Insider Ownership</p>
+                  <p className="text-gray-800 font-semibold">0.07%</p>
                 </div>
-                <div className="flex items-center text-sm pt-2 pb-2 justify-between">
-                  <p className="uppercase text-indigo-600">institional ownership</p>
-                  <p className="text-gray-900">58.80%</p>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between">
+                  <p className="font-semibold text-gray-600">Institional Ownership</p>
+                  <p className="text-gray-800 font-semibold">58.80%</p>
+                </div>
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-200">
+                  <p className="font-semibold w-36 text-gray-600">Average Volume</p>
+                  <p className="text-gray-800 font-semibold">92.57 Million</p>
                 </div>
               </div>
             
@@ -42,9 +47,9 @@ const Statistics = () => {
           </div>
         </div>
         <div className="w-1/2 ml-16">
-          <p className="text-gray-400 text-2xl mb-2">statistics</p>
+          <p className="text-gray-400 text-lg mb-1 uppercase">statistics</p>
           <p className="text-4xl font-bold text-gray-700 mb-6">
-            key statistical information
+            Key Statistical Information
           </p>
           <p className="text-gray-600 text-lg">
             s simply dummy text of the printing and typesetting industry. Lorem

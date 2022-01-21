@@ -50,7 +50,7 @@ const ForgotPassword = () => {
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className="text-gray-700 font-bold text-2xl text-center">
-          Reset Password
+          Forgot Password
         </p>
         <p className="text-sm text-gray-700 mt-2 text-center leading-6">
           Enter the email associated with your account. If there is an existing

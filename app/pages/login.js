@@ -5,11 +5,9 @@ import axios from "axios";
 import { useState } from "react";
 import { withIronSession } from "next-iron-session";
 import Link from 'next/link';
-import { Lock } from "react-bootstrap-icons";
 
 const Login = () => {
   const router = useRouter();
-  const newAccount = router.query.newAccount;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState();
@@ -45,12 +43,19 @@ const Login = () => {
 
   return (
     <div>
-      {newAccount && (
+      {router.query?.newAccount && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             Your account has been created along with your 7 day free trial.
             <br />
             You can now login below.
+          </p>
+        </div>
+      )}
+      {router.query?.passwordUpdated && (
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+          <p className="text-xs font-bold text-center text-white leading-5">
+            You password has been updated!
           </p>
         </div>
       )}
