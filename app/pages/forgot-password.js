@@ -53,7 +53,7 @@ const ForgotPassword = () => {
           Reset Password
         </p>
         <p className="text-sm text-gray-700 mt-2 text-center leading-6">
-          Enter your email associated with your account. If there is an existing
+          Enter the email associated with your account. If there is an existing
           account with the provided email, we will send you an email with a
           special link to reset your password.
         </p>
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
         <button
           disabled={isSubmitting ? true : false}
           type="submit"
-          className={`text-white font-medium text-sm h-[40px] flex items-center justify-center w-[120px] mt-8 rounded-md transition-all duration-300 ${isSubmitting ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'}`}
+          className={`text-white mx-auto font-medium text-sm h-[40px] flex items-center justify-center w-full mt-8 rounded-md transition-all duration-300 ${isSubmitting ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'}`}
         >
           {isSubmitting ? <ButtonSpinner /> : 'Submit'}
         </button>
