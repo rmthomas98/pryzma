@@ -19,8 +19,10 @@ const ManageAccount = ({ user }) => {
 
   useEffect(() => {
     if (router.query.paymentMethodUpdated) {
-      router.replace(router.asPath);
       setPage('subscription')
+      setTimeout(() => {
+        router.replace(router.asPath)
+      }, 1000)
     }
   },[router.query.paymentMethodUpdated])
 

@@ -29,7 +29,6 @@ const ChangeSubscriptionModal = ({
       setSuccess('subscription updated')
       setErrorMessage(false)
       setTimeout(() => {
-
         refreshData();
       }, 1000)
     }
