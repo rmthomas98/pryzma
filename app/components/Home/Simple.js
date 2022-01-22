@@ -5,7 +5,7 @@ const Simple = () => {
     <div className="bg-white w-full">
       <div className="mx-auto max-w-7xl p-4 pt-20 pb-20 flex items-center justify-between">
         <div className="w-1/2 mr-16">
-          <p className="text-gray-400 text-lg mb-1 uppercase">Company Overview</p>
+          <p className="text-gray-400 text-lg mb-1 uppercase font-semibold">Company Overview</p>
           <p className="text-4xl font-bold text-gray-700 mb-6">
             Company Profile
           </p>
@@ -18,11 +18,11 @@ const Simple = () => {
           </p>
         </div>
         <div className="w-1/2 z-10 relative">
-        <div className="absolute h-full w-full bg-violet-300 rounded-lg top-0 left-0 rotate-6 z-[-1]"></div>
+        <div className="absolute h-full w-full bg-indigo-300 rounded-lg top-0 left-0 rotate-6 z-[-1]"></div>
         <div className="w-full bg-gray-100 rounded-lg shadow-2xl shadow-gray-400">
           <div className="rounded-lg">
             <div>
-              <p className=" text-violet-400 font-medium text-lg p-5 pl-8 pr-8 bg-gray-800 flex items-center justify-between rounded-tr-md rounded-tl-md">
+              <p className=" text-indigo-400 font-medium text-lg p-5 pl-8 pr-8 bg-gray-800 flex items-center justify-between rounded-tr-md rounded-tl-md">
                 <span className="flex items-center"><PersonCheck className="text-2xl mr-4"/>Company Profile</span><span>AAPL</span>
               </p>
               <div>

@@ -5,11 +5,11 @@ const Statistics = () => {
     <div className="bg-white">
       <div className="mx-auto max-w-7xl p-4 pt-20 pb-20 flex items-center">
       <div className="w-1/2 relative z-10">
-      <div className="absolute h-full w-full bg-blue-300 rounded-lg top-0 left-0 rotate-[-6deg] z-[-1]"></div>
+      <div className="absolute h-full w-full bg-rose-300 rounded-lg top-0 left-0 rotate-[-6deg] z-[-1]"></div>
         <div className="w-full bg-gray-100 rounded-lg shadow-2xl shadow-gray-400">
           <div className="rounded-lg">
             <div>
-              <p className="p-5 pl-8 pr-8 font-medium text-lg bg-gray-800 flex items-center text-blue-400 justify-between rounded-tr-lg rounded-tl-lg">
+              <p className="p-5 pl-8 pr-8 font-medium text-lg bg-gray-800 flex items-center text-rose-400 justify-between rounded-tr-lg rounded-tl-lg">
                 <span className="flex items-center"><BarChart className="mr-4 text-2xl"/>Statistical Data</span> <span>AAPL</span>
               </p>
               <div>
@@ -50,7 +50,7 @@ const Statistics = () => {
         </div>
         </div>
         <div className="w-1/2 ml-16">
-          <p className="text-gray-400 text-lg mb-1 uppercase">statistics</p>
+          <p className="text-gray-400 text-lg mb-1 font-semibold uppercase">statistics</p>
           <p className="text-4xl font-bold text-gray-700 mb-6">
             Key Statistical Information
           </p>

@@ -8,11 +8,12 @@ import Statistics from "../components/Home/Statistics";
 import Financials from "../components/Home/Financials";
 import Footer from "../components/Home/Footer";
 import { withIronSession } from "next-iron-session";
+import SecFilings from "../components/Home/secfilings";
 
 const Home = () => {
   return (
     <div className="overflow-x-hidden">
-    <div className="max-w-7xl mx-auto p-4 w-full flex justify-between pt-24">
+    <div className="max-w-7xl mx-auto p-4 w-full flex justify-between pt-24 ">
       <div className="min-w-fit mr-6 mt-60">
         <p className="text-gray-700 text-4xl capitalize font-bold">
           stock research simplified
@@ -40,11 +41,10 @@ const Home = () => {
       <Image src={server}  height={650} width={650} layout="fixed"/>
     </div>
     <HomeInfo />
-    <div className="bg-gradient-to-b from-indigo-600 to-indigo-300">
     <Simple />
     <Statistics />
     <Financials />
-    </div>
+    <SecFilings />
     <Footer />
     </div>
   );
