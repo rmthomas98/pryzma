@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
 import ButtonSpinner from '../components/ButtonSpinner';
+import {useRouter} from 'next/router';
 
 const ForgotPassword = () => {
+  const router = useRouter()
   const {
     handleSubmit,
     register,
@@ -72,6 +74,9 @@ const ForgotPassword = () => {
           {isSubmitting ? <ButtonSpinner /> : 'Submit'}
         </button>
       </form>
+      <div className="mt-6 flex justify-center">
+      <button onClick={() => router.back()} className="hover:text-indigo-600 transition-all hover:underline text-xs text-gray-600">Go Back</button>
+      </div>
     </div>
   );
 };

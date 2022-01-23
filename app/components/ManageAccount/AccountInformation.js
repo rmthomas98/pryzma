@@ -62,10 +62,10 @@ const AccountInformation = ({ user }) => {
           </p>
         </div>
       )}
-      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6 mt-12">
+      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6 mt-12 animate-fadeInUp translate-y-12">
         Account Information
       </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="animate-fadeInUp translate-y-12">
         <div className="flex w-full">
           <div className="w-full mr-4 mb-6">
             <p className="text-sm text-gray-800 pb-0.5">First Name</p>

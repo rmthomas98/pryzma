@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ButtonSpinner from "../ButtonSpinner";
 import {CheckLg} from 'react-bootstrap-icons';
+import Link from "next/link";
 
 const ContactInformation = ({ increment, email }) => {
   const {
@@ -31,6 +32,7 @@ const ContactInformation = ({ increment, email }) => {
     if (response.data.data === "customer created") {
       email.current = data.email;
       setIsSubmitting(false);
+      setErrorMessage(false)
       increment();
     }
     if (response.data.data === "user already exists") {
@@ -145,7 +147,7 @@ const ContactInformation = ({ increment, email }) => {
             </p>
           )}
         </div>
-        <div className="w-full mt-8 flex">
+        <div className="w-full mt-8 flex items-center justify-between">
           <button
             disabled={isSubmitting ? true : false}
             type="submit"
@@ -155,10 +157,11 @@ const ContactInformation = ({ increment, email }) => {
           >
             {isSubmitting ? <ButtonSpinner /> : 'Create Account'}
           </button>
+          <p><span className="text-gray-600 text-xs">Already have an account?</span><Link href="/login"><a className="text-gray-800 text-xs ml-2 hover:text-indigo-600 hover:underline">Sign In</a></Link></p>
         </div>
       </form>
       {errorMessage && (
-        <div className="mt-6 mx-auto w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="mt-6 p-4 pt-6 max-w-[300px] pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-900/75 absolute top-[40px] w-full left-1/2 translate-x-[-50%]">
           <p className="text-xs font-bold text-center text-white">
             {errorMessage}
           </p>

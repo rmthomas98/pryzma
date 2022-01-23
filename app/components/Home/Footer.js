@@ -19,7 +19,7 @@ const Footer = () => {
           &copy; 2020 PrizmPro. All Rights Reservered.
         </p>
       </div>
-      <Twitter />
+      <a href="https://twitter.com/pryzma_io" target="_blank" rel="noreferrer"><Twitter /></a>
     </div>
   );
 };

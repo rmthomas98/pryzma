@@ -42,31 +42,29 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='bg-[url("/static/images/mountains-at-night.png")] bg-cover bg-center min-h-screen absolute top-0 w-full flex justify-center items-center pl-4 pr-4'>
       {router.query?.newAccount && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[75px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-gray-900/75 shadow-lg">
           <p className="text-xs font-bold text-center text-white leading-5">
-            Your account has been created along with your 7 day free trial.
-            <br />
-            You can now login below.
+            Your account has been created!
           </p>
         </div>
       )}
       {router.query?.passwordUpdated && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[75px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-gray-900/75 shadow-lg">
           <p className="text-xs font-bold text-center text-white leading-5">
             You password has been updated!
           </p>
         </div>
       )}
       {errorMessage && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[75px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-gray-900/75 shadow-lg">
           <p className="text-xs font-bold text-center text-white leading-5">
             {errorMessage}
           </p>
         </div>
       )}
-      <div className="max-w-sm w-full mx-auto mt-40 mb-20">
+      <div className="max-w-sm w-full p-6 bg-white rounded-lg shadow-2xl shadow-gray-900/75 mt-40 mb-40 opacity-0 animate-fadeInUp translate-y-[75px]">
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
           <p className="text-gray-700 font-bold text-2xl text-center">
             Client Login

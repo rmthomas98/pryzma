@@ -36,7 +36,14 @@ const Payment = () => {
   };
 
   return (
-    <form className="w-full">
+    <form className="w-full opacity-0 animate-fadeIn">
+      {errorMessage && (
+        <div className="mt-6 mx-auto w-full max-w-[300px] absolute top-[40px] left-1/2 translate-x-[-50%] p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-900/75">
+          <p className="text-xs font-bold text-center text-white">
+            {errorMessage}
+          </p>
+        </div>
+      )}
       <p className="text-gray-700 font-bold text-2xl">
         Payment Information
       </p>
@@ -49,13 +56,6 @@ const Payment = () => {
         {isSubmitting ? <ButtonSpinner /> : 'Submit'}
       </button>
       </div>
-      {errorMessage && (
-        <div className="mt-6 mx-auto w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
-          <p className="text-xs font-bold text-center text-white">
-            {errorMessage}
-          </p>
-        </div>
-      )}
     </form>
   );
 };

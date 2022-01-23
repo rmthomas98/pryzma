@@ -44,7 +44,7 @@ const ManageAccount = ({ user }) => {
   return (
     <div className="pr-4 pl-4">
       <div className="max-w-screen-sm w-full mx-auto mt-40 mb-20">
-        <div className="flex justify-between mb-10">
+        <div className="flex justify-between mb-10 animate-fadeInUp translate-y-12">
           <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'account' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('account')}>Account</p>
           <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'password' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('password')}>Password</p>
           <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'subscription' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('subscription')}>Subscription</p>

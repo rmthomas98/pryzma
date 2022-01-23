@@ -40,7 +40,7 @@ const Password = ({user}) => {
   },[watch('password'), watch('confirmPassword')])
 
   return (
-    <>
+    <div className='animate-fadeInUp translate-y-12'>
     {success && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
@@ -105,7 +105,7 @@ const Password = ({user}) => {
           {isSubmitting ? <ButtonSpinner /> : 'Update Password'}
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

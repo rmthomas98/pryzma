@@ -98,7 +98,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
   if (user.subscriptionType === null || user.isCanceled || !user.defaultPaymentMethod ) return <SetupSubscription accountMessage={accountMessage} user={user}/>
 
   return (
-    <div>
+    <>
       {success && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           {success === "canceled" && !errorMessage && (
@@ -143,10 +143,10 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
           </p>
         </div>
       )}
-      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-8 mt-12">
+      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-8 mt-12 animate-fadeInUp translate-y-12">
         Subscription Information
       </p>
-      <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center mb-4">
+      <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center mb-4 animate-fadeInUp translate-y-12">
         <p className="text-gray-800">
           <span className="font-medium">Prizm Pro Monthly</span>{" "}
           <span>($19.99/mo)</span>
@@ -166,7 +166,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
           {plan === "canceled" || plan === null ? "Select Plan" : ""}
         </button>
       </div>
-      <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center">
+      <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center animate-fadeInUp translate-y-12">
         <p className="text-gray-800">
           <span className="font-medium">Prizm Pro Annual</span>{" "}
           <span>($199.99/yr)</span>
@@ -186,7 +186,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
           {plan === "canceled" || plan === null ? "Select Plan" : ""}
         </button>
       </div>
-      <div className="flex mt-6">
+      <div className="flex mt-6 animate-fadeInUp translate-y-12">
         <div className="border border-gray-300 p-4 w-full mr-4 rounded-md">
         <p className="text-gray font-medium text-center mb-4 text-indigo-600">Payment Method</p>
         <div className="flex items-center justify-center">
@@ -199,7 +199,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
           {user.cancelAtPeriodEnd ? <DashLg className="text-xl text-gray-800 mx-auto"/> : <p className="text-gray-800 text-center text-sm">{format(new Date(user.nextInvoice * 1000), "MMMM dd, yyyy")}</p>}
         </div>
       </div>
-      <div className="mt-8 flex">
+      <div className="mt-8 flex animate-fadeInUp translate-y-12">
         {(user.cancelAtPeriodEnd === false &&
           user.subscriptionType &&
           !user.isCanceled) ||
@@ -275,8 +275,8 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
         setSuccess={setSuccess}
         refreshData={refreshData}
       />
-      <p className="text-gray-600 text-xs mt-10 leading-5">Please note that we do not provide refunds. If you downgrade from annual to monthly, we will keep a credit on your account (ex. if you downgrade from Annual to Monthly, we will apply the pro-rated credit to your next bill), but we do not issue refunds to your card.</p>
-    </div>
+      <p className="text-gray-600 text-xs mt-10 leading-5 animate-fadeInUp translate-y-12">Please note that we do not provide refunds. If you downgrade from annual to monthly, we will keep a credit on your account (ex. if you downgrade from Annual to Monthly, we will apply the pro-rated credit to your next bill), but we do not issue refunds to your card.</p>
+    </>
   );
 };
 

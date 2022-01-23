@@ -28,8 +28,8 @@ const Signup = () => {
   }
   
   return (
-    <div className="mt-24 mb-20">
-      <div className="w-full max-w-screen-sm mx-auto">
+    <div className={` pl-4 pr-4 absolute pt-40 pb-20 top-0 min-h-screen w-full flex justify-center items-center bg-[url("/static/images/mountains-at-night.png")] bg-cover bg-center`}>
+      <div className="w-full max-w-screen-sm mx-auto p-6 bg-white rounded-xl shadow-xl shadow-gray-900/40 opacity-0 animate-fadeIn transition-all duration-300">
       <div className='mb-2 font-medium text-gray-800'>Step {step.step}/3</div>
       <div className='flex mb-6'>
         <span className={`h-0.5 w-full mr-2 rounded-full bg-gradient-to-r from-rose-600 to-indigo-600`}></span>
