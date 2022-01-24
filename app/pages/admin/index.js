@@ -3,17 +3,24 @@ import clientPromise from "../../lib/mongodb";
 import Time from "../../components/AdminHome/Time";
 import WatchList from "../../components/AdminHome/Watchlist";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import News from "../../components/AdminHome/News";
+import UserContext from '../../pages/UserContext';
 
 const AdminHome = ({user, watchlist, news}) => {
 
-  const [watchListSymbols, setWatchListSymbols] = useState(watchlist && Object.values(watchlist).sort((a, b) => a.quote.symbol > b.quote.symbol));
+  const {setUser} = useContext(UserContext);
+
+  useEffect(() => {
+    setUser(user.user)
+  },[])
+
+  const [watchListSymbols, setWatchListSymbols] = useState(watchlist && Object.values(watchlist).sort((a, b) =>  a.quote.symbol.toLowerCase() > b.quote.symbol.toLowerCase() ? 1 : -1));
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
       <div className="flex items-center justify-between border-b border-gray-300 pb-4">
-      <p className="font-semibold text-2xl text-gray-800">Welcome, {user.user.firstName}</p>
+      <p className="font-semibold text-2xl text-gray-900">Welcome, {user.user.firstName}</p>
       <Time />
       </div>
       <WatchList watchListSymbols={watchListSymbols} setWatchListSymbols={setWatchListSymbols} user={user}/>
@@ -80,7 +87,7 @@ export const getServerSideProps = withIronSession(
     // if user has a watchlist, fetch and pass it as props
     if (user.user.watchlist.length) {
       watchlist = await axios.get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(',')}&types=quote&displayPercent=true&token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`);
-      news = await axios.get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(',')}&types=news&last=3&token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`);
+      news = await axios.get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(',')}&types=news&last=3&token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`)
     }
     // parse user to pass as props
     user = JSON.parse(JSON.stringify(user));

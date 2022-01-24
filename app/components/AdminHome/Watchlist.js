@@ -38,12 +38,14 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
     setSortVolume(false)
     if (!sortSymbol) {
       const oldArr = [...watchListSymbols];
-      const newArr = oldArr.sort((a,b) => a.quote.symbol > b.quote.symbol);
+      const newArr = oldArr.sort((a,b) => a.quote.symbol.toLowerCase() > b.quote.symbol.toLowerCase() ? 1 : -1);
+      console.log(newArr)
       setWatchListSymbols(newArr)
       setSortSymbol(true);
     } else {
       const oldArr = [...watchListSymbols];
-      const newArr = oldArr.sort((a,b) => b.quote.symbol > a.quote.symbol);
+      const newArr = oldArr.sort((a,b) => b.quote.symbol.toLowerCase() > a.quote.symbol.toLowerCase() ? 1 : -1);
+      console.log(newArr)
       setWatchListSymbols(newArr)
       setSortSymbol(false);
     }

@@ -21,7 +21,7 @@ const News = ({news, watchListSymbols}) => {
       {newsList ? newsList.map((element) => {
         return (
           <div className='rounded-lg shadow-lg shadow-gray-400/75 mb-10 overflow-hidden bg-gray-50' key={element[0]}>
-            <p className='p-3 pl-4 bg-gray-800 text-gray-100 font-medium flex justify-between'>Symbol - {element[0]}<span className='flex items-center'><span>View all news for {element[0]}</span><ArrowRight className='ml-2 text-emerald-400 text-xl'/></span></p>
+            <p className='p-3 pl-4 bg-gray-800 text-gray-100 font-medium flex justify-between'>Symbol - {element[0]}</p>
             {element[1].news.map(article => {
               return (
                 <a href={article.url} target="_blank" rel="noreferrer" className='flex items-center p-4 hover:bg-gray-200 transition duration-300' key={article.datetime}>
@@ -32,7 +32,7 @@ const News = ({news, watchListSymbols}) => {
                 <p className='text-gray-900 font-semibold text-lg mb-2'>{article.headline}</p>
                 <div className='flex'>
                 <p className='text-xs text-gray-600 mr-4'>{article.source}</p>
-                <p className='text-xs text-gray-600'>{format(new Date(article.datetime), "MMMM, dd h:mm aa")}</p>
+                <p className='text-xs text-gray-600'>{format(new Date(article.datetime), "MMMM dd, h:mm aa")}</p>
                   </div>
                 <p className='text-sm text-gray-800 mt-2 line-clamp-2'>{article.summary}</p>
                 </div>

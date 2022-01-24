@@ -15,7 +15,7 @@ const Time = () => {
     }
   },[])  
 
-  return <p className='text-xl text-gray-800'>{format(time, "MMMM, dd h:mm:ss aa")}</p>
+  return <p className='text-xl text-gray-900'>{format(time, "MMMM dd, h:mm:ss aa")}</p>
 }
 
 export default Time;

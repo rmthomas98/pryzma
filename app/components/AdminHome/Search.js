@@ -50,21 +50,23 @@ const Search = () => {
       // go through the response to see if any of the symbols match the users input
       response.data.forEach((element) => {
         // if match then set the context symbol and set the match true
-        if (element.symbol === data.input.toUpperCase() && element.type !== 'et' && element.type !== 'ad') {
-          setSymbol(element.symbol)
+        if (element.symbol === data.input.toUpperCase()) {
+          if (element.exchange === 'OTCM') return 
+          if (!element.type === 'cs' || !element.type === 'ad' || !element.symbol === 'SPY' || element.exchange === 'OTCM' || element.symbol.includes('-')) return
+          setSymbol([element.symbol, element.name])
           match = true
           setIsSubmitting(false)
           reset();
+           // if user is on home page and there is a match 
+          // we want to redirect them to the overview page
+          // so they can see what they just searched
+          if (router.pathname.endsWith('/admin') || router.pathname.endsWith('/manage-account') && match) {
+            router.push('/admin/overview')
+          }
         }
         // if there is no match, notify the user
         if (match === false) setIsSubmitting(false)
       })
-    }
-    // if user is on home page and there is a match 
-    // we want to redirect them to the overview page
-    // so they can see what they just searched
-    if (router.pathname.endsWith('/admin') || router.pathname.endsWith('/manage-account') && match) {
-      router.push('/admin/overview')
     }
   }
 
@@ -88,7 +90,7 @@ const Search = () => {
   // when a user clicks a result
   const handleResultClick = (e) => {
     // set the symbol to the selected option
-    setSymbol(e.target.value);
+    setSymbol(e.target.value.split(','));
     // reset the input
     reset()
     // if the user is on the home page
@@ -106,9 +108,10 @@ const Search = () => {
     {results || text ?  
     <div className='absolute w-full bg-gray-700 rounded-md mt-1 shadow-lg shadow-gray-700/50 overflow-hidden opacity-0 translate-y-2 animate-fadeInUpFast'>
       {results?.length ? results.map((element, index) => {
-        if (element.type !== 'cs' && element.symbol !== 'SPY' || element.symbol.includes('-')) return 
+        if (element.exchange === 'OTCM') return 
+        if (element.type !== 'cs' && element.symbol !== 'SPY' && element.type !== 'ad' || element.symbol.includes('-')) return 
           return (
-            <button onClick={handleResultClick} key={index} value={element.symbol} className='w-full flex p-2 items-center hover:bg-gray-800 transition duration-200 cursor-pointer'>
+            <button onClick={handleResultClick} key={index} value={[element.symbol, element.name]} className='w-full flex p-2 items-center hover:bg-gray-800 transition duration-200 cursor-pointer'>
               <p className='text-sm text-gray-100 font-medium pointer-events-none'>{element.symbol}</p>
               <Dash className='text-gray-300 pointer-events-none'/>
               <p className='text-gray-300 text-sm pointer-events-none'>{element.securityName}</p>

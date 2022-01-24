@@ -4,11 +4,14 @@ import NestedNav from "../components/AdminHome/NestedNav";
 import {useRouter} from 'next/router';
 import NextNProgress from 'nextjs-progressbar';
 import SymbolContext from './SymbolContext';
+import UserContext from './UserContext';
 import { useState } from "react";
+import SymbolNav from '../components/AdminHome/SymbolNav';
 
 function MyApp({ Component, pageProps }) {
 
-  const [symbol, setSymbol] = useState(null)
+  const [symbol, setSymbol] = useState(null);
+  const [user, setUser] = useState(null);
 
   const router = useRouter()
 
@@ -16,17 +19,20 @@ function MyApp({ Component, pageProps }) {
     return (
       <>
         <NextNProgress color="#818CF8" startPosition={0.7} stopDelayMs={50} height={2.5}/>
+        <UserContext.Provider value={{user, setUser}}>
         <SymbolContext.Provider value={{symbol, setSymbol}}>
       <div>
         <div className="flex">
           <NestedNav />
           <div className="w-full">
             <Nav />
+            {router.pathname.endsWith('/admin') || router.pathname.endsWith('/manage-account') ? '' : <SymbolNav />}
           <Component {...pageProps} />
           </div>
         </div>
       </div>
         </SymbolContext.Provider>
+        </UserContext.Provider>
         </>
     )
   }
