@@ -32,7 +32,7 @@ const Nav = () => {
   }, [router.pathname, router.query]);
 
   return (
-    <div className={`w-full relative ${router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'z-[9999]' : ''} ${router.pathname.startsWith('/admin') ? 'bg-gray-800' : ''}`}>
+    <div className={`w-full relative ${router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'z-[9999]' : ''} ${router.pathname.startsWith('/admin') ? 'bg-gray-800 sticky top-0 z-10' : ''}`}>
       <div className={`w-full flex justify-between items-center mx-auto pl-4 pr-4 relative ${router.pathname.startsWith('/admin') ? 'pb-2 pt-2 pl-2 pr-2' : 'pb-6 pt-6 max-w-7xl'}`}>
       { !router.pathname.startsWith('/admin') && <Link href={router.pathname.startsWith("/admin") ? "/admin" : "/"}>
           <a className={`font-medium ${router.pathname.startsWith('/admin') || router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'text-white' : 'text-gray-800'} text-xl`}>

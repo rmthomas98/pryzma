@@ -98,9 +98,9 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
   if (user.subscriptionType === null || user.isCanceled || !user.defaultPaymentMethod ) return <SetupSubscription accountMessage={accountMessage} user={user}/>
 
   return (
-    <>
+    <div className="relative">
       {success && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[-210px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           {success === "canceled" && !errorMessage && (
             <p className="text-xs font-bold text-center text-white leading-5">
               Your Subscription has been canceled.
@@ -123,29 +123,29 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
         </div>
       )}
       {errorMessage && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[-210px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             Something went wrong, please try again.
           </p>
         </div>
       )}
       {router.query.paymentMethodUpdated && !success && !errorMessage && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[-210px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             Payment method updated.
           </p>
         </div>
       )}
       {accountMessage && !success && !errorMessage && !router.query.paymentMethodUpdated && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-yellow-700 border-2 border-yellow-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[-210px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-yellow-700 border-2 border-yellow-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             {accountMessage}
           </p>
         </div>
       )}
-      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-8 mt-12 animate-fadeInUp translate-y-12">
+      {/* <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-8 mt-12 animate-fadeInUp translate-y-12">
         Subscription Information
-      </p>
+      </p> */}
       <div className="border-gray-300 border p-3 w-full rounded-md text-sm flex justify-between items-center mb-4 animate-fadeInUp translate-y-12">
         <p className="text-gray-800">
           <span className="font-medium">Prizm Pro Monthly</span>{" "}
@@ -276,7 +276,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
         refreshData={refreshData}
       />
       <p className="text-gray-600 text-xs mt-10 leading-5 animate-fadeInUp translate-y-12">Please note that we do not provide refunds. If you downgrade from annual to monthly, we will keep a credit on your account (ex. if you downgrade from Annual to Monthly, we will apply the pro-rated credit to your next bill), but we do not issue refunds to your card.</p>
-    </>
+    </div>
   );
 };
 

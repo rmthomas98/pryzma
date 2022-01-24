@@ -8,6 +8,12 @@ import news from '../../static/images/newsAdmin.svg';
 import financials from '../../static/images/financialsAdmin.svg';
 import stats from '../../static/images/statsAdmin.svg';
 import filings from '../../static/images/folderAdmin.svg';
+import income from '../../static/images/incomeAdmin.svg';
+import balance from '../../static/images/balanceAdmin.svg';
+import cash from '../../static/images/cashAdmin.svg';
+import institution from '../../static/images/institutionalAdmin.svg';
+import insider from '../../static/images/insiderAdmin.svg';
+import offerings from '../../static/images/offeringsAdmin.svg'
 
 const NestedNav = () => {
   const [number, setNumber] = useState();
@@ -18,7 +24,7 @@ const NestedNav = () => {
   },[router.pathname])
 
   return (
-    <div className="bg-gray-800 max-w-[220px] w-full min-h-screen sticky top-0 flex flex-col">
+    <div className="bg-gray-800 max-w-[230px] w-full h-screen overflow-auto sticky top-0 flex flex-col">
       <p className="text-2xl mx-auto pt-3">
         <span className="text-white mr-2">Pryzma</span>
         <span className="text-indigo-400">Admin</span>
@@ -76,14 +82,41 @@ const NestedNav = () => {
             !router.pathname.endsWith("/filings") && setNumber(0)
           } className={`text-white text-sm font-medium p-3 pl-4 hover:opacity-100 hover:bg-gray-900 relative transition-all duration-200 flex items-center ${router.pathname.endsWith('/filings') ? 'opacity-100 bg-gray-900' : 'opacity-60'}`}><span className={`${number === 6 || router.pathname.endsWith("/filings") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={filings} height={20} width={20} layout="fixed" /><span className="ml-3">SEC FIlings</span></a>
       </Link>
-      <Link href="/">
-        <a className="text-white text-sm font-medium p-3 pl-4">Income Statement</a>
+      <Link href="/admin/offerings">
+        <a onMouseEnter={() => setNumber(7)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/offerings") && setNumber(0)
+          } className={`text-white text-sm font-medium p-3 pl-4 relative flex items-center hover:bg-gray-900 hover:opacity-100 transition-all duration-200 ${router.pathname.endsWith('/offerings') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 7 || router.pathname.endsWith("/offerings") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={offerings} height={20} width={20} layout="fixed" /><span className="ml-3">Offerings</span></a>
       </Link>
-      <Link href="/">
-        <a className="text-white text-sm font-medium p-3 pl-4">Balance Sheet</a>
+      <Link href="/admin/income">
+        <a onMouseEnter={() => setNumber(8)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/income") && setNumber(0)
+          } className={`text-white text-sm font-medium p-3 pl-4 hover:bg-gray-900 hover:opacity-100 trasnition-all duration-200 flex relative items-center ${router.pathname.endsWith('/income') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 8 || router.pathname.endsWith("/income") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={income} height={20} width={20} layout="fixed" /><span className="ml-3">Income Statement</span></a>
       </Link>
-      <Link href="/">
-        <a className="text-white text-sm font-medium p-3 pl-4">Cash Flow</a>
+      <Link href="/admin/balance">
+        <a onMouseEnter={() => setNumber(9)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/balance") && setNumber(0)
+          } className={`text-white text-sm font-medium p-3 pl-4 relative hover:bg-gray-900 hover:opacity-100 transition-all duration-200 flex items-center ${router.pathname.endsWith('/balance') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 9 || router.pathname.endsWith("/balance") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={balance} height={20} width={20} layout="fixed" /><span className="ml-3">Balance Sheet</span></a>
+      </Link>
+      <Link href="/admin/cash">
+        <a onMouseEnter={() => setNumber(10)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/cash") && setNumber(0)
+          } className={`text-white text-sm font-medium p-3 pl-4 relative flex items-center hover:bg-gray-900 hover:opacity-100 transition-all duration-200 ${router.pathname.endsWith('/cash') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 10 || router.pathname.endsWith("/cash") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={cash} height={20} width={20} layout="fixed" /><span className="ml-3">Cash Flow</span></a>
+      </Link>
+      <Link href="/admin/institutional">
+        <a onMouseEnter={() => setNumber(11)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/institutional") && setNumber(0)
+          } className={`text-white text-sm font-medium p-3 pl-4 relative flex items-center hover:bg-gray-900 hover:opacity-100 transition-all duration-200 ${router.pathname.endsWith('/institutional') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 11 || router.pathname.endsWith("/institutional") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={institution} height={20} width={20} layout="fixed" /><span className="ml-3">Institutional Ownership</span></a>
+      </Link>
+      <Link href="/admin/insiders">
+        <a onMouseEnter={() => setNumber(12)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/insiders") && setNumber(0)
+          } className={`text-white mb-10 text-sm font-medium p-3 pl-4 relative flex items-center hover:bg-gray-900 hover:opacity-100 transition-all duration-200 ${router.pathname.endsWith('/insiders') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 12 || router.pathname.endsWith("/insiders") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={insider} height={20} width={20} layout="fixed" /><span className="ml-3">Insider Ownership</span></a>
       </Link>
     </div>
   );

@@ -40,24 +40,24 @@ const Password = ({user}) => {
   },[watch('password'), watch('confirmPassword')])
 
   return (
-    <div className='animate-fadeInUp translate-y-12'>
+    <div className='animate-fadeInUp translate-y-12 relative'>
     {success && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[-210px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             Your password has been updated.
           </p>
         </div>
       )}
       {errorMessage && (
-        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
+        <div className="absolute top-[-210px] left-[50%] translate-x-[-50%] w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
           <p className="text-xs font-bold text-center text-white leading-5">
             Something went wrong, please try again.
           </p>
         </div>
       )}
-      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6 mt-12">
+      {/* <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-6 mt-12">
         Change Password
-      </p>
+      </p> */}
       <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex w-full">
         <div className="w-full mr-4">

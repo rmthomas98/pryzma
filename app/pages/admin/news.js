@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import SymbolContext from "../SymbolContext";
+
 const News = () => {
-  return <div>news</div>
+
+  const {symbol} = useContext(SymbolContext)
+
+  return <div>{symbol}</div>
 }
 
 export default News;

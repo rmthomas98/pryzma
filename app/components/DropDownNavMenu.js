@@ -29,7 +29,7 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
   return (
     <div
       ref={menu}
-      className={`transition-all duration-300 absolute top-12 right-2 bg-gray-50 shadow-xl shadow-gray-300 rounded-lg flex flex-col overflow-hidden items-center animate-fadeInUpFast translate-y-6`}
+      className={`transition-all duration-300 absolute top-12 right-2 bg-gray-50 shadow-xl shadow-gray-900/30 rounded-lg flex flex-col overflow-hidden items-center animate-fadeInUpFast translate-y-6`}
     >
       {userData && (
         <p className="font-semibold text-center text-gray-700 text-sm p-2 pt-4 pb-0.5">{`${userData.firstName} ${userData.lastName}`}</p>

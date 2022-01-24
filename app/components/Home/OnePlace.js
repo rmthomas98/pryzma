@@ -9,6 +9,8 @@ import cashFlow from '../../static/images/cashFlow.svg'
 import insider from '../../static/images/insider.svg'
 import insitution from '../../static/images/institution.svg';
 import quotes from '../../static/images/quote.svg';
+import offerings from '../../static/images/offerings.svg';
+import watchlist from "../../static/images/watchlist.svg";
 
 const OnePlace = () => {
   return (
@@ -73,7 +75,11 @@ const OnePlace = () => {
             </div>
           </div>
           <div className="flex mt-10 justify-between mx-auto">
-          <div className="max-w-[200px] mr-10 w-full"></div>
+          <div className="max-w-[200px] mr-10 w-full">
+            <Image src={offerings} height={40} width={40} />
+            <p className="text-lg font-semibold text-gray-700 mt-1">Offerings</p>
+            <p className="text-gray-600 text-sm">Find out when a company is issuing new stock for public sale.</p>
+          </div>
             <div className="max-w-[200px] mr-10 w-full">
               <Image src={insitution} height={40} width={40}/>
               <p className="text-lg font-semibold text-gray-700 mt-1">Institutional Own</p>
@@ -84,7 +90,11 @@ const OnePlace = () => {
               <p className="text-lg font-semibold text-gray-700 mt-1">Insider Roster</p>
               <p className="text-gray-600 text-sm">See the top insiders that hold a certain stock.</p>
             </div>
-            <div className="max-w-[200px] w-full"></div>
+            <div className="max-w-[200px] w-full">
+              <Image src={watchlist} height={40} width={40} />
+              <p className="text-lg font-semibold text-gray-700 mt-1">Watchlist</p>
+              <p className="text-gray-600 text-sm">Create a watchlist and add as many symbols as you want.</p>
+            </div>
           </div>
         </div>
       </div>

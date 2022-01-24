@@ -44,10 +44,11 @@ const ManageAccount = ({ user }) => {
   return (
     <div className="pr-4 pl-4">
       <div className="max-w-screen-sm w-full mx-auto mt-40 mb-20">
-        <div className="flex justify-between mb-10 animate-fadeInUp translate-y-12">
-          <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'account' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('account')}>Account</p>
-          <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'password' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('password')}>Password</p>
-          <p className={`w-full text-center cursor-pointer pb-3 border-b-2 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'subscription' ? 'border-indigo-600 opacity-100' : 'border-transparent opacity-50'}`} onClick={() => setPage('subscription')}>Subscription</p>
+        <div className="flex justify-between mb-10 animate-fadeInUp translate-y-12 border-b border-gray-300 relative">
+          <span className={`content-none bg-indigo-600 w-1/3 h-0.5 absolute bottom-[-1px] transition-all ease-in-out duration-500 rounded-full ${page === 'account' && 'left-0'} ${page === 'password' && 'left-1/2 translate-x-[-50%]'} ${page === 'subscription' && 'left-[100%] translate-x-[-100%]'}`}></span>
+          <p className={`w-full text-center cursor-pointer pb-3 text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'account' ? 'opacity-100' : 'opacity-70'}`} onClick={() => setPage('account')}>Account</p>
+          <p className={`w-full text-center cursor-pointer pb-3  text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'password' ? 'opacity-100' : 'opacity-70'}`} onClick={() => setPage('password')}>Password</p>
+          <p className={`w-full text-center cursor-pointer pb-3  text-gray-900 transition-all duration-300 hover:opacity-100 ${page === 'subscription' ? 'opacity-100' : 'opacity-70'}`} onClick={() => setPage('subscription')}>Subscription</p>
         </div>
         {page === "account" && <AccountInformation user={user} />}
         {page === "password" && <Password user={user}/>}

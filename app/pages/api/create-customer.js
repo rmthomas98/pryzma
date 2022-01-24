@@ -40,6 +40,7 @@ const handler = async (req, res) => {
       trial: false,
       isCanceled: false,
       nextInvoice: null,
+      watchlist: [],
       firstName: req.body.data.first.charAt(0).toUpperCase() + req.body.data.first.slice(1),
       lastName: req.body.data.last.charAt(0).toUpperCase() + req.body.data.last.slice(1),
       email: req.body.data.email,
