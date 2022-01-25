@@ -23,8 +23,6 @@ const NestedNav = () => {
     setNumber(0)
   },[router.pathname])
 
-  console.log(number)
-
   return (
     <div className="bg-gray-800 max-w-[230px] w-full h-screen overflow-auto sticky top-0 flex flex-col">
       <p className="text-2xl mx-auto pt-3">

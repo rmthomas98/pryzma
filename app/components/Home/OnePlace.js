@@ -55,8 +55,8 @@ const OnePlace = () => {
           <div className="flex mt-10 justify-between">
           <div className="max-w-[200px] w-full mr-10">
               <Image src={quotes} height={40} width={40}/>
-              <p className="text-lg font-semibold text-gray-700">Real Time Quotes</p>
-              <p className="text-gray-600 text-sm">Get the current price of a stock along with other price stats.</p>
+              <p className="text-lg font-semibold text-gray-700">Price Stats</p>
+              <p className="text-gray-600 text-sm">Get the price of a stock along with other price stats.</p>
             </div>
             <div className="max-w-[200px] mr-10 w-full">
               <Image src={incomeStatements} height={40} width={40}/>
@@ -95,6 +95,7 @@ const OnePlace = () => {
               <p className="text-lg font-semibold text-gray-700 mt-1">Watchlist</p>
               <p className="text-gray-600 text-sm">Create a watchlist and add as many symbols as you want.</p>
             </div>
+            
           </div>
         </div>
       </div>

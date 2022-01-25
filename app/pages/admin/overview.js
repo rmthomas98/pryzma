@@ -2,15 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import SymbolContext from "../SymbolContext";
 import {withIronSession} from 'next-iron-session';
 import clientPromise from '../../lib/mongodb';
-import axios from "axios";
-import {useRouter} from 'next/router';
 import UserContext from '../UserContext';
-
-// function to get company profile
-const getCompanyProfile = (symbol) => {}
-
-// function to get stock quote and price stats
-const getQuote = (symbol) => {}
+import CompanyProfile from "../../components/Overview/CompanyProfile";
+import Quote from "../../components/Overview/Quote";
 
 // function to get statistics like float and market cap
 const getStatistics = (symbol) => {}
@@ -24,6 +18,12 @@ const getNews = (symbol) => {}
 const Overview = ({user}) => {
   const {symbol} = useContext(SymbolContext)
   const {setUser} = useContext(UserContext);
+  const [companyProfile, setCompanyProfile] = useState();
+  const [quote, setQuote] = useState();
+  const [stats, setStats] = useState();
+  const [financials, setFinancials] = useState();
+  const [news, setNews] = useState();
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setUser(user)
@@ -32,7 +32,13 @@ const Overview = ({user}) => {
   if (!symbol) return <p>Search a stock above to see an overview on it.</p>
 
   return (
-    <div className="max-w-7xl p-4 mx-auto">
+    <div className="p-4">
+    <div className="max-w-7xl mx-auto">
+      <div className="flex items-stretch">
+      <CompanyProfile setCompanyProfile={setCompanyProfile} isLoading={isLoading}/>
+      <Quote isLoading={isLoading} setQuote={setQuote}/>
+      </div>
+    </div>
     </div>
   )
 }

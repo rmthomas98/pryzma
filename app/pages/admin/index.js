@@ -18,13 +18,15 @@ const AdminHome = ({user, watchlist, news}) => {
   const [watchListSymbols, setWatchListSymbols] = useState(watchlist && Object.values(watchlist).sort((a, b) =>  a.quote.symbol.toLowerCase() > b.quote.symbol.toLowerCase() ? 1 : -1));
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
+    <div className="p-4">
+    <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between border-b border-gray-300 pb-4">
       <p className="font-semibold text-2xl text-gray-900">Welcome, {user.user.firstName}</p>
       <Time />
       </div>
       <WatchList watchListSymbols={watchListSymbols} setWatchListSymbols={setWatchListSymbols} user={user}/>
       <News news={news} watchListSymbols={watchListSymbols}/>
+    </div>
     </div>
   );
 };
