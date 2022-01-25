@@ -35,14 +35,11 @@ const Statistics = () => {
                   <p className="font-semibold w-36 text-gray-600">Insider Ownership</p>
                   <p className="text-gray-800 font-semibold">0.07%</p>
                 </div>
-                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-100">
+                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-100 rouned-bl-lg rounded-br-lg">
                   <p className="font-semibold text-gray-600">Institional Ownership</p>
                   <p className="text-gray-800 font-semibold">58.80%</p>
                 </div>
-                <div className="flex items-center text-sm p-3 pl-8 pr-8 justify-between bg-gray-200 rounded-br-lg rounded-bl-lg">
-                  <p className="font-semibold w-36 text-gray-600">Average Volume</p>
-                  <p className="text-gray-800 font-semibold">92.57 Million</p>
-                </div>
+
               </div>
             
             </div>

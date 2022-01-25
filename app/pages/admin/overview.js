@@ -5,9 +5,7 @@ import clientPromise from '../../lib/mongodb';
 import UserContext from '../UserContext';
 import CompanyProfile from "../../components/Overview/CompanyProfile";
 import Quote from "../../components/Overview/Quote";
-
-// function to get statistics like float and market cap
-const getStatistics = (symbol) => {}
+import Stats from '../../components/Overview/Stats';
 
 // function to get basic financials
 const getFinancials = (symbol) => {}
@@ -34,10 +32,9 @@ const Overview = ({user}) => {
   return (
     <div className="p-4">
     <div className="max-w-7xl mx-auto">
-      <div className="flex items-stretch">
       <CompanyProfile setCompanyProfile={setCompanyProfile} isLoading={isLoading}/>
       <Quote isLoading={isLoading} setQuote={setQuote}/>
-      </div>
+      <Stats isLoading={isLoading} setStats={setStats}/>
     </div>
     </div>
   )

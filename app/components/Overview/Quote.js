@@ -3,6 +3,8 @@ import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
+import millify from 'millify';
+import {format} from 'date-fns'
 
 // this function is what will fetch the data
 const getQuote = async (symbol) => {
@@ -21,7 +23,7 @@ const Quote = ({ setQuote, isLoading }) => {
   const [data, setData] = useState();
 
   // this will call the function above on component load to fetch
-  // the company profile data
+  // the price quote and volume stats
   // it is set to run everytime the symbol changes
   useEffect(() => {
     const getData = async () => {
@@ -31,7 +33,7 @@ const Quote = ({ setQuote, isLoading }) => {
       if (quoteData) {
         // set the data so we can map it out to the user
         setData(quoteData);
-        // set the company profile to loaded so the main component
+        // set the quote to loaded so the main component
         // knows when it can show everything together
         // and stop the skeleton loader
         setQuote(true);
@@ -40,22 +42,70 @@ const Quote = ({ setQuote, isLoading }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
-
   if (!data) return "";
 
   return (
-    <div className="w-full max-w-[280px] h-full">
-      <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
+    <div className="w-full mt-8">
+      {/* <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
         <Image src={quote} height={30} width={30} />
         <span className="ml-4">Price Statistics</span>
-      </p>
-      <div className="rounded-lg shadow-lg shadow-gray-400/75 overflow-hidden">
-        <p className="flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100">
-          Price & Volume statistics
+      </p> */}
+      <div className="rounded-sm shadow-lg shadow-gray-400/75 overflow-hidden">
+        <p className="flex items-center p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 justify-between">
+        <span className="flex items-center"><Image src={quote} height={20} width={20} /><span className="ml-3">Price & Volume statistics</span></span> <span><span className="mr-4">Last Updated:</span>{format(new Date(data.latestUpdate), "MMMM dd, h:mm aa")}</span>
         </p>
-        <div className="flex bg-gray-200 p-3 pl-4 items-center justify-between">
-          <p className="font-semibold text-gray-900  text-xs">Price</p>
+          <table className="w-full table-fixed">
+            <tr className="bg-gray-300">
+              <td className="text-xs font-bold text-gray-900 p-3 pl-4">Price</td>
+              <td className="text-xs font-bold text-gray-900">Change</td>
+              <td className="text-xs font-bold text-gray-900">% Change</td>
+              <td className="text-xs font-bold text-gray-900">Volume</td>
+              <td className="text-xs font-bold text-gray-900">Avg Volume</td>
+            </tr>
+            <tr className="bg-gray-100">
+              <td className="text-xs font-medium text-gray-800 p-3 pl-4">{data.latestPrice ? `${data.latestPrice.toFixed(2)}` : '-'}</td>
+              <td className={`text-xs font-medium ${data.change ? Math.sign(data.change) === -1 ? 'text-rose-600' : 'text-emerald-600' : ''}`}>{data.change ? `${data.change.toFixed(2)}` : '-'}</td>
+              <td className={`text-xs font-medium ${data.changePercent ? Math.sign(data.changePercent) === -1 ? 'text-rose-600' : 'text-emerald-600' : ''}`}>{data.changePercent ? `${data.changePercent.toFixed(2)}%` : '-'}</td>
+              <td className="text-xs font-medium text-gray-800">{data.volume ? `${millify(data.volume, {precision: 2, space: true})}` : '-'}</td>
+              <td className="text-xs font-medium text-gray-800">{data.avgTotalVolume ? `${millify(data.avgTotalVolume, {precision: 2, space: true})}` : '-'}</td>
+            </tr>
+            <tr className="bg-gray-300">
+              <td className="text-xs font-bold text-gray-900 p-3 pl-4">High</td>
+              <td className="text-xs font-bold text-gray-900">Low</td>
+              <td className="text-xs font-bold text-gray-900">Close</td>
+              <td className="text-xs font-bold text-gray-900">Prev Close</td>
+              <td className="text-xs font-bold text-gray-900">YTD Change</td>
+            </tr>
+            <tr className="bg-gray-100">
+              <td className="text-xs font-medium text-gray-800 p-3 pl-4">{data.high ? `${data.high.toFixed(2)}` : '-'}</td>
+              <td className="text-xs font-medium text-gray-800">{data.low ? `${data.low.toFixed(2)}` : '-'}</td>
+              <td className="text-xs font-medium text-gray-800">{data.close ? `${data.isUSMarketOpen ? '-' : `${data.close}`}` : '-'}</td>
+              <td className="text-xs font-medium text-gray-800">{data.previousClose ? `${data.previousClose.toFixed(2)}` : '-'}</td>
+              <td className={`text-xs font-medium ${data.ytdChange ? Math.sign(data.ytdChange) === -1 ? 'text-rose-600' : 'text-emerald-600' : ''}`}>{data.ytdChange ? `${data.ytdChange.toFixed(2)}` : '-'}</td>
+            </tr>
+            <tr className="bg-gray-300 w-full">
+              <td className="text-xs font-bold text-gray-900 p-3 pl-4">52 Week High</td>
+              <td className="text-xs font-bold text-gray-900">52 Week Low</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr className="bg-gray-100">
+              <td className="text-xs font-medium text-gray-800 p-3 pl-4">{data.week52High ? `${data.week52High.toFixed(2)}` : '-'}</td>
+              <td className="text-xs font-medium text-gray-800">{data.week52Low ? `${data.week52Low.toFixed(2)}` : '-'}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+      </div>
+    </div>
+  );
+};
+
+export default Quote;
+
+{/* <p className="font-semibold text-gray-900  text-xs">Price</p>
           <p className="text-xs font-medium text-gray-800 truncate">
             ${" "}
             {data.latestPrice
@@ -109,10 +159,4 @@ const Quote = ({ setQuote, isLoading }) => {
         <div className="flex bg-gray-100 p-3 pl-4 items-center justify-between">
           <p className="font-semibold text-gray-900 text-xs">YTD Change</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.ytdChange}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Quote;
+        </div> */}

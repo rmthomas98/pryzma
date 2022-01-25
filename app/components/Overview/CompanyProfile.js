@@ -40,62 +40,60 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     getData();
   }, [symbol]);
 
-
-
   if (!data) return "";
 
   return (
-    <div className="w-full mr-4">
-      <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
+    <div className="w-full">
+      {/* <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
         <Image src={profile} height={30} width={30} />
         <span className="ml-4">Company Profile</span>
-      </p>
-      <div className="rounded-lg shadow-lg shadow-gray-400/75 bg-gray-100 max-h-[524px] h-screen overflow-auto scrollbar-hide">
-        <p className="flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 sticky top-0">
-          Basic company information
+      </p> */}
+      <div className="rounded-sm shadow-lg shadow-gray-400/75 bg-gray-100 max-h-[404px] overflow-auto scrollbar-hide">
+        <p className="items-center flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 sticky top-0">
+        <Image src={profile} height={20} width={20} /><span className="ml-3">Basic company information</span>
         </p>
         <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900  text-xs w-24">Symbol</p>
+          <p className="font-bold text-gray-900 text-xs w-24">Symbol</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.symbol}</p>
           </div>
-          <div className="flex bg-gray-200 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Exchange</p>
+          <div className="flex bg-gray-300 p-3 pl-4 items-center">
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Exchange</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.exchange}</p>
           </div>
           <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Company</p>
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Company</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.companyName}</p>
           </div>
-          <div className="flex bg-gray-200 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Industry</p>
+          <div className="flex bg-gray-300 p-3 pl-4 items-center">
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Industry</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.industry}</p>
           </div>
           <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Sector</p>
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Sector</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.sector}</p>
           </div>
-          <div className="flex bg-gray-200 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Website</p>
+          <div className="flex bg-gray-300 p-3 pl-4 items-center">
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Website</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.website}</p>
           </div>
           <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Employees</p>
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Employees</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.employees ? data.employees.toLocaleString('en-us') : '-'}</p>
           </div>
-          <div className="flex bg-gray-200 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Country</p>
+          <div className="flex bg-gray-300 p-3 pl-4 items-center">
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Country</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.country}</p>
           </div>
           <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">City</p>
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">City</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.city}</p>
           </div>
-          <div className="flex bg-gray-200 p-3 pl-4 items-center">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Address</p>
+          <div className="flex bg-gray-300 p-3 pl-4 items-center">
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Address</p>
           <p className="text-xs font-medium text-gray-800 truncate">{data.address}</p>
           </div>
           <div className="flex bg-gray-100 p-3 pl-4">
-          <p className="font-semibold text-gray-900 text-xs w-24 min-w-[96px]">Description</p>
+          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">Description</p>
           <p className="text-xs font-medium text-gray-800 leading-5">{data.description}</p>
           </div>
     </div>

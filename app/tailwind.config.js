@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: { 
     extend: {
+      fontFamily: {
+        monts: ['Montserrat', 'sans-serif'],
+      },
       keyframes: {
         fadeInUp: {
           '0%': {opacity: 0},

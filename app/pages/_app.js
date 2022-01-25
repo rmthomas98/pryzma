@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
         <NextNProgress color="#818CF8" startPosition={0.7} stopDelayMs={50} height={2.5}/>
         <UserContext.Provider value={{user, setUser}}>
         <SymbolContext.Provider value={{symbol, setSymbol}}>
-      <div>
+      <div className="font-monts">
         <div className="flex">
           <NestedNav />
           <div className="w-full">
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <div>
+    <div className="font-monts">
       <Nav />
       <Component {...pageProps} />
     </div>

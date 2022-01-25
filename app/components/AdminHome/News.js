@@ -2,7 +2,6 @@ import Image from 'next/image';
 import newsImage from '../../static/images/news.svg';
 import {format} from 'date-fns'
 import { useEffect, useState } from 'react';
-import { ArrowRight } from 'react-bootstrap-icons';
 
 const News = ({news, watchListSymbols}) => {
 
@@ -20,7 +19,7 @@ const News = ({news, watchListSymbols}) => {
       <div>
       {newsList ? newsList.map((element) => {
         return (
-          <div className='rounded-lg shadow-lg shadow-gray-400/75 mb-10 overflow-hidden bg-gray-50' key={element[0]}>
+          <div className='shadow-lg shadow-gray-400/75 mb-10 rounded-sm overflow-hidden bg-gray-50' key={element[0]}>
             <p className='p-3 pl-4 bg-gray-800 text-gray-100 font-medium flex justify-between'>Symbol - {element[0]}</p>
             {element[1].news.map(article => {
               return (
@@ -41,7 +40,7 @@ const News = ({news, watchListSymbols}) => {
             })}
           </div>
         )
-      }) : <div className='overflow-hidden rounded-lg shadow-lg shadow-gray-400/75'><p className='p-3 pl-4 bg-gray-800 text-gray-100 text-sm'>Symbol News</p><p className="p-8 text-center text-gray-700 leading-7">Add stocks to your watchlist to see symbol specific news.</p></div>}
+      }) : <div className='overflow-hidden rounded-sm shadow-lg shadow-gray-400/75'><p className='p-3 pl-4 bg-gray-800 text-gray-100 text-sm'>Symbol News</p><p className="p-8 text-center text-gray-700 leading-7">Add stocks to your watchlist to see symbol specific news.</p></div>}
       </div>
   </div>
 }

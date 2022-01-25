@@ -129,25 +129,25 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
         <Image src={watchList} height={30} width={30} />
         <span className="ml-4">My Watchlist</span>
       </p>
-      <div className="shadow-lg shadow-gray-400/75 rounded-lg overflow-hidden">
+      <div className="shadow-lg shadow-gray-400/75 rounded-sm overflow-hidden">
         <div className="flex p-3 bg-gray-800 pl-4 pr-4">
-          <p onClick={watchListSymbols ? handleSymbolSort : null} className="w-full text-sm text-gray-100 flex items-center cursor-pointer">
+          <p onClick={watchListSymbols ? handleSymbolSort : null} className="w-full text-xs text-gray-100 flex items-center cursor-pointer">
             Symbol
             <CaretDownFill className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${sortSymbol ? 'rotate-0' : 'rotate-180'}`}/>
           </p>
-          <p onClick={watchListSymbols ? handlePriceSort : null} className="w-full text-sm text-gray-100 flex items-center cursor-pointer">
+          <p onClick={watchListSymbols ? handlePriceSort : null} className="w-full text-xs text-gray-100 flex items-center cursor-pointer">
             Price
             <CaretDownFill className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${sortPrice ? 'rotate-180' : 'rotate-0'}`} />
           </p>
-          <p onClick={watchListSymbols ? handleChangeSort : null} className="w-full text-sm text-gray-100 flex items-center cursor-pointer">
+          <p onClick={watchListSymbols ? handleChangeSort : null} className="w-full text-xs text-gray-100 flex items-center cursor-pointer">
             Change
             <CaretDownFill className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${sortChange ? 'rotate-180' : 'rotate-0'}`} />
           </p>
-          <p onClick={watchListSymbols ? handlePercentSort : null} className="w-full text-sm text-gray-100 flex items-center cursor-pointer">
+          <p onClick={watchListSymbols ? handlePercentSort : null} className="w-full text-xs text-gray-100 flex items-center cursor-pointer">
             % Change
             <CaretDownFill className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${sortPercent ? 'rotate-180' : 'rotate-0'}`}/>
           </p>
-          <p onClick={watchListSymbols ? handleVolumeSort : null} className="w-full text-sm text-gray-100 flex items-center cursor-pointer">
+          <p onClick={watchListSymbols ? handleVolumeSort : null} className="w-full text-xs text-gray-100 flex items-center cursor-pointer">
             Volume
             <CaretDownFill className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${sortVolume ? 'rotate-180' : 'rotate-0'}`} />
           </p>
@@ -160,15 +160,15 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                 element.quote;
               return (
                 <div
-                  className={`flex p-2 pl-4 pr-4 bg-gray-100 ${
+                  className={`flex items-center p-2 pl-4 pr-4 bg-gray-100 ${
                     index % 2 === 0 ? "bg-gray-100" : "bg-gray-200"
                   }`}
                   key={symbol}
                 >
-                  <p className="w-full text-sm text-gray-800 font-semibold">
+                  <p className="w-full text-xs text-gray-800 font-semibold">
                     {symbol}
                   </p>
-                  <p className="w-full text-sm text-gray-800 font-semibold">
+                  <p className="w-full text-xs text-gray-800 font-semibold">
                     <span className="mr-1">$</span>
                     {latestPrice.toLocaleString("en-US", {
                       maximumFractionDigits: 2,
@@ -176,7 +176,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                     })}
                   </p>
                   <p
-                    className={`w-full text-sm font-semibold ${
+                    className={`w-full text-xs font-semibold ${
                       Math.sign(change) === -1
                         ? "text-rose-600"
                         : "text-emerald-600"
@@ -188,7 +188,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                     })}
                   </p>
                   <p
-                    className={`w-full text-sm font-semibold ${
+                    className={`w-full text-xs font-semibold ${
                       Math.sign(changePercent) === -1
                         ? "text-rose-600"
                         : "text-emerald-600"
@@ -196,7 +196,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                   >
                     {changePercent.toFixed(2)}%
                   </p>
-                  <p className="w-full text-sm text-gray-800 font-semibold">
+                  <p className="w-full text-xs text-gray-800 font-semibold">
                     {millify(volume, { space: true, precision: 2 })}
                   </p>
                   <button value={index} onClick={handleDeleteSymbol} className="max-w-[20px] w-full cursor-pointer hover:text-rose-600 text-gray-400"><X className="  transition  pointer-events-none " size={20} /></button>

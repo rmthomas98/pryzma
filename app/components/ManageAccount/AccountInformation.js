@@ -126,7 +126,7 @@ const AccountInformation = ({ user }) => {
         <button
         disabled={isSubmitting ? true : false}
           type="submit"
-          className={`text-sm mt-8 text-white font-medium rounded-md h-[40px] w-[166px] flex items-center justify-center transition-all duration-300 ${
+          className={`text-sm mt-8 text-white font-medium rounded-md h-[40px] w-[180px] flex items-center justify-center transition-all duration-300 ${
             isSubmitting
               ? "bg-indigo-400 hover:none"
               : "bg-indigo-600 hover:bg-indigo-700"
