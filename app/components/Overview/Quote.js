@@ -3,8 +3,8 @@ import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
-import millify from 'millify';
-import {format} from 'date-fns'
+import millify from "millify";
+import { setDate } from "date-fns";
 
 // this function is what will fetch the data
 const getQuote = async (symbol) => {
@@ -29,6 +29,8 @@ const Quote = ({ setQuote, isLoading }) => {
     const getData = async () => {
       // check if there is a symbol
       if (!symbol) return;
+      setQuote(false);
+      setData();
       const quoteData = await getQuote(symbol[0]);
       if (quoteData) {
         // set the data so we can map it out to the user
@@ -42,62 +44,119 @@ const Quote = ({ setQuote, isLoading }) => {
     getData();
   }, [symbol]);
 
-  if (!data) return "";
+  if (isLoading || !data) return <div>quote is loading</div>;
 
   return (
-    <div className="w-full mt-8">
+    <div className="w-full max-w-[280px] min-w-[280px]">
       {/* <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
         <Image src={quote} height={30} width={30} />
         <span className="ml-4">Price Statistics</span>
       </p> */}
-      <div className="rounded-sm shadow-lg shadow-gray-400/75 overflow-hidden">
+      <div className="rounded-md shadow-lg shadow-gray-400/50 overflow-hidden">
         <p className="flex items-center p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 justify-between">
-        <span className="flex items-center"><Image src={quote} height={20} width={20} /><span className="ml-3">Price & Volume statistics</span></span> <span><span className="mr-4">Last Updated:</span>{format(new Date(data.latestUpdate), "MMMM dd, h:mm aa")}</span>
+          <span className="flex items-center">
+            <Image src={quote} height={20} width={20} />
+            <span className="ml-3">Price & Volume</span>
+          </span>{" "}
+          {/* <span>
+          <span className="mr-4">Last Updated:</span>
+            {format(new Date(data.latestUpdate), "MMMM dd, h:mm aa")}
+          </span> */}
         </p>
-          <table className="w-full table-fixed">
-            <tr className="bg-gray-300">
-              <td className="text-xs font-bold text-gray-900 p-3 pl-4">Price</td>
-              <td className="text-xs font-bold text-gray-900">Change</td>
-              <td className="text-xs font-bold text-gray-900">% Change</td>
-              <td className="text-xs font-bold text-gray-900">Volume</td>
-              <td className="text-xs font-bold text-gray-900">Avg Volume</td>
-            </tr>
-            <tr className="bg-gray-100">
-              <td className="text-xs font-medium text-gray-800 p-3 pl-4">{data.latestPrice ? `${data.latestPrice.toFixed(2)}` : '-'}</td>
-              <td className={`text-xs font-medium ${data.change ? Math.sign(data.change) === -1 ? 'text-rose-600' : 'text-emerald-600' : ''}`}>{data.change ? `${data.change.toFixed(2)}` : '-'}</td>
-              <td className={`text-xs font-medium ${data.changePercent ? Math.sign(data.changePercent) === -1 ? 'text-rose-600' : 'text-emerald-600' : ''}`}>{data.changePercent ? `${data.changePercent.toFixed(2)}%` : '-'}</td>
-              <td className="text-xs font-medium text-gray-800">{data.volume ? `${millify(data.volume, {precision: 2, space: true})}` : '-'}</td>
-              <td className="text-xs font-medium text-gray-800">{data.avgTotalVolume ? `${millify(data.avgTotalVolume, {precision: 2, space: true})}` : '-'}</td>
-            </tr>
-            <tr className="bg-gray-300">
-              <td className="text-xs font-bold text-gray-900 p-3 pl-4">High</td>
-              <td className="text-xs font-bold text-gray-900">Low</td>
-              <td className="text-xs font-bold text-gray-900">Close</td>
-              <td className="text-xs font-bold text-gray-900">Prev Close</td>
-              <td className="text-xs font-bold text-gray-900">YTD Change</td>
-            </tr>
-            <tr className="bg-gray-100">
-              <td className="text-xs font-medium text-gray-800 p-3 pl-4">{data.high ? `${data.high.toFixed(2)}` : '-'}</td>
-              <td className="text-xs font-medium text-gray-800">{data.low ? `${data.low.toFixed(2)}` : '-'}</td>
-              <td className="text-xs font-medium text-gray-800">{data.close ? `${data.isUSMarketOpen ? '-' : `${data.close}`}` : '-'}</td>
-              <td className="text-xs font-medium text-gray-800">{data.previousClose ? `${data.previousClose.toFixed(2)}` : '-'}</td>
-              <td className={`text-xs font-medium ${data.ytdChange ? Math.sign(data.ytdChange) === -1 ? 'text-rose-600' : 'text-emerald-600' : ''}`}>{data.ytdChange ? `${data.ytdChange.toFixed(2)}` : '-'}</td>
-            </tr>
-            <tr className="bg-gray-300 w-full">
-              <td className="text-xs font-bold text-gray-900 p-3 pl-4">52 Week High</td>
-              <td className="text-xs font-bold text-gray-900">52 Week Low</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr className="bg-gray-100">
-              <td className="text-xs font-medium text-gray-800 p-3 pl-4">{data.week52High ? `${data.week52High.toFixed(2)}` : '-'}</td>
-              <td className="text-xs font-medium text-gray-800">{data.week52Low ? `${data.week52Low.toFixed(2)}` : '-'}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </table>
+        <div className="flex justify-between bg-gray-300">
+          <p className="text-xs font-bold text-gray-900 py-2 px-4">Price</p>
+          <p className="text-xs font-semibold text-gray-800 p-2 pl-4">
+            {data.latestPrice ? `${data.latestPrice.toFixed(2)}` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between py-2 px-4 bg-gray-100">
+          <p className="text-xs font-bold text-gray-900">Change</p>
+          <p
+            className={`text-xs font-semibold ${
+              data.change
+                ? Math.sign(data.change) === -1
+                  ? "text-rose-600"
+                  : "text-emerald-600"
+                : ""
+            }`}
+          >
+            {data.change ? `${data.change.toFixed(2)}` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between py-2 px-4 bg-gray-300">
+          <p className="text-xs font-bold text-gray-900">% Change</p>
+          <p
+            className={`text-xs font-semibold ${
+              data.changePercent
+                ? Math.sign(data.changePercent) === -1
+                  ? "text-rose-600"
+                  : "text-emerald-600"
+                : ""
+            }`}
+          >
+            {data.changePercent ? `${data.changePercent.toFixed(2)}%` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between px-4 py-2 bg-gray-100">
+          <p className="text-xs font-bold text-gray-900">Volume</p>
+          <p className="text-xs font-semibold text-gray-800">
+            {data.volume
+              ? `${millify(data.volume, { precision: 2, space: true })}`
+              : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between px-4 py-2 bg-gray-300">
+          <p className="text-xs font-bold text-gray-900">Avg Volume</p>
+          <p className="text-xs font-semibold text-gray-800">
+            {data.avgTotalVolume
+              ? `${millify(data.avgTotalVolume, {
+                  precision: 2,
+                  space: true,
+                })}`
+              : "-"}
+          </p>
+        </div>
+
+        <div className="flex justify-between px-4 py-2 bg-gray-100">
+          <p className="text-xs font-bold text-gray-900">Close</p>
+          <p className="text-xs font-semibold text-gray-800">
+            {data.iexClose
+              ? `${data.isUSMarketOpen ? "-" : `${data.iexClose}`}`
+              : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between px-4 py-2 bg-gray-300">
+          <p className="text-xs font-bold text-gray-900">Prev Close</p>
+          <p className="text-xs font-semibold text-gray-800">
+            {data.previousClose ? `${data.previousClose.toFixed(2)}` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between px-4 py-2 bg-gray-100">
+          <p className="text-xs font-bold text-gray-900">YTD Change</p>
+          <p
+            className={`text-xs font-semibold ${
+              data.ytdChange
+                ? Math.sign(data.ytdChange) === -1
+                  ? "text-rose-600"
+                  : "text-emerald-600"
+                : ""
+            }`}
+          >
+            {data.ytdChange ? `${data.ytdChange.toFixed(2)}%` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between px-4 py-2 bg-gray-300">
+          <p className="text-xs font-bold text-gray-900">52 Week High</p>
+          <p className="text-xs font-semibold text-gray-800">
+            {data.week52High ? `${data.week52High.toFixed(2)}` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between px-4 py-2 bg-gray-100">
+          <p className="text-xs font-bold text-gray-900">52 Week Low</p>
+          <p className="text-xs font-semibold text-gray-800">
+            {data.week52Low ? `${data.week52Low.toFixed(2)}` : "-"}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -105,7 +164,8 @@ const Quote = ({ setQuote, isLoading }) => {
 
 export default Quote;
 
-{/* <p className="font-semibold text-gray-900  text-xs">Price</p>
+{
+  /* <p className="font-semibold text-gray-900  text-xs">Price</p>
           <p className="text-xs font-medium text-gray-800 truncate">
             ${" "}
             {data.latestPrice
@@ -157,6 +217,7 @@ export default Quote;
           <p className="text-xs font-medium text-gray-800 truncate">{data.week52Low}</p>
         </div>
         <div className="flex bg-gray-100 p-3 pl-4 items-center justify-between">
-          <p className="font-semibold text-gray-900 text-xs">YTD Change</p>
-          <p className="text-xs font-medium text-gray-800 truncate">{data.ytdChange}</p>
-        </div> */}
+          <p className="font-semibold text-gray-900 text-xs">Yp Change</p>
+          <p className="text-xs font-medium text-gray-800 truncate">{data.ypChange}</p>
+        </div> */
+}

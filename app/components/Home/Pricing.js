@@ -1,9 +1,11 @@
 import { Check } from "react-bootstrap-icons";
-import Link from 'next/link';
+import Link from "next/link";
 
 const Pricing = () => {
   return (
-    <div className={`pt-20 pb-32 bg-[url('/static/images/mountains-at-night.png')] bg-cover bg-center`}>
+    <div
+      className={`pt-20 pb-32 bg-[url('/static/images/mountains-at-night.png')] bg-cover bg-center`}
+    >
       <p className="text-gray-300 text-lg mb-1 uppercase font-semibold text-center">
         Get Started with Pryzma
       </p>
@@ -41,10 +43,12 @@ const Pricing = () => {
                 <Check className="text-indigo-600 text-lg mr-2" />
                 <span className="text-gray-800">Latest News</span>
               </p>
-              <Link href="/signup"
-                
-              >
-                <a className={`w-full flex justify-center items-center h-[42px] font-medium border border-indigo-600 text-indigo-600 hover:text-white rounded-md transition-all duration-300 hover:bg-indigo-600`}>Select Plan</a>
+              <Link href="/signup">
+                <a
+                  className={`w-full flex justify-center items-center h-[42px] font-medium border border-indigo-600 text-indigo-600 hover:text-white rounded-md transition-all duration-300 hover:bg-indigo-600`}
+                >
+                  Select Plan
+                </a>
               </Link>
             </div>
             <div className="w-full bg-white shadow-xl shadow-gray-900/60 rounded-lg p-6 relative overflow-hidden">
@@ -79,7 +83,11 @@ const Pricing = () => {
                 <span className="text-gray-800">Latest News</span>
               </p>
               <Link href="/signup">
-                <a className={`w-full h-[42px] flex justify-center items-center text-white font-medium rounded-md transition-all duration-300 bg-gradient-to-r from-rose-600 to-indigo-600 hover:shadow-md hover:shadow-gray-500`}>Select Plan</a>
+                <a
+                  className={`w-full h-[42px] flex justify-center items-center text-white font-medium rounded-md transition-all duration-300 bg-gradient-to-r from-rose-600 to-indigo-600 hover:shadow-md hover:shadow-gray-500`}
+                >
+                  Select Plan
+                </a>
               </Link>
             </div>
           </div>

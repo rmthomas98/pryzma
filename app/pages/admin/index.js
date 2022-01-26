@@ -5,28 +5,38 @@ import WatchList from "../../components/AdminHome/Watchlist";
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import News from "../../components/AdminHome/News";
-import UserContext from '../../pages/UserContext';
+import UserContext from "../../pages/UserContext";
 
-const AdminHome = ({user, watchlist, news}) => {
-
-  const {setUser} = useContext(UserContext);
+const AdminHome = ({ user, watchlist, news }) => {
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    setUser(user.user)
-  },[])
+    setUser(user.user);
+  }, []);
 
-  const [watchListSymbols, setWatchListSymbols] = useState(watchlist && Object.values(watchlist).sort((a, b) =>  a.quote.symbol.toLowerCase() > b.quote.symbol.toLowerCase() ? 1 : -1));
+  const [watchListSymbols, setWatchListSymbols] = useState(
+    watchlist &&
+      Object.values(watchlist).sort((a, b) =>
+        a.quote.symbol.toLowerCase() > b.quote.symbol.toLowerCase() ? 1 : -1
+      )
+  );
 
   return (
     <div className="p-4">
-    <div className="max-w-7xl mx-auto">
-      <div className="flex items-center justify-between border-b border-gray-300 pb-4">
-      <p className="font-semibold text-2xl text-gray-900">Welcome, {user.user.firstName}</p>
-      <Time />
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-center justify-between border-b border-gray-300 pb-4">
+          <p className="font-semibold text-2xl text-gray-900">
+            Welcome, {user.user.firstName}
+          </p>
+          <Time />
+        </div>
+        <WatchList
+          watchListSymbols={watchListSymbols}
+          setWatchListSymbols={setWatchListSymbols}
+          user={user}
+        />
+        <News news={news} watchListSymbols={watchListSymbols} />
       </div>
-      <WatchList watchListSymbols={watchListSymbols} setWatchListSymbols={setWatchListSymbols} user={user}/>
-      <News news={news} watchListSymbols={watchListSymbols}/>
-    </div>
     </div>
   );
 };
@@ -57,7 +67,7 @@ export const getServerSideProps = withIronSession(
       user = await collection.findOne({
         stripeCustomerId: user.user.stripeCustomerId,
       });
-      
+
       // set session
       req.session.set("user", {
         id: user._id,
@@ -88,13 +98,29 @@ export const getServerSideProps = withIronSession(
     let news;
     // if user has a watchlist, fetch and pass it as props
     if (user.user.watchlist.length) {
-      watchlist = await axios.get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(',')}&types=quote&displayPercent=true&token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`);
-      news = await axios.get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(',')}&types=news&last=3&token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`)
+      watchlist = await axios.get(
+        `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(
+          ","
+        )}&types=quote&displayPercent=true&token=${
+          process.env.IEX_CLOUD_API_KEY
+        }`
+      );
+      news = await axios.get(
+        `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(
+          ","
+        )}&types=news&last=3&token=${process.env.IEX_CLOUD_API_KEY}`
+      );
     }
     // parse user to pass as props
     user = JSON.parse(JSON.stringify(user));
     // return watchlist if it exists, and user
-    return { props: {user, watchlist: watchlist?.data ? watchlist.data : null, news: news ? news.data : null }};
+    return {
+      props: {
+        user,
+        watchlist: watchlist?.data ? watchlist.data : null,
+        news: news ? news.data : null,
+      },
+    };
   },
   {
     password: process.env.IRON_SESSION_PASSWORD,
