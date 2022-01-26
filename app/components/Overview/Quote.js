@@ -4,15 +4,6 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
 import millify from "millify";
-import { setDate } from "date-fns";
-
-// this function is what will fetch the data
-const getQuote = async (symbol) => {
-  const response = await axios.get(
-    `https://cloud.iexapis.com/stable/stock/${symbol}/quote?displayPercent=true&token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`
-  );
-  return response.data;
-};
 
 const Quote = ({ setQuote, isLoading }) => {
   // get symbol from context provider
@@ -29,12 +20,15 @@ const Quote = ({ setQuote, isLoading }) => {
     const getData = async () => {
       // check if there is a symbol
       if (!symbol) return;
+      // reset quote and data
+      // so we can show skeleton loading
       setQuote(false);
       setData();
-      const quoteData = await getQuote(symbol[0]);
-      if (quoteData) {
+      // make call to backend to get quote data
+      const response = await axios.post('/api/get-quote', {symbol: symbol[0]})
+      if (response) {
         // set the data so we can map it out to the user
-        setData(quoteData);
+        setData(response.data);
         // set the quote to loaded so the main component
         // knows when it can show everything together
         // and stop the skeleton loader

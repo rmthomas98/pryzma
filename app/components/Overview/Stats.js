@@ -9,35 +9,36 @@ const Stats = ({ isLoading, setStats }) => {
   // get symbol from context provider
   const { symbol } = useContext(SymbolContext);
 
-  // this state will hold the company profile data
-  // the data that we will map through and display to the user
+  // tdis state will hold tde company profile data
+  // tde data tdat we will map tdrough and display to tde user
   const [data, setData] = useState();
 
-  // this will call the function above on component load to fetch
-  // the price quote and volume stats
-  // it is set to run everytime the symbol changes
+  // tdis will call tde function above on component load to fetch
+  // tde price quote and volume stats
+  // it is set to run everytime tde symbol changes
   useEffect(() => {
     const getData = async () => {
+      // check if tdere is a symbol
       if (!symbol) return;
+      // reset stats and data
+      // to show skeleton loading
       setStats(false);
       setData();
+      // hit backend api call to get data
       const response = await axios.post("/api/get-share-structure", {
         symbol: symbol[0],
       });
-      console.log(response.data);
-      if (response?.data) {
+      if (response) {
         // if there is stats response, set the data
         setData(response.data);
-        // set the statistics to loaded so the main component
-        // knows when it can show everything together
-        // and stop the skeleton loader
+        // set tde statistics to loaded so tde main component
+        // knows when it can show everytding togetder
+        // and stop tde skeleton loader
         setStats(true);
       }
     };
     getData();
   }, [symbol]);
-
-  console.log(data);
 
   if (isLoading || !data) return <div>stats is loading</div>;
 
@@ -50,6 +51,7 @@ const Stats = ({ isLoading, setStats }) => {
         </p>
         {data.message === "twelve" ? (
           <table className="w-full table-fixed">
+          <thead>
             <tr className="bg-gray-300">
               <td className="text-xs font-bold text-gray-900 p-3 pl-4">
                 Market Cap
@@ -61,6 +63,8 @@ const Stats = ({ isLoading, setStats }) => {
               <td className="text-xs font-bold text-gray-900">Insider Own</td>
               <td className="text-xs font-bold text-gray-900">Inst Own</td>
             </tr>
+            </thead>
+            <tbody>
             <tr className="bg-gray-100">
               <td className="text-xs font-semibold text-gray-800 p-3 pl-4">
                 {data.marketCap.market_capitalization
@@ -115,6 +119,7 @@ const Stats = ({ isLoading, setStats }) => {
                   : ""}
               </td>
             </tr>
+            </tbody>
           </table>
         ) : (
           <table className="w-full table-fixed">

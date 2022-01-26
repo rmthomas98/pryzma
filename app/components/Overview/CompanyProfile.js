@@ -4,14 +4,6 @@ import SymbolContext from "../../pages/SymbolContext";
 import Image from "next/image";
 import profile from "../../static/images/profile.svg";
 
-// this function is what will fetch the data
-const getCompanyProfile = async (symbol) => {
-  const response = await axios.get(
-    `https://cloud.iexapis.com/stable/stock/${symbol}/company?token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`
-  );
-  return response.data;
-};
-
 const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
   // get symbol from context provider
   const { symbol } = useContext(SymbolContext);
@@ -27,12 +19,14 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     const getData = async () => {
       // check if there is a symbol
       if (!symbol) return;
+      // we set the company profile to false
+      // so we can show they skeleton loading
       setCompanyProfile(false);
       setData();
-      const profileData = await getCompanyProfile(symbol[0]);
-      if (profileData) {
+      const response = await axios.post('/api/get-company-profile', {symbol: symbol[0]});
+      if (response) {
         // set the data so we can map it out to the user
-        setData(profileData);
+        setData(response.data);
         // set the company profile to loaded so the main component
         // knows when it can show everything together
         // and stop the skeleton loader

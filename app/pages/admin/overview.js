@@ -6,10 +6,8 @@ import UserContext from "../UserContext";
 import CompanyProfile from "../../components/Overview/CompanyProfile";
 import Quote from "../../components/Overview/Quote";
 import Stats from "../../components/Overview/Stats";
-import ButtonSpinner from "../../components/ButtonSpinner";
+import Financials from "../../components/Overview/Financials";
 
-// function to get basic financials
-const getFinancials = (symbol) => {};
 
 // function to get news
 const getNews = (symbol) => {};
@@ -30,8 +28,8 @@ const Overview = ({ user }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    if (quote && companyProfile && stats) setIsLoading(false);
-  }, [quote, companyProfile, stats, symbol]);
+    if (quote && companyProfile && stats && financials) setIsLoading(false);
+  }, [quote, companyProfile, stats, symbol, financials]);
 
   if (!symbol) return <p>Search a stock above to see an overview on it.</p>;
 
@@ -46,6 +44,7 @@ const Overview = ({ user }) => {
           <Quote isLoading={isLoading} setQuote={setQuote} />
         </div>
         <Stats isLoading={isLoading} setStats={setStats} />
+        <Financials isLoading={isLoading} setFinancials={setFinancials}/>
       </div>
     </div>
   );
