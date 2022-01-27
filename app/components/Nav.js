@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import { CaretDownFill, Person } from "react-bootstrap-icons";
 import DropDownNavMenu from "./DropDownNavMenu";
 import Search from "./AdminHome/Search";
+import logo from '../static/images/logo.png';
+import Image from 'next/image';
 
 const Nav = () => {
   const router = useRouter();
@@ -35,9 +37,7 @@ const Nav = () => {
     <div className={`w-full relative ${router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'z-[9999]' : ''} ${router.pathname.startsWith('/admin') ? 'bg-gray-800 sticky top-0 z-10' : ''}`}>
       <div className={`w-full flex justify-between items-center mx-auto pl-4 pr-4 relative ${router.pathname.startsWith('/admin') ? 'pb-2 pt-2 pl-2 pr-2' : 'pb-6 pt-6 max-w-7xl'}`}>
       { !router.pathname.startsWith('/admin') && <Link href={router.pathname.startsWith("/admin") ? "/admin" : "/"}>
-          <a className={`font-medium ${router.pathname.startsWith('/admin') || router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'text-white' : 'text-gray-800'} text-xl`}>
-            pryzma<span className={`text-gray-400`}>.io</span>
-          </a>
+          <a className="flex items-center justify-center"><Image src={logo} layout="fixed" height={29} width={100}/></a>
         </Link> }
         {router.pathname.startsWith('/admin') && <Search />}
         {router.pathname.startsWith("/admin") ? (

@@ -14,6 +14,7 @@ import cash from '../../static/images/cashAdmin.svg';
 import institution from '../../static/images/institutionalAdmin.svg';
 import insider from '../../static/images/insiderAdmin.svg';
 import offerings from '../../static/images/offeringsAdmin.svg'
+import logo from '../../static/images/logo.png'
 
 const NestedNav = () => {
   const [number, setNumber] = useState();
@@ -26,8 +27,7 @@ const NestedNav = () => {
   return (
     <div className="bg-gray-800 max-w-[230px] w-full h-screen overflow-auto sticky top-0 flex flex-col">
       <p className="text-2xl mx-auto pt-3">
-        <span className="text-white mr-2">Pryzma</span>
-        <span className="text-indigo-400">Admin</span>
+      <Image src={logo} layout="fixed" height={29} width={100}/>
       </p>
       <Link href="/">
         <a
@@ -58,13 +58,7 @@ const NestedNav = () => {
             } absolute h-0 origin-center transition-all ease-in  content-none left-0 bottom-0 my-auto top-0 w-0.5 rounded-full bg-indigo-400`}
           ></span><Image src={overview} height={20} width={20} layout="fixed" /><span className="ml-3">Overview</span></a>
       </Link>
-      <Link href="/admin/news">
-        <a onMouseEnter={() => setNumber(3)}
-          onMouseLeave={() =>
-            !router.pathname.endsWith("/news") && setNumber(0)
-          } className={`text-white text-xs p-2 pl-4 flex items-center relative hover:opacity-100 duration-200 hover:bg-gray-900 transition-all ${router.pathname.endsWith('/news') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 3 || router.pathname.endsWith("/news") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={news} height={20} width={20} layout="fixed"/><span className="ml-3">News</span></a>
-      </Link>
-      <Link href="/admin/financials">
+      {/* <Link href="/admin/financials">
         <a onMouseEnter={() => setNumber(4)}
           onMouseLeave={() =>
             !router.pathname.endsWith("/financials") && setNumber(0)
@@ -75,7 +69,7 @@ const NestedNav = () => {
           onMouseLeave={() =>
             !router.pathname.endsWith("/statistics") && setNumber(0)
           } className={`text-white text-xs p-2 pl-4 relative hover:opacity-100 hover:bg-gray-900 duration-200 transition-all ${router.pathname.endsWith('/statistics') ? 'bg-gray-900 opacity-100' : 'opacity-60'}`}><span className={`${number === 5 || router.pathname.endsWith("/statistics") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-indigo-400`}></span><Image src={stats} height={20} width={20} layout="fixed"/><span className="ml-3">Statistics</span></a>
-      </Link>
+      </Link> */}
       <Link href="/admin/filings">
         <a onMouseEnter={() => setNumber(6)}
           onMouseLeave={() =>

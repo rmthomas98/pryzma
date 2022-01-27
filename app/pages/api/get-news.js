@@ -10,7 +10,7 @@ const handler = async (req, res) => {
   );
 
   if (response.data.length) {
-    res.status(200).json(response.data);
+    return res.status(200).json(response.data);
   }
 
   // if there is no data in the response

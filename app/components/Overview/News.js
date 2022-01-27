@@ -33,8 +33,6 @@ const News = ({ isLoading, setNews }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
-
   if (isLoading || !data) return <div>news loading</div>;
 
   if (data === "no data available")
@@ -67,7 +65,7 @@ const News = ({ isLoading, setNews }) => {
                 rel="noreferrer"
                 href={element.url}
                 className="flex items-center p-4 hover:bg-gray-200 transition duration-300"
-                key={element.datatime + index}
+                key={index}
               >
                 <div className="w-full max-w-[140px] min-w-[140px] mr-4 rounded-md overflow-hidden h-[90px]">
                   <Image

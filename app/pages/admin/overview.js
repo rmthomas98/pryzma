@@ -9,12 +9,11 @@ import Stats from "../../components/Overview/Stats";
 import Financials from "../../components/Overview/Financials";
 import News from "../../components/Overview/News";
 
-// function to get news
-const getNews = (symbol) => {};
-
 const Overview = ({ user }) => {
+
   const { symbol } = useContext(SymbolContext);
   const { setUser } = useContext(UserContext);
+  
   const [companyProfile, setCompanyProfile] = useState();
   const [quote, setQuote] = useState();
   const [stats, setStats] = useState();

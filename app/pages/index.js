@@ -11,7 +11,6 @@ import { withIronSession } from "next-iron-session";
 import SecFilings from "../components/Home/SecFilings";
 import Pricing from "../components/Home/Pricing";
 import OnePlace from "../components/Home/OnePlace";
-import front from "../static/images/front.svg";
 
 const Home = () => {
   return (
