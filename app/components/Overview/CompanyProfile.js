@@ -23,7 +23,9 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
       // so we can show they skeleton loading
       setCompanyProfile(false);
       setData();
-      const response = await axios.post('/api/get-company-profile', {symbol: symbol[0]});
+      const response = await axios.post("/api/get-company-profile", {
+        symbol: symbol[0],
+      });
       if (response) {
         // set the data so we can map it out to the user
         setData(response.data);
@@ -52,7 +54,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
         <div className="flex bg-gray-300 p-3 pl-4 items-center">
           <p className="font-bold text-gray-900 text-xs w-24">Symbol</p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.symbol}
+            {data.symbol ? data.symbol : "-"}
           </p>
         </div>
         <div className="flex bg-gray-100 p-3 pl-4 items-center">
@@ -60,7 +62,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Exchange
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.exchange}
+            {data.exchange ? data.exchange : "-"}
           </p>
         </div>
         <div className="flex bg-gray-300 p-3 pl-4 items-center">
@@ -68,7 +70,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Company
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.companyName}
+            {data.companyName ? data.companyName : "-"}
           </p>
         </div>
         <div className="flex bg-gray-100 p-3 pl-4 items-center">
@@ -76,7 +78,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Industry
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.industry}
+            {data.industry ? data.industry : "-"}
           </p>
         </div>
         <div className="flex bg-gray-300 p-3 pl-4 items-center">
@@ -84,7 +86,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Sector
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.sector}
+            {data.sector ? data.sector : "-"}
           </p>
         </div>
         <div className="flex bg-gray-100 p-3 pl-4 items-center">
@@ -92,7 +94,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Website
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.website}
+            {data.website ? data.website : "-"}
           </p>
         </div>
         <div className="flex bg-gray-300 p-3 pl-4 items-center">
@@ -108,7 +110,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Country
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.country}
+            {data.country ? data.country : "-"}
           </p>
         </div>
         <div className="flex bg-gray-300 p-3 pl-4 items-center">
@@ -116,7 +118,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             City
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.city}
+            {data.city ? data.city : "-"}
           </p>
         </div>
         <div className="flex bg-gray-100 p-3 pl-4 items-center">
@@ -124,7 +126,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Address
           </p>
           <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.address}
+            {data.address ? data.address : "-"}
           </p>
         </div>
         <div className="flex bg-gray-300 p-3 pl-4">
@@ -132,7 +134,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
             Description
           </p>
           <p className="text-xs font-semibold text-gray-800 leading-5">
-            {data.description}
+            {data.description ? data.description : "-"}
           </p>
         </div>
       </div>

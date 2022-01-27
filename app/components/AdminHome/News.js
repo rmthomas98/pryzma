@@ -43,6 +43,7 @@ const News = ({ news, watchListSymbols }) => {
                           width={140}
                           loading="lazy"
                           layout="fixed"
+                          quality={20}
                         />
                       </div>
                       <div>
