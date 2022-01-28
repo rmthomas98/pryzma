@@ -1,22 +1,37 @@
-import axios from 'axios';
+const { queryApi } = require("sec-api");
 
 const handler = async (req, res) => {
+  // initialize SEC api
+  queryApi.setApiKey(process.env.SEC_API_KEY);
 
   // get symbol from front end
   const symbol = req.body.symbol;
 
-  // make api call to modeling prep to get sec file data
-  const response = await axios.get(`https://financialmodelingprep.com/api/v3/sec_filings/${symbol}?page=0&apikey=${process.env.FINANCIAL_PREP_API_KEY}`)
-  
-  console.log(response.data)
-  // check if there is any data in the response
-  if (response.data.length) {
-    // send the data to the front end
-    return res.status(200).json(response.data)
+  // create query
+  const query = {
+    query: { query_string: { query: `ticker:(${symbol})` } }, // get most recent 10-Q filings
+    from: "0", // start with first filing. used for pagination.
+    sort: [{ filedAt: { order: "desc" } }], // sort result by filedAt
+  };
+
+  // make the call
+  const filings = await queryApi.getFilings(query);
+
+  // create the filings list
+  if (filings.filings.length) {
+    const filingsList = filings.filings.map((element) => {
+      return {
+        type: element.formType,
+        description: element.description,
+        date: element.filedAt,
+        link: element.linkToHtml,
+      };
+    });
+    return res.status(200).json(filingsList);
   }
 
   // if no response, send message noifying front end
-  return res.status(200).json('data not available')
-}
+  return res.status(200).json("data not available");
+};
 
 export default handler;

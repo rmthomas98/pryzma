@@ -1,52 +1,63 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import SymbolContext from '../SymbolContext';
-import UserContext from '../UserContext';
-import {withIronSession} from 'next-iron-session';
-import clientPromise from '../../lib/mongodb';
-import Financials from '../../components/Filings/Financials'
-import News from '../../components/Filings/News'
+import SymbolContext from "../SymbolContext";
+import UserContext from "../UserContext";
+import { withIronSession } from "next-iron-session";
+import clientPromise from "../../lib/mongodb";
 
-const Filings = ({user}) => {
-
-  const {symbol} = useContext(SymbolContext)
-  const {setUser} = useContext(UserContext)
+const Filings = ({ user }) => {
+  const { symbol } = useContext(SymbolContext);
+  const { setUser } = useContext(UserContext);
 
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setUser(user)
-  },[])
+    setUser(user);
+  }, []);
 
   useEffect(() => {
-    if (!symbol) return 
-    setData()
-    setIsLoading(true)
+    // check if there is a symbol
+    // if not return
+    if (!symbol) return;
+
+    // reset the data
+    // and set state to loading
+    setData();
+    setIsLoading(true);
+
     const getData = async () => {
-      const response = await axios.post('/api/sec-filings', {symbol: symbol[0]});
-      console.log(response.data)
-
-      setData(response.data)
-      setIsLoading(false)
-
-    }
-    getData()
-  },[symbol])
-
-  if (!data || isLoading) return <div>sec filings loading</div>
+      // make call to backend to get data
+      const response = await axios.post("/api/sec-filings", {
+        symbol: symbol[0],
+      });
+      console.log(response.data);
+      // set the data
+      setData(response.data);
+      // set loading to false
+      setIsLoading(false);
+    };
+    getData();
+  }, [symbol]);
 
   return (
     <div className="p-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex">
-          <Financials data={data}/>
-          <News data={data} />
-        </div>
+      <div className="mx-auto max-w-7xl">
+        {data
+          ? data.map((element, index) => {
+              return (
+                <div className="flex w-full justify-between">
+                  <p>{element.type}</p>
+                  <p>{element.description}</p>
+                  <p>{element.date}</p>
+                </div>
+              );
+            })
+          : ""}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const getServerSideProps = withIronSession(
   async ({ req, res }) => {
