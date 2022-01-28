@@ -43,10 +43,10 @@ const Income = ({ user }) => {
 
   if (!data || isLoading) return <div>income statement is loading</div>;
 
-  if (data === "data not available") return <div>Data not available</div>;
+  if (data === "data not available" || !data.length) return <div>Data not available</div>;
 
   return (
-    <div className="p-4">
+    <div className="p-4 mb-12">
       <div className="mx-auto max-w-7xl">
         <p className="font-bold text-gray-900 text-2xl mb-2">
           Income Statement
@@ -54,36 +54,38 @@ const Income = ({ user }) => {
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-300">
-              <td className="text-sm font-semibold text-gray-800 p-2">
+              <td className="text-xs font-semibold text-gray-800 p-2">
                 Break Down
               </td>
-              <td className="text-sm font-semibold text-gray-800">
+              <td className="text-xs font-semibold text-gray-800">
                 {data[0] ? data[0].fiscal_date : ""}
               </td>
               {data[1] ? (
-                <td className="text-sm font-semibold text-gray-800">
+                <td className="text-xs font-semibold text-gray-800">
                   {data[1].fiscal_date}
                 </td>
               ) : (
                 ""
               )}
               {data[2] ? (
-                <td className="text-sm font-semibold text-gray-800">
+                <td className="text-xs font-semibold text-gray-800">
                   {data[2].fiscal_date}
                 </td>
               ) : (
                 ""
               )}
               {data[3] ? (
-                <td className="text-sm font-semibold text-gray-800">
+                <td className="text-xs font-semibold text-gray-800">
                   {data[3].fiscal_date}
                 </td>
               ) : (
                 ""
               )}
             </tr>
+            </thead>
+            <tbody>
             <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">Sales</td>
+              <td className="font-medium text-gray-800 p-2 text-xs">Total Revenue</td>
               {data[0] && (
                 <td className="font-medium text-gray-800 text-xs">
                   {data[0].sales ? data[0].sales : "-"}
@@ -155,10 +157,14 @@ const Income = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr>
-              <td className="text-sm font-semibold text-gray-800 p-2 pt-6">
+            <tr className="bg-gray-100 border-b border-gray-300">
+              <td className="text-xs font-medium text-gray-800 p-2">
                 Operating Expenses
               </td>
+              {data[0] && <td></td>}
+              {data[1] && <td></td>}
+              {data[2] && <td></td>}
+              {data[3] && <td></td>}
             </tr>
             <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2 pl-6">
@@ -288,10 +294,14 @@ const Income = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr>
-              <td className="text-sm font-semibold text-gray-800 p-2 pt-6">
+            <tr className="bg-gray-100 border-b border-gray-300">
+              <td className="text-xs font-medium text-gray-800 p-2">
                 Non Operating Interest
               </td>
+              {data[0] && <td></td>}
+              {data[1] && <td></td>}
+              {data[2] && <td></td>}
+              {data[3] && <td></td>}
             </tr>
             <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2 pl-6">
@@ -359,7 +369,143 @@ const Income = ({ user }) => {
                 </td>
               )}
             </tr>
-          </thead>
+            <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                Other Income Expense
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].other_income_expense ? data[0].other_income_expense : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].other_income_expense ? data[1].other_income_expense : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].other_income_expense ? data[2].other_income_expense : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].other_income_expense ? data[3].other_income_expense : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                Pretax Income
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].pretax_income ? data[0].pretax_income : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].pretax_income ? data[1].pretax_income : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].pretax_income ? data[2].pretax_income : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].pretax_income ? data[3].pretax_income : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                Income Tax
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].income_tax ? data[0].income_tax : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].income_tax ? data[1].income_tax : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].income_tax ? data[2].income_tax : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].income_tax ? data[3].income_tax : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                Net Income
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].net_income ? data[0].net_income : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].net_income ? data[1].net_income : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].net_income ? data[2].net_income : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].net_income ? data[3].net_income : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                EPS
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].eps_basic ? data[0].eps_basic : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].eps_basic ? data[1].eps_basic : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].eps_basic ? data[2].eps_basic : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].eps_basic ? data[3].eps_basic : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                EPS Diluted
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].eps_diluted ? data[0].eps_diluted : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].eps_diluted ? data[1].eps_diluted : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].eps_diluted ? data[2].eps_diluted : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].eps_diluted ? data[3].eps_diluted : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                Shares Outstanding
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].basic_shares_outstanding ? data[0].basic_shares_outstanding : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].basic_shares_outstanding ? data[1].basic_shares_outstanding : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].basic_shares_outstanding ? data[2].basic_shares_outstanding : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].basic_shares_outstanding ? data[3].basic_shares_outstanding : '-'}</td>
+              )}
+              </tr>
+              <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">
+                Diluted Shares Outstanding
+              </td>
+              {data[0] && (
+                <td className="text-gray-800 font-medium text-xs">{data[0].diluted_shares_outstanding ? data[0].diluted_shares_outstanding : '-'}</td>
+              )}
+              {data[1] && (
+                <td className="text-gray-800 font-medium text-xs">{data[1].diluted_shares_outstanding ? data[1].diluted_shares_outstanding : '-'}</td>
+              )}
+              {data[2] && (
+                <td className="text-gray-800 font-medium text-xs">{data[2].diluted_shares_outstanding ? data[2].diluted_shares_outstanding : '-'}</td>
+              )}
+              {data[3] && (
+                <td className="text-gray-800 font-medium text-xs">{data[3].diluted_shares_outstanding ? data[3].diluted_shares_outstanding : '-'}</td>
+              )}
+              </tr>
+              </tbody>
         </table>
       </div>
     </div>

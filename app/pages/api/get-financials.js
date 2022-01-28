@@ -6,7 +6,7 @@ const handler = async (req, res) => {
 
   // make api call to iex cloud to get the data
   const response = await axios.get(
-    `https://cloud.iexapis.com/stable/stock/${symbol}/financials?token=${process.env.IEX_CLOUD_API_KEY}`
+    `https://cloud.iexapis.com/stable/stock/${symbol}/financials?period=quarter&token=${process.env.IEX_CLOUD_API_KEY}`
   );
 
   // if iex cloud does not have the data
@@ -14,13 +14,13 @@ const handler = async (req, res) => {
   if (!Object.entries(response.data).length) {
     // make the call to financial modeling prep
     const prepBalanceSheet = await axios.get(
-      `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?limit=1&apikey=${process.env.FINANCIAL_PREP_API_KEY}`
+      `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?period=quarter&limit=1&apikey=${process.env.FINANCIAL_PREP_API_KEY}`
     );
     const prepCashFlow = await axios.get(
-      `https://financialmodelingprep.com/api/v3/cash-flow-statement/${symbol}?limit=1&apikey=${process.env.FINANCIAL_PREP_API_KEY}`
+      `https://financialmodelingprep.com/api/v3/cash-flow-statement/${symbol}?period=quarter&limit=1&apikey=${process.env.FINANCIAL_PREP_API_KEY}`
     );
     const prepIncomeStatement = await axios.get(
-      `https://financialmodelingprep.com/api/v3/income-statement/${symbol}?limit=1&apikey=${process.env.FINANCIAL_PREP_API_KEY}`
+      `https://financialmodelingprep.com/api/v3/income-statement/${symbol}?period=quarter&limit=1&apikey=${process.env.FINANCIAL_PREP_API_KEY}`
     );
 
     // check if the data is good for modeling prep
