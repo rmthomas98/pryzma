@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <div className="font-monts">
+    <div className="font-monts bg-zinc-900">
       <Nav />
       <Component {...pageProps} />
     </div>

@@ -13,6 +13,25 @@ const Cash = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
 
+  const [period, setPeriod] = useState("quarterly");
+
+  const handleSwitchPeriod = async (e) => {
+    setData();
+    setIsLoading(true);
+    setPeriod(e.target.value);
+    const response = await axios.post("/api/cash-flow", {
+      symbol: symbol[0],
+      period: e.target.value,
+    });
+    console.log(response.data);
+    if (response.data.cash_flow) {
+      setData(response.data.cash_flow);
+      return setIsLoading(false);
+    }
+    setIsLoading(false);
+    setData("data not available");
+  };
+
   useEffect(() => {
     setUser(user);
   }, []);
@@ -29,6 +48,7 @@ const Cash = ({ user }) => {
     const getData = async () => {
       const response = await axios.post("/api/cash-flow", {
         symbol: symbol[0],
+        period: period,
       });
       if (response.data.cash_flow) {
         setData(response.data.cash_flow);
@@ -50,9 +70,39 @@ const Cash = ({ user }) => {
   return (
     <div className="p-4 mb-12">
       <div className="mx-auto max-w-7xl">
-        <p className="font-bold text-gray-900 text-2xl mb-2">
-          Cash Flow Statement
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="font-bold text-gray-900 text-2xl mb-2">
+            Cash Flow Statement
+          </p>
+          <div className="flex">
+            <button
+              onClick={handleSwitchPeriod}
+              value="quarterly"
+              className={`rounded-md text-xs font-medium text-white px-2 py-1 mr-2 ${
+                period === "quarterly" ? "bg-indigo-500" : "bg-black"
+              } ${
+                period === "quarterly"
+                  ? "hover:text-white"
+                  : "hover:text-indigo-400"
+              } transition-all`}
+            >
+              Quarterly
+            </button>
+            <button
+              onClick={handleSwitchPeriod}
+              value="annual"
+              className={`rounded-md text-xs font-medium text-white px-2 py-1 ${
+                period === "annual" ? "bg-indigo-500" : "bg-black"
+              } ${
+                period === "annual"
+                  ? "hover:text-white"
+                  : "hover:text-indigo-400"
+              } transition-all`}
+            >
+              Annual
+            </button>
+          </div>
+        </div>
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-300">

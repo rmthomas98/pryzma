@@ -6,7 +6,7 @@ const handler = async (req, res) => {
 
   // make api call to iex cloud to get news data
   const response = await axios.get(
-    `https://cloud.iexapis.com/stable/stock/${symbol}/news/10?token=${process.env.IEX_CLOUD_API_KEY}`
+    `https://cloud.iexapis.com/stable/time-series/news/${symbol}?limit=10&token=${process.env.IEX_CLOUD_API_KEY}`
   );
 
   if (response.data.length) {

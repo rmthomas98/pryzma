@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ButtonSpinner from "../ButtonSpinner";
-import {CheckLg} from 'react-bootstrap-icons';
+import { CheckLg } from "react-bootstrap-icons";
 import Link from "next/link";
 
 const ContactInformation = ({ increment, email }) => {
@@ -21,7 +21,7 @@ const ContactInformation = ({ increment, email }) => {
   const [passwordMatch, setPasswordMatch] = useState(false);
 
   const onSubmit = async (data) => {
-    if (data.password !== data.confirmPassword) return
+    if (data.password !== data.confirmPassword) return;
     setIsSubmitting(true);
     // MAKE API CALL TO BACKEND TO CREATE STRIPE CUSTOMER AND ADD USER TO MONGODB
     const response = await axios
@@ -32,43 +32,42 @@ const ContactInformation = ({ increment, email }) => {
     if (response.data.data === "customer created") {
       email.current = data.email;
       setIsSubmitting(false);
-      setErrorMessage(false)
+      setErrorMessage(false);
       increment();
     }
     if (response.data.data === "user already exists") {
       setIsSubmitting(false);
       setErrorMessage(
-        "Email already exists, please try a different one, or login instead."
+        "Email already exists, please try a different email, or login instead."
       );
     }
     console.log(response.data.data);
   };
 
   useEffect(() => {
-    const password = watch('password');
-    const confirmPassword = watch('confirmPassword');
-    
+    const password = watch("password");
+    const confirmPassword = watch("confirmPassword");
+
     if (password.length >= 8 && confirmPassword.length >= 8) {
       password !== confirmPassword && setPasswordMatch(false);
       password === confirmPassword && setPasswordMatch(true);
     } else {
-      setPasswordMatch(false)
+      setPasswordMatch(false);
     }
-
-  },[watch('password'), watch('confirmPassword')])
+  }, [watch("password"), watch("confirmPassword")]);
 
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full">
-          <p className="text-gray-700 font-bold text-2xl">
+          <p className="text-zinc-200 font-semibold text-2xl">
             Account Information
           </p>
-          <p className="mt-6 text-sm text-gray-800 pb-0.5">First Name</p>
+          <p className="mt-6 text-sm text-zinc-300 pb-1">First Name</p>
           <input
             type="text"
             placeholder="First Name"
-            className="w-full p-2.5 rounded-md border border-gray-300 outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
             {...register("first", { required: true })}
           />
           {errors.first && (
@@ -78,11 +77,11 @@ const ContactInformation = ({ increment, email }) => {
           )}
         </div>
         <div>
-          <p className="mt-6 text-sm text-gray-800 pb-0.5">Last Name</p>
+          <p className="mt-6 text-sm text-zinc-300 pb-1">Last Name</p>
           <input
             type="text"
             placeholder="Last Name"
-            className="w-full p-2.5 rounded-md border border-gray-300 outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
             {...register("last", { required: true })}
           />
           {errors.last && (
@@ -92,11 +91,11 @@ const ContactInformation = ({ increment, email }) => {
           )}
         </div>
         <div>
-          <p className="mt-6 text-sm text-gray-800 pb-0.5">Email</p>
+          <p className="mt-6 text-sm text-zinc-300 pb-1">Email</p>
           <input
             type="email"
             placeholder="Email"
-            className="w-full p-2.5 rounded-md border border-gray-300 outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
             {...register("email", { required: true })}
           />
           {errors.email && (
@@ -106,42 +105,58 @@ const ContactInformation = ({ increment, email }) => {
           )}
         </div>
         <div>
-          <p className="mt-6 text-sm text-gray-800 pb-0.5">Password (8 characters min)</p>
+          <p className="mt-6 text-sm text-zinc-300 pb-1">
+            Password (8 characters min)
+          </p>
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-2.5 rounded-md border border-gray-300 outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
             {...register("password", { required: true, minLength: 8 })}
           />
           {console.log(errors)}
-          {errors.password?.type === 'required' && (
+          {errors.password?.type === "required" && (
             <p className="text-xs font-medium text-rose-600 mt-0.5 absolute">
               *required field
             </p>
           )}
-          {errors.password?.type === 'minLength' && (
+          {errors.password?.type === "minLength" && (
             <p className="text-xs font-medium text-rose-600 mt-0.5 absolute">
               *password must be at least 8 characters
             </p>
           )}
-          {passwordMatch && <p className="text-xs font-medium text-green-500 mt-0.5 absolute flex items-center"><CheckLg className="mr-1"/>Passwords Match</p>}
+          {passwordMatch && (
+            <p className="text-xs font-medium text-green-500 mt-0.5 absolute flex items-center">
+              <CheckLg className="mr-1" />
+              Passwords Match
+            </p>
+          )}
         </div>
         <div>
-          <p className="mt-6 text-sm text-gray-800 pb-0.5">Confirm Password</p>
+          <p className="mt-6 text-sm text-zinc-300 pb-1">Confirm Password</p>
           <input
             type="password"
             placeholder="Confirm Password"
-            className="w-full p-2.5 rounded-md border border-gray-300 outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
             {...register("confirmPassword", { required: true, minLength: 8 })}
           />
-          {errors.confirmPassword?.type === 'required' && (
+          {errors.confirmPassword?.type === "required" && (
             <p className="text-xs font-medium text-rose-600 mt-0.5 absolute">
               *required field
             </p>
           )}
-          {passwordMatch && <p className="text-xs font-medium text-green-500 mt-0.5 absolute flex items-center"><CheckLg className="mr-1"/>Passwords Match</p>}
-          {!passwordMatch && watch('confirmPassword')?.length >= 8 && <p className="text-xs font-medium text-rose-600 absolute mt-0.5">*Passwords do not match</p>}
-          {errors.confirmPassword?.type === 'minLength' && (
+          {passwordMatch && (
+            <p className="text-xs font-medium text-green-500 mt-0.5 absolute flex items-center">
+              <CheckLg className="mr-1" />
+              Passwords Match
+            </p>
+          )}
+          {!passwordMatch && watch("confirmPassword")?.length >= 8 && (
+            <p className="text-xs font-medium text-rose-600 absolute mt-0.5">
+              *Passwords do not match
+            </p>
+          )}
+          {errors.confirmPassword?.type === "minLength" && (
             <p className="text-xs font-medium text-rose-600 mt-0.5 absolute">
               *password must be at least 8 characters
             </p>
@@ -151,18 +166,29 @@ const ContactInformation = ({ increment, email }) => {
           <button
             disabled={isSubmitting ? true : false}
             type="submit"
-            className={`h-[40px] w-[180px] text-sm text-center text-white flex justify-center items-center font-medium rounded-md hover:bg-indigo-700 transition-all duration-300 ${
-              isSubmitting ? "bg-indigo-400 hover:bg-indigo-400" : "bg-indigo-600"
+            className={`h-[40px] w-[180px] text-sm text-center text-white flex justify-center items-center font-medium rounded-md transition-all duration-300 ${
+              isSubmitting
+                ? "bg-violet-400/75 hover:bg-violet-400/75"
+                : "bg-violet-600 hover:bg-violet-800"
             }`}
           >
-            {isSubmitting ? <ButtonSpinner /> : 'Create Account'}
+            {isSubmitting ? <ButtonSpinner /> : "Create Account"}
           </button>
-          <p><span className="text-gray-600 text-xs">Already have an account?</span><Link href="/login"><a className="text-gray-800 text-xs ml-2 hover:text-indigo-600 hover:underline">Sign In</a></Link></p>
+          <p>
+            <span className="text-zinc-400 text-xs">
+              Already have an account?
+            </span>
+            <Link href="/login">
+              <a className="text-xs ml-2 text-zinc-400 hover:text-violet-400 underline">
+                Sign In
+              </a>
+            </Link>
+          </p>
         </div>
       </form>
       {errorMessage && (
-        <div className="mt-6 p-4 pt-6 max-w-[300px] pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-900/75 absolute top-[40px] w-full left-1/2 translate-x-[-50%]">
-          <p className="text-xs font-bold text-center text-white">
+        <div className="p-4 max-w-[300px] bg-gradient-to-br from-red-400 to-red-600 rounded-md absolute top-[100px] w-full left-1/2 translate-x-[-50%]">
+          <p className="text-xs font-semibold text-center text-black">
             {errorMessage}
           </p>
         </div>

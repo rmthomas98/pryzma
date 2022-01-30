@@ -63,7 +63,7 @@ const News = ({ isLoading, setNews }) => {
               <a
                 target="_blank"
                 rel="noreferrer"
-                href={element.url}
+                href={element.qmUrl}
                 className="flex items-center p-4 hover:bg-gray-200 transition duration-300"
                 key={index}
               >

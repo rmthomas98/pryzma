@@ -25,7 +25,7 @@ const AdminHome = ({ user, watchlist, news }) => {
     <div className="p-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between border-b border-gray-300 pb-4">
-          <p className="font-semibold text-2xl text-gray-900">
+          <p className="font-bold text-2xl text-gray-900">
             Welcome, {user.user.firstName}
           </p>
           <Time />

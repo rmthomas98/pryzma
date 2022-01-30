@@ -4,7 +4,7 @@ import ButtonSpinner from "../components/ButtonSpinner";
 import axios from "axios";
 import { useState } from "react";
 import { withIronSession } from "next-iron-session";
-import Link from 'next/link';
+import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const Login = () => {
       .catch((e) => console.error(e));
     // if successfull login, redirect user to admin
     if (response?.data === "successfull login") {
-      router.push('/admin')
+      router.push("/admin");
     } else if (response?.data === "incorrect password") {
       setIsSubmitting(false);
       setPasswordError("*incorrect password");
@@ -42,55 +42,67 @@ const Login = () => {
   };
 
   return (
-    <div className='bg-[url("/static/images/mountains-at-night.png")] bg-cover bg-center min-h-screen absolute top-0 w-full flex justify-center items-center pl-4 pr-4'>
+    <div className="h-[calc(100vh-80px)] min-h-[600px] flex justify-center">
       {router.query?.newAccount && (
-        <div className="absolute top-[75px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-gray-900/75 shadow-lg">
-          <p className="text-xs font-bold text-center text-white leading-5">
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-md">
+          <p className="text-xs font-semibold text-center text-black leading-5">
             Your account has been created!
+            <br />
+            You can now login.
           </p>
         </div>
       )}
       {router.query?.passwordUpdated && (
-        <div className="absolute top-[75px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 pt-6 pb-6 bg-emerald-800 border-2 border-emerald-400 rounded-lg shadow-gray-900/75 shadow-lg">
-          <p className="text-xs font-bold text-center text-white leading-5">
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-md">
+          <p className="text-xs font-semibold text-center text-black leading-5">
             You password has been updated!
           </p>
         </div>
       )}
       {errorMessage && (
-        <div className="absolute top-[75px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-gray-900/75 shadow-lg">
-          <p className="text-xs font-bold text-center text-white leading-5">
+        <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 bg-gradient-to-br from-red-400 to-red-600 rounded-md">
+          <p className="text-xs font-semibold text-center text-black leading-5">
             {errorMessage}
           </p>
         </div>
       )}
-      <div className="max-w-sm w-full p-6 bg-white rounded-lg shadow-2xl shadow-gray-900/75 mt-40 mb-40 opacity-0 animate-fadeInUp translate-y-[75px]">
-        <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-          <p className="text-gray-700 font-bold text-2xl text-center">
+      <div className="max-w-sm w-full mx-auto">
+        <form className="w-full mt-40" onSubmit={handleSubmit(onSubmit)}>
+          <p className="text-zinc-200 font-semibold text-2xl text-center">
             Client Login
           </p>
           <div>
-            <p className="mt-6 text-sm text-gray-800 pb-0.5">Email</p>
+            <p className="mt-6 text-sm text-zinc-300 pb-1">Email</p>
             <input
-            disabled={isSubmitting ? true : false}
+              disabled={isSubmitting ? true : false}
               type="email"
               placeholder="Email"
-              className={`w-full p-2.5 rounded-md border outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300 ${errors.email || emailError ? 'border-rose-500' : 'border-gray-300'}`}
+              autoComplete="off"
+              className={`w-full p-2.5 rounded-md text-zinc-400 border outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300 ${
+                errors.email || emailError
+                  ? "border-rose-500"
+                  : "border-zinc-700"
+              }`}
               {...register("email", { required: true })}
             />
-            { emailError &&
+            {emailError && (
               <p className="text-xs font-medium text-rose-600 mt-0.5 absolute">
                 {emailError}
               </p>
-            }
+            )}
           </div>
           <div>
-            <p className="mt-6 text-sm text-gray-800 pb-0.5">Password</p>
+            <p className="mt-6 text-sm text-zinc-300 pb-1">Password</p>
             <input
-            disabled={isSubmitting ? true : false}
+              disabled={isSubmitting ? true : false}
               type="password"
               placeholder="Password"
-              className={`w-full p-2.5 rounded-md border outline-none focus:shadow-md focus:shadow-gray-400/50 shadow-sm shadow-gray-300 transition-all duration-300 ${errors.password || passwordError ? 'border-rose-500' : 'border-gray-300'} `}
+              autoComplete="off"
+              className={`w-full p-2.5 rounded-md border text-zinc-400 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300 ${
+                errors.email || emailError
+                  ? "border-rose-500"
+                  : "border-zinc-700"
+              }`}
               {...register("password", { required: true })}
             />
             {passwordError && (
@@ -104,18 +116,24 @@ const Login = () => {
             disabled={isSubmitting ? true : false}
             className={`mt-8 rounded-md h-[40px] flex items-center justify-center w-full font-medium text-sm text-white trasnition-all duration-300 ${
               isSubmitting
-                ? "bg-indigo-400 hover:bg-indigo-400"
-                : "bg-indigo-600 hover:bg-indigo-700"
+                ? "bg-violet-400/75 hover:bg-violet-400/75"
+                : "bg-violet-600 hover:bg-violet-800"
             }`}
           >
-            {isSubmitting ? <ButtonSpinner /> : 'Login'}
+            {isSubmitting ? <ButtonSpinner /> : "Login"}
           </button>
         </form>
-        <div className="text-xs flex justify-center mt-6 w-4/5 mx-auto min-w-fit text-gray-600">
+        <div className="text-xs flex justify-center mt-6 w-4/5 mx-auto min-w-fit text-zinc-400">
           <Link href="/forgot-password">
-            <a className="pr-2 text-center border-r border-gray-400 hover:text-indigo-600 transition-all hover:underline">Forgot Password</a>
+            <a className="pr-2 text-center border-r border-zinc-300 hover:text-violet-400 transition-all hover:underline">
+              Forgot Password
+            </a>
           </Link>
-          <Link href="/signup"><a className="pl-2 text-center hover:text-indigo-600 transition-all hover:underline">Sign up now</a></Link>
+          <Link href="/signup">
+            <a className="pl-2 text-center hover:text-violet-400 transition-all hover:underline">
+              Sign up now
+            </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -123,26 +141,26 @@ const Login = () => {
 };
 
 export const getServerSideProps = withIronSession(
-  async ({req, res}) => {
-    const user = req.session.get('user');
+  async ({ req, res }) => {
+    const user = req.session.get("user");
 
-    if (!user) return {props: {}}
+    if (!user) return { props: {} };
 
     return {
       redirect: {
         permanant: false,
-        destination: '/admin'
+        destination: "/admin",
       },
-      props: {}
-    }
+      props: {},
+    };
   },
   {
     password: process.env.IRON_SESSION_PASSWORD,
-    cookieName: 'user',
+    cookieName: "user",
     cookieOptions: {
-      secure: process.env.NODE_ENV === 'production'
-    }
+      secure: process.env.NODE_ENV === "production",
+    },
   }
-)
+);
 
 export default Login;

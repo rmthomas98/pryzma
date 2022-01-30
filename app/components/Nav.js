@@ -2,11 +2,11 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
-import { CaretDownFill, Person } from "react-bootstrap-icons";
+import { ArrowRight, CaretDownFill, Person } from "react-bootstrap-icons";
 import DropDownNavMenu from "./DropDownNavMenu";
 import Search from "./AdminHome/Search";
-import logo from '../static/images/logo.png';
-import Image from 'next/image';
+import logo from "../static/images/logo.png";
+import Image from "next/image";
 
 const Nav = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const Nav = () => {
   const [dropDownActive, setDropDownActive] = useState(false);
   const [userData, setUserData] = useState();
 
-  const button = useRef()
+  const button = useRef();
 
   useEffect(() => {
     const getUser = async () => {
@@ -23,38 +23,79 @@ const Nav = () => {
       const response = await axios
         .get("/api/user")
         .catch((e) => console.error(e));
-      if (response.data)
-        setName(
-          response.data.user.firstName
-        );
-        const {firstName, lastName, email} = response.data.user;
-        setUserData({firstName, lastName, email}) 
+      if (response.data) setName(response.data.user.firstName);
+      const { firstName, lastName, email } = response.data.user;
+      setUserData({ firstName, lastName, email });
     };
     getUser();
   }, [router.pathname, router.query]);
 
   return (
-    <div className={`w-full relative ${router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'z-[9999]' : ''} ${router.pathname.startsWith('/admin') ? 'bg-gray-800 sticky top-0 z-10' : ''}`}>
-      <div className={`w-full flex justify-between items-center mx-auto pl-4 pr-4 relative ${router.pathname.startsWith('/admin') ? 'pb-2 pt-2 pl-2 pr-2' : 'pb-6 pt-6 max-w-7xl'}`}>
-      { !router.pathname.startsWith('/admin') && <Link href={router.pathname.startsWith("/admin") ? "/admin" : "/"}>
-          <a className="flex items-center justify-center"><Image src={logo} layout="fixed" height={29} width={100}/></a>
-        </Link> }
-        {router.pathname.startsWith('/admin') && <Search />}
+    <div
+      className={`w-full relative ${
+        router.pathname.endsWith("/login") ||
+        router.pathname.endsWith("/signup")
+          ? "z-[9999]"
+          : ""
+      } ${
+        router.pathname.startsWith("/admin")
+          ? "bg-zinc-900 sticky top-0 z-10"
+          : ""
+      }`}
+    >
+      <div
+        className={`w-full flex justify-between items-center mx-auto pl-4 pr-4 relative ${
+          router.pathname.startsWith("/admin")
+            ? "pb-2 pt-2 pl-2 pr-2"
+            : "pb-6 pt-6 max-w-7xl"
+        }`}
+      >
+        {!router.pathname.startsWith("/admin") && (
+          <Link href={router.pathname.startsWith("/admin") ? "/admin" : "/"}>
+            <a className="flex items-center justify-center">
+              <Image src={logo} layout="fixed" height={32} width={110} />
+            </a>
+          </Link>
+        )}
+        {router.pathname.startsWith("/admin") && <Search />}
         {router.pathname.startsWith("/admin") ? (
           <div className="flex">
-            {name && <p ref={button} onClick={() => dropDownActive ? setDropDownActive(false) : setDropDownActive(true)} className={`text-xs flex text-gray-300 font-medium items-center cursor-pointer rounded-md p-1.5 pl-4 pr-4 hover:bg-gray-700 transition-all duration-200 ${dropDownActive && 'bg-gray-700'}`}><Person className="mr-1 text-lg pointer-events-none"/>{name}<CaretDownFill className={`pointer-events-none ml-2 text-xs relative top-[1px] text-gray-400 transition-all duration-300 ${dropDownActive ? 'rotate-180' : 'rotate-0'}`}/></p>}
-            {dropDownActive && <DropDownNavMenu userData={userData} active={dropDownActive} setDropDownActive={setDropDownActive} button={button}/>}
+            {name && (
+              <p
+                ref={button}
+                onClick={() =>
+                  dropDownActive
+                    ? setDropDownActive(false)
+                    : setDropDownActive(true)
+                }
+                className={`text-xs flex text-gray-300 font-medium items-center cursor-pointer rounded-md p-1.5 pl-4 pr-4 hover:bg-gray-700 transition-all duration-200 ${
+                  dropDownActive && "bg-gray-700"
+                }`}
+              >
+                <Person className="mr-1 text-lg pointer-events-none" />
+                {name}
+                <CaretDownFill
+                  className={`pointer-events-none ml-2 text-xs relative top-[1px] text-gray-400 transition-all duration-300 ${
+                    dropDownActive ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </p>
+            )}
+            {dropDownActive && (
+              <DropDownNavMenu
+                userData={userData}
+                active={dropDownActive}
+                setDropDownActive={setDropDownActive}
+                button={button}
+              />
+            )}
           </div>
         ) : (
           <div>
             <Link href="/login">
-              <a className={` font-medium text-sm border rounded-md p-2 pl-6 pr-6 mr-2 transition-all duration-300 ${router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'border-white text-white hover:bg-white hover:text-indigo-600' : 'hover:bg-indigo-600 hover:text-white border-indigo-600 text-indigo-600'}`}>
+              <a className="text-zinc-100 font-medium flex items-center">
                 Login
-              </a>
-            </Link>
-            <Link href="/signup">
-              <a className={`text-white font-medium text-sm  bg-gradient-to-r from-rose-600 to-indigo-600 rounded-md p-[9px] pl-6 pr-6 hover:shadow-md ${router.pathname.endsWith('/login') || router.pathname.endsWith('/signup') ? 'hover:shadow-gray-900' : 'hover:shadow-gray-500'} transition-all duration-300`}>
-                Sign up
+                <ArrowRight className="ml-2" />
               </a>
             </Link>
           </div>

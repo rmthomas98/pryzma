@@ -1,21 +1,24 @@
-import {format} from 'date-fns';
-import {useEffect, useState} from 'react';
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
 
 const Time = () => {
-
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(new Date())
-    }, 1000)
+      setTime(new Date());
+    }, 1000);
 
     return () => {
-      clearInterval(interval)
-    }
-  },[])  
+      clearInterval(interval);
+    };
+  }, []);
 
-  return <p className='text-xl text-gray-900'>{format(time, "MMMM dd, h:mm:ss aa")}</p>
-}
+  return (
+    <p className="text-lg font-semibold text-gray-900">
+      {format(time, "MMMM dd, h:mm:ss aa")}
+    </p>
+  );
+};
 
 export default Time;

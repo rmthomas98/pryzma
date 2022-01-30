@@ -12,6 +12,25 @@ const Income = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
 
+  const [period, setPeriod] = useState("quarterly");
+
+  const handleSwitchPeriod = async (e) => {
+    setData();
+    setIsLoading(true);
+    setPeriod(e.target.value);
+    const response = await axios.post("/api/income-statement", {
+      symbol: symbol[0],
+      period: e.target.value,
+    });
+    console.log(response.data);
+    if (response.data.income_statement) {
+      setData(response.data.income_statement);
+      return setIsLoading(false);
+    }
+    setIsLoading(false);
+    setData("data not available");
+  };
+
   useEffect(() => {
     setUser(user);
   }, []);
@@ -28,6 +47,7 @@ const Income = ({ user }) => {
     const getData = async () => {
       const response = await axios.post("/api/income-statement", {
         symbol: symbol[0],
+        period: period,
       });
       if (response.data.income_statement) {
         setData(response.data.income_statement);
@@ -43,14 +63,45 @@ const Income = ({ user }) => {
 
   if (!data || isLoading) return <div>income statement is loading</div>;
 
-  if (data === "data not available" || !data.length) return <div>Data not available</div>;
+  if (data === "data not available" || !data.length)
+    return <div>Data not available</div>;
 
   return (
     <div className="p-4 mb-12">
       <div className="mx-auto max-w-7xl">
-        <p className="font-bold text-gray-900 text-2xl mb-2">
-          Income Statement
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="font-bold text-gray-900 text-2xl mb-2">
+            Income Statement
+          </p>
+          <div className="flex">
+            <button
+              onClick={handleSwitchPeriod}
+              value="quarterly"
+              className={`rounded-md text-xs font-medium text-white px-2 py-1 mr-2 ${
+                period === "quarterly" ? "bg-indigo-500" : "bg-black"
+              } ${
+                period === "quarterly"
+                  ? "hover:text-white"
+                  : "hover:text-indigo-400"
+              } transition-all`}
+            >
+              Quarterly
+            </button>
+            <button
+              onClick={handleSwitchPeriod}
+              value="annual"
+              className={`rounded-md text-xs font-medium text-white px-2 py-1 ${
+                period === "annual" ? "bg-indigo-500" : "bg-black"
+              } ${
+                period === "annual"
+                  ? "hover:text-white"
+                  : "hover:text-indigo-400"
+              } transition-all`}
+            >
+              Annual
+            </button>
+          </div>
+        </div>
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-300">
@@ -82,10 +133,12 @@ const Income = ({ user }) => {
                 ""
               )}
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">Total Revenue</td>
+              <td className="font-medium text-gray-800 p-2 text-xs">
+                Total Revenue
+              </td>
               {data[0] && (
                 <td className="font-medium text-gray-800 text-xs">
                   {data[0].sales ? data[0].sales : "-"}
@@ -374,138 +427,224 @@ const Income = ({ user }) => {
                 Other Income Expense
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].other_income_expense ? data[0].other_income_expense : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].other_income_expense
+                    ? data[0].other_income_expense
+                    : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].other_income_expense ? data[1].other_income_expense : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].other_income_expense
+                    ? data[1].other_income_expense
+                    : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].other_income_expense ? data[2].other_income_expense : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].other_income_expense
+                    ? data[2].other_income_expense
+                    : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].other_income_expense ? data[3].other_income_expense : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].other_income_expense
+                    ? data[3].other_income_expense
+                    : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
+            </tr>
+            <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2">
                 Pretax Income
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].pretax_income ? data[0].pretax_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].pretax_income ? data[0].pretax_income : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].pretax_income ? data[1].pretax_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].pretax_income ? data[1].pretax_income : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].pretax_income ? data[2].pretax_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].pretax_income ? data[2].pretax_income : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].pretax_income ? data[3].pretax_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].pretax_income ? data[3].pretax_income : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
+            </tr>
+            <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2">
                 Income Tax
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].income_tax ? data[0].income_tax : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].income_tax ? data[0].income_tax : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].income_tax ? data[1].income_tax : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].income_tax ? data[1].income_tax : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].income_tax ? data[2].income_tax : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].income_tax ? data[2].income_tax : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].income_tax ? data[3].income_tax : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].income_tax ? data[3].income_tax : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
+            </tr>
+            <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2">
                 Net Income
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].net_income ? data[0].net_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].net_income ? data[0].net_income : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].net_income ? data[1].net_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].net_income ? data[1].net_income : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].net_income ? data[2].net_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].net_income ? data[2].net_income : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].net_income ? data[3].net_income : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].net_income ? data[3].net_income : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
-                EPS
-              </td>
+            </tr>
+            <tr className="border-b border-gray-300">
+              <td className="font-medium text-gray-800 text-xs p-2">EPS</td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].eps_basic ? data[0].eps_basic : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].eps_basic ? data[0].eps_basic : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].eps_basic ? data[1].eps_basic : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].eps_basic ? data[1].eps_basic : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].eps_basic ? data[2].eps_basic : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].eps_basic ? data[2].eps_basic : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].eps_basic ? data[3].eps_basic : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].eps_basic ? data[3].eps_basic : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
+            </tr>
+            <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2">
                 EPS Diluted
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].eps_diluted ? data[0].eps_diluted : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].eps_diluted ? data[0].eps_diluted : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].eps_diluted ? data[1].eps_diluted : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].eps_diluted ? data[1].eps_diluted : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].eps_diluted ? data[2].eps_diluted : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].eps_diluted ? data[2].eps_diluted : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].eps_diluted ? data[3].eps_diluted : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].eps_diluted ? data[3].eps_diluted : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
+            </tr>
+            <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2">
                 Shares Outstanding
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].basic_shares_outstanding ? data[0].basic_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].basic_shares_outstanding
+                    ? data[0].basic_shares_outstanding
+                    : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].basic_shares_outstanding ? data[1].basic_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].basic_shares_outstanding
+                    ? data[1].basic_shares_outstanding
+                    : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].basic_shares_outstanding ? data[2].basic_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].basic_shares_outstanding
+                    ? data[2].basic_shares_outstanding
+                    : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].basic_shares_outstanding ? data[3].basic_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].basic_shares_outstanding
+                    ? data[3].basic_shares_outstanding
+                    : "-"}
+                </td>
               )}
-              </tr>
-              <tr className="border-b border-gray-300">
+            </tr>
+            <tr className="border-b border-gray-300">
               <td className="font-medium text-gray-800 text-xs p-2">
                 Diluted Shares Outstanding
               </td>
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">{data[0].diluted_shares_outstanding ? data[0].diluted_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[0].diluted_shares_outstanding
+                    ? data[0].diluted_shares_outstanding
+                    : "-"}
+                </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">{data[1].diluted_shares_outstanding ? data[1].diluted_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[1].diluted_shares_outstanding
+                    ? data[1].diluted_shares_outstanding
+                    : "-"}
+                </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">{data[2].diluted_shares_outstanding ? data[2].diluted_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[2].diluted_shares_outstanding
+                    ? data[2].diluted_shares_outstanding
+                    : "-"}
+                </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">{data[3].diluted_shares_outstanding ? data[3].diluted_shares_outstanding : '-'}</td>
+                <td className="text-gray-800 font-medium text-xs">
+                  {data[3].diluted_shares_outstanding
+                    ? data[3].diluted_shares_outstanding
+                    : "-"}
+                </td>
               )}
-              </tr>
-              </tbody>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
