@@ -106,9 +106,7 @@ export const getServerSideProps = withIronSession(
         }`
       );
       news = await axios.get(
-        `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${user.user.watchlist.join(
-          ","
-        )}&types=news&last=3&token=${process.env.IEX_CLOUD_API_KEY}`
+        `https://stocknewsapi.com/api/v1?tickers=${user.user.watchlist.join(',')}&items=50&token=${process.env.STOCK_NEWS_API_KEY}`
       );
     }
     // parse user to pass as props

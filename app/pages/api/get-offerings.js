@@ -1,5 +1,4 @@
 const { queryApi } = require("sec-api");
-const cheerio = require("cheerio");
 
 const handler = async (req, res) => {
   // initialize SEC api

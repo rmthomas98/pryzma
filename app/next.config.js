@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['cloud.iexapis.com'],
+    domains: ['cdn.snapi.dev'],
   },
 }

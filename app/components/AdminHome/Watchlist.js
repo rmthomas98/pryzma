@@ -172,7 +172,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
         <div className="flex p-3 bg-zinc-800 pl-4 pr-4 border-b border-zinc-700">
           <p
             onClick={watchListSymbols ? handleSymbolSort : null}
-            className="w-full text-xs text-gray-100 flex items-center cursor-pointer"
+            className="w-full text-xs text-zinc-100 flex items-center cursor-pointer selection:bg-none"
           >
             Symbol
             <CaretDownFill
@@ -183,7 +183,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           </p>
           <p
             onClick={watchListSymbols ? handlePriceSort : null}
-            className="w-full text-xs text-gray-100 flex items-center cursor-pointer"
+            className="w-full text-xs text-zinc-100 flex items-center cursor-pointer selection:bg-none"
           >
             Price
             <CaretDownFill
@@ -194,7 +194,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           </p>
           <p
             onClick={watchListSymbols ? handleChangeSort : null}
-            className="w-full text-xs text-gray-100 flex items-center cursor-pointer"
+            className="w-full text-xs text-zinc-100 flex items-center cursor-pointer selection:bg-none"
           >
             Change
             <CaretDownFill
@@ -205,7 +205,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           </p>
           <p
             onClick={watchListSymbols ? handlePercentSort : null}
-            className="w-full text-xs text-gray-100 flex items-center cursor-pointer"
+            className="w-full text-xs text-zinc-100 flex items-center cursor-pointer selection:bg-none"
           >
             % Change
             <CaretDownFill
@@ -216,7 +216,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           </p>
           <p
             onClick={watchListSymbols ? handleVolumeSort : null}
-            className="w-full text-xs text-gray-100 flex items-center cursor-pointer"
+            className="w-full text-xs text-zinc-100 flex items-center cursor-pointer selection:bg-none"
           >
             Volume
             <CaretDownFill
@@ -295,7 +295,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
             );
           })
         ) : (
-          <p className="p-8 text-center text-zinc-400 leading-7">
+          <p className="p-8 text-center text-sm text-zinc-400 leading-7">
             You don't have any stocks in your watchlist at this time.
             <br />
             Search for a stock above to add to your watchlist.
