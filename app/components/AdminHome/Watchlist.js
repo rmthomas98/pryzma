@@ -165,19 +165,18 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
 
   return (
     <div className="mt-6">
-      <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
-        <Image src={watchList} height={30} width={30} />
-        <span className="ml-4">My Watchlist</span>
+      <p className="p-2 pl-0 text-zinc-200 font-semibold text-xl flex items-center">
+        My Watchlist
       </p>
-      <div className="shadow-lg shadow-gray-400/50 rounded-md bg-gray-50 overflow-hidden">
-        <div className="flex p-3 bg-gray-800 pl-4 pr-4">
+      <div className="rounded-md bg-zinc-800 overflow-hidden">
+        <div className="flex p-3 bg-zinc-800 pl-4 pr-4 border-b border-zinc-700">
           <p
             onClick={watchListSymbols ? handleSymbolSort : null}
             className="w-full text-xs text-gray-100 flex items-center cursor-pointer"
           >
             Symbol
             <CaretDownFill
-              className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
                 sortSymbol ? "rotate-0" : "rotate-180"
               }`}
             />
@@ -188,7 +187,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Price
             <CaretDownFill
-              className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
                 sortPrice ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -199,7 +198,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Change
             <CaretDownFill
-              className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
                 sortChange ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -210,7 +209,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             % Change
             <CaretDownFill
-              className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
                 sortPercent ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -221,7 +220,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Volume
             <CaretDownFill
-              className={`text-sky-400 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
                 sortVolume ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -235,20 +234,22 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
               element.quote;
             return (
               <div
-                className={`flex items-center p-2 pl-4 pr-4 bg-gray-100 hover:bg-gray-300 cursor-pointer transition-all duration-300 ${
-                  index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"
+                className={`flex items-center p-2 pl-4 pr-4 cursor-pointer hover:bg-zinc-700 transition-[background-color] duration-300 ${
+                  index === watchListSymbols.length - 1
+                    ? "border-b border-transparent"
+                    : "border-b border-zinc-700"
                 }`}
                 key={symbol}
               >
                 <p
                   onClick={() => handleWatchlistClick(symbol)}
-                  className="w-full text-xs text-gray-800 font-semibold"
+                  className="w-full text-xs text-zinc-300 font-medium"
                 >
                   {symbol}
                 </p>
                 <p
                   onClick={() => handleWatchlistClick(symbol)}
-                  className="w-full text-xs text-gray-800 font-semibold"
+                  className="w-full text-xs text-zinc-300 font-medium"
                 >
                   <span className="mr-1">$</span>
                   {latestPrice.toLocaleString("en-US", {
@@ -258,10 +259,8 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                 </p>
                 <p
                   onClick={() => handleWatchlistClick(symbol)}
-                  className={`w-full text-xs font-semibold ${
-                    Math.sign(change) === -1
-                      ? "text-rose-600"
-                      : "text-emerald-600"
+                  className={`w-full text-xs font-medium ${
+                    Math.sign(change) === -1 ? "text-red-500" : "text-green-500"
                   }`}
                 >
                   {change.toLocaleString("en-us", {
@@ -271,17 +270,17 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                 </p>
                 <p
                   onClick={() => handleWatchlistClick(symbol)}
-                  className={`w-full text-xs font-semibold ${
+                  className={`w-full text-xs font-medium ${
                     Math.sign(changePercent) === -1
-                      ? "text-rose-600"
-                      : "text-emerald-600"
+                      ? "text-red-500"
+                      : "text-green-500"
                   }`}
                 >
                   {changePercent.toFixed(2)}%
                 </p>
                 <p
                   onClick={() => handleWatchlistClick(symbol)}
-                  className="w-full text-xs text-gray-800 font-semibold"
+                  className="w-full text-xs text-zinc-300 font-medium"
                 >
                   {millify(volume, { space: true, precision: 2 })}
                 </p>
@@ -296,7 +295,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
             );
           })
         ) : (
-          <p className="p-8 text-center text-gray-700 leading-7">
+          <p className="p-8 text-center text-zinc-400 leading-7">
             You don't have any stocks in your watchlist at this time.
             <br />
             Search for a stock above to add to your watchlist.

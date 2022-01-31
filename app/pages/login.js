@@ -78,7 +78,7 @@ const Login = () => {
               type="email"
               placeholder="Email"
               autoComplete="off"
-              className={`w-full p-2.5 rounded-md text-zinc-400 border outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300 ${
+              className={`w-full p-2.5 rounded-md text-zinc-400 border outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200 ${
                 errors.email || emailError
                   ? "border-rose-500"
                   : "border-zinc-700"
@@ -98,7 +98,7 @@ const Login = () => {
               type="password"
               placeholder="Password"
               autoComplete="off"
-              className={`w-full p-2.5 rounded-md border text-zinc-400 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300 ${
+              className={`w-full p-2.5 rounded-md text-zinc-400 border outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200 ${
                 errors.email || emailError
                   ? "border-rose-500"
                   : "border-zinc-700"

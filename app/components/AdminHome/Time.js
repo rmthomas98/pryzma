@@ -15,7 +15,7 @@ const Time = () => {
   }, []);
 
   return (
-    <p className="text-lg font-semibold text-gray-900">
+    <p className="text-lg font-medium text-zinc-200">
       {format(time, "MMMM dd, h:mm:ss aa")}
     </p>
   );

@@ -16,7 +16,7 @@ const Home = () => {
           </p>
           <div className="flex justify-center mt-4">
             <Link href="/signup">
-              <a className="text-white font-medium text-lg bg-violet-600 rounded-md px-10 py-2.5 hover:bg-violet-800 transition-all duration-300">
+              <a className="text-white font-medium text-lg bg-gradient-to-r from-indigo-600 to-rose-600 bg-[length:200%] bg-left hover:bg-right rounded-md px-14 py-3 transition-all duration-500">
                 Get Started
               </a>
             </Link>

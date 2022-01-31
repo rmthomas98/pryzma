@@ -39,7 +39,7 @@ const Nav = () => {
           : ""
       } ${
         router.pathname.startsWith("/admin")
-          ? "bg-zinc-900 sticky top-0 z-10"
+          ? "bg-neutral-900 sticky top-0 z-10"
           : ""
       }`}
     >

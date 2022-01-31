@@ -67,7 +67,7 @@ const ContactInformation = ({ increment, email }) => {
           <input
             type="text"
             placeholder="First Name"
-            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200"
             {...register("first", { required: true })}
           />
           {errors.first && (
@@ -81,7 +81,7 @@ const ContactInformation = ({ increment, email }) => {
           <input
             type="text"
             placeholder="Last Name"
-            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200"
             {...register("last", { required: true })}
           />
           {errors.last && (
@@ -95,7 +95,7 @@ const ContactInformation = ({ increment, email }) => {
           <input
             type="email"
             placeholder="Email"
-            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200"
             {...register("email", { required: true })}
           />
           {errors.email && (
@@ -111,7 +111,7 @@ const ContactInformation = ({ increment, email }) => {
           <input
             type="password"
             placeholder="Password"
-            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200"
             {...register("password", { required: true, minLength: 8 })}
           />
           {console.log(errors)}
@@ -137,7 +137,7 @@ const ContactInformation = ({ increment, email }) => {
           <input
             type="password"
             placeholder="Confirm Password"
-            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_7px_1px_#8b5cf6] focus:border-violet-500 bg-zinc-800 transition-all duration-300"
+            className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200"
             {...register("confirmPassword", { required: true, minLength: 8 })}
           />
           {errors.confirmPassword?.type === "required" && (

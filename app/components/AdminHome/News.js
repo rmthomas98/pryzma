@@ -11,21 +11,20 @@ const News = ({ news, watchListSymbols }) => {
   }, [watchListSymbols]);
 
   return (
-    <div className="mt-8 mb-8">
-      <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
-        <Image src={newsImage} height={30} width={30} />
-        <span className="ml-4">Watchlist Specific News</span>
+    <div className="mt-10 mb-8">
+      <p className="p-2 pl-0 text-zinc-200 font-semibold text-xl flex items-center">
+        Watchlist Specific News
       </p>
       <div>
         {newsList ? (
           newsList.map((element) => {
             return (
               <div
-                className="shadow-lg rounded-md shadow-gray-400/50 mb-10 overflow-hidden bg-gray-50"
+                className="rounded-md mb-10 overflow-hidden bg-zinc-800"
                 key={element[0]}
               >
-                <p className="p-3 pl-4 bg-gray-800 text-gray-100 font-medium flex justify-between">
-                  Symbol - {element[0]}
+                <p className="p-3 pl-4 text-zinc-200 font-medium flex justify-between border-b border-zinc-700">
+                  {element[0]}
                 </p>
                 {element[1].news.map((article) => {
                   return (
@@ -33,7 +32,7 @@ const News = ({ news, watchListSymbols }) => {
                       href={article.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center p-4 hover:bg-gray-200 transition duration-300"
+                      className="flex items-center p-4 transition duration-300"
                       key={article.datetime}
                     >
                       <div className="w-full max-w-[140px] min-w-[140px] mr-4 rounded-md overflow-hidden h-[90px]">
@@ -47,21 +46,21 @@ const News = ({ news, watchListSymbols }) => {
                         />
                       </div>
                       <div>
-                        <p className="text-gray-900 font-semibold text-lg mb-2">
+                        <p className="text-zinc-100 font-medium text-lg mb-2">
                           {article.headline}
                         </p>
                         <div className="flex">
-                          <p className="text-xs text-gray-600 mr-4">
+                          <p className="text-xs text-zinc-400 font-medium mr-4">
                             {article.source}
                           </p>
-                          <p className="text-xs text-gray-600">
+                          <p className="text-xs text-zinc-400 font-medium">
                             {format(
                               new Date(article.datetime),
                               "MMMM dd, h:mm aa"
                             )}
                           </p>
                         </div>
-                        <p className="text-sm text-gray-800 mt-2 line-clamp-2">
+                        <p className="text-sm text-zinc-300 mt-2 line-clamp-2">
                           {article.summary}
                         </p>
                       </div>

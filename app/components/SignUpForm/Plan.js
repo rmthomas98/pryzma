@@ -54,6 +54,10 @@ const Plan = ({ increment, email }) => {
       <p className="text-zinc-200 font-semibold text-2xl">
         Select Pricing Plan
       </p>
+      <p className="mt-2 text-sm text-zinc-400 font-medium">
+        You will have a 7 day free trial come with your subscription. You can
+        cancel anytime before the seven days are over and not get charged.
+      </p>
       <div className="flex mt-6">
         <div className="w-full mr-6 bg-zinc-800 rounded-md p-6">
           <p className="uppercase text-xs text-center text-zinc-400 font-medium tracking-wider">
@@ -167,10 +171,10 @@ const Plan = ({ increment, email }) => {
             disabled={isSubmitting ? true : false}
             onClick={handleButtonClick}
             value="price_1KFhV3F124ucKAQoEPMNXfBN"
-            className={`w-full h-[42px] flex text-sm justify-center items-center text-white font-medium rounded-md transition-all duration-300 ${
+            className={`w-full h-[42px] flex text-sm justify-center bg-[length:200%] bg-left hover:bg-right items-center text-white font-medium rounded-md transition-all duration-500 ${
               annualLoader
-                ? "bg-gradient-to-r from-rose-400 to-indigo-400 hover:shadow-none"
-                : "bg-gradient-to-r from-rose-600 to-indigo-600"
+                ? "bg-gradient-to-r from-rose-400 to-indigo-400 hover:bg-left"
+                : "bg-gradient-to-r from-indigo-600 to-rose-600"
             }`}
           >
             {annualLoader ? <ButtonSpinner /> : "Select Plan"}

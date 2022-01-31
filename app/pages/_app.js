@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
             <div className="font-monts">
               <div className="flex">
                 <NestedNav />
-                <div className="w-full">
+                <div className="w-full bg-zinc-900">
                   <Nav />
                   {router.pathname.endsWith("/admin") ||
                   router.pathname.endsWith("/manage-account") ? (

@@ -45,6 +45,15 @@ const AddPayment = ({ user, price }) => {
 
   const options = {
     clientSecret: clientSecret,
+    appearance: {
+      labels: "floating",
+      variables: {
+        colorPrimary: "#8B5CF6",
+        colorBackground: "#27272A",
+        fontFamily: "Montserrat, sans-serif",
+        colorText: "#A1A1AA",
+      },
+    },
   };
 
   if (!clientSecret) return "";
@@ -105,16 +114,16 @@ const Payment = ({ user, price }) => {
 
   return (
     <form className="w-full">
-      <p className="text-gray-700 font-bold text-2xl border-b border-gray-300 pb-3 mb-4 mt-12">
+      <p className="text-zinc-200 font-semibold text-2xl pb-3">
         Add Payment Method
       </p>
       {!user.isCanceled && (
-        <p className="mb-6 text-sm text-gray-500">
+        <p className="mb-6 text-sm text-zinc-300">
           You will not be charged until your 7 day free trial period is over.
         </p>
       )}
       {user.isCanceled && (
-        <p className="mb-6 text-sm text-gray-500">
+        <p className="mb-6 text-sm text-zinc-300">
           You are now signing up for the{" "}
           {price === "monthly" ? "monthly" : "annual"} plan for{" "}
           {price === "monthly" ? "$19.99/mo" : "$199.99/yr"}
@@ -126,8 +135,8 @@ const Payment = ({ user, price }) => {
         onClick={handleSubmit}
         className={`h-[40px] mt-8 w-[100px] flex justify-center items-center text-sm text-white font-medium rounded-md transition-all duration-300 mr-2 ${
           isSubmitting
-            ? "bg-indigo-400 hover:bg-indigo-400"
-            : "bg-indigo-600 hover:bg-indigo-700"
+            ? "bg-violet-400 hover:bg-violet-400"
+            : "bg-violet-600 hover:bg-violet-800"
         }`}
       >
         {isSubmitting ? (
@@ -139,8 +148,8 @@ const Payment = ({ user, price }) => {
         )}
       </button>
       {errorMessage && (
-        <div className="mt-6 mx-auto w-fit p-4 pt-6 pb-6 bg-rose-800 border-2 border-rose-400 rounded-lg shadow-lg shadow-gray-400">
-          <p className="text-xs font-bold text-center text-white">
+        <div className="mt-6 mx-auto w-fit p-4 rounded-md bg-gradient-to-br from-red-400 to-red-600">
+          <p className="text-xs font-semibold text-center text-black">
             {errorMessage}
           </p>
         </div>
