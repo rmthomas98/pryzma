@@ -87,7 +87,7 @@ const Stats = ({ isLoading, setStats }) => {
                         precision: 2,
                         space: true,
                       })
-                    : ""}
+                    : "-"}
                 </td>
                 <td className="text-xs font-medium text-zinc-400">
                   {data.stats.float_shares
@@ -95,7 +95,7 @@ const Stats = ({ isLoading, setStats }) => {
                         precision: 2,
                         space: true,
                       })
-                    : ""}
+                    : "-"}
                 </td>
                 <td className="text-xs font-medium text-zinc-400">
                   {data.stats.shares_short
@@ -103,7 +103,7 @@ const Stats = ({ isLoading, setStats }) => {
                         precision: 2,
                         space: true,
                       })
-                    : ""}
+                    : "-"}
                 </td>
                 <td className="text-xs font-medium text-zinc-400">
                   {data.stats.shares_short && data.stats.float_shares
@@ -111,45 +111,45 @@ const Stats = ({ isLoading, setStats }) => {
                         (data.stats.shares_short / data.stats.float_shares) *
                         100
                       ).toFixed(2)}%`
-                    : ""}
+                    : "-"}
                 </td>
                 <td className="text-xs font-medium text-zinc-400">
                   {data.stats.percent_held_by_insiders
                     ? `${(data.stats.percent_held_by_insiders * 100).toFixed(
                         2
                       )}%`
-                    : ""}
+                    : "-"}
                 </td>
                 <td className="text-xs font-medium text-zinc-400">
                   {data.stats.percent_held_by_institutions
                     ? `${(
                         data.stats.percent_held_by_institutions * 100
                       ).toFixed(2)}%`
-                    : ""}
+                    : "-"}
                 </td>
               </tr>
             </tbody>
           </table>
         ) : (
           <table className="w-full table-fixed">
-            <tr className="bg-gray-300">
-              <td className="text-xs font-bold text-gray-900 p-3 pl-4">
+            <tr className="border-b border-zinc-800">
+              <td className="text-xs font-medium text-zinc-200 p-3 pl-4">
                 Market Cap
               </td>
-              <td className="text-xs font-bold text-gray-900">Shares Outs</td>
-              <td className="text-xs font-bold text-gray-900">Float</td>
-              <td className="text-xs font-bold text-gray-900">Shares Short</td>
-              <td className="text-xs font-bold text-gray-900">Short Float %</td>
-              <td className="text-xs font-bold text-gray-900">Insider Own</td>
-              <td className="text-xs font-bold text-gray-900">Inst Own</td>
+              <td className="text-xs font-medium text-zinc-200">Shares Outs</td>
+              <td className="text-xs font-medium text-zinc-200">Float</td>
+              <td className="text-xs font-medium text-zinc-200">Shares Short</td>
+              <td className="text-xs font-medium text-zinc-200">Short Float %</td>
+              <td className="text-xs font-medium text-zinc-200">Insider Own</td>
+              <td className="text-xs font-medium text-zinc-200">Inst Own</td>
             </tr>
-            <tr className="bg-gray-100">
-              <td className="text-xs font-semibold text-gray-800 p-3 pl-4">
+            <tr className="border-b border-zinc-800">
+              <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
                 {data.marketCap
                   ? millify(data.marketCap, { precision: 2, space: true })
                   : "-"}
               </td>
-              <td className="text-xs font-semibold text-gray-800">
+              <td className="text-xs font-medium text-zinc-400">
                 {data.sharesOutstanding
                   ? millify(data.sharesOutstanding, {
                       precision: 2,
@@ -157,11 +157,11 @@ const Stats = ({ isLoading, setStats }) => {
                     })
                   : "-"}
               </td>
-              <td className="text-xs font-semibold text-gray-800">-</td>
-              <td className="text-xs font-semibold text-gray-800">-</td>
-              <td className="text-xs font-semibold text-gray-800">-</td>
-              <td className="text-xs font-semibold text-gray-800">-</td>
-              <td className="text-xs font-semibold text-gray-800">-</td>
+              <td className="text-xs font-medium text-zinc-400">-</td>
+              <td className="text-xs font-medium text-zinc-400">-</td>
+              <td className="text-xs font-medium text-zinc-400">-</td>
+              <td className="text-xs font-medium text-zinc-400">-</td>
+              <td className="text-xs font-medium text-zinc-400">-</td>
             </tr>
           </table>
         )}

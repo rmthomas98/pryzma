@@ -71,17 +71,13 @@ const Balance = ({ user }) => {
     <div className="p-4 mb-12">
       <div className="mx-auto max-w-7xl">
         <div className="flex justify-between items-center">
-          <p className="font-bold text-gray-900 text-2xl mb-2">Balance Sheet</p>
+          <p className="font-medium text-zinc-200 text-2xl mb-2">Balance Sheet</p>
           <div className="flex">
             <button
               onClick={handleSwitchPeriod}
               value="quarterly"
-              className={`rounded-md text-xs font-medium text-white px-2 py-1 mr-2 ${
-                period === "quarterly" ? "bg-indigo-500" : "bg-black"
-              } ${
-                period === "quarterly"
-                  ? "hover:text-white"
-                  : "hover:text-indigo-400"
+              className={`rounded-md text-xs font-medium px-2 py-1 mr-2 hover:text-violet-500 ${
+                period === "quarterly" ? "bg-white text-violet-500" : "bg-zinc-800 text-zinc-200"
               } transition-all`}
             >
               Quarterly
@@ -89,12 +85,8 @@ const Balance = ({ user }) => {
             <button
               onClick={handleSwitchPeriod}
               value="annual"
-              className={`rounded-md text-xs font-medium text-white px-2 py-1 ${
-                period === "annual" ? "bg-indigo-500" : "bg-black"
-              } ${
-                period === "annual"
-                  ? "hover:text-white"
-                  : "hover:text-indigo-400"
+              className={`rounded-md text-xs font-medium hover:text-violet-500 px-2 py-1 ${
+                period === "annual" ? "bg-white text-violet-500" : "bg-zinc-800 text-zinc-200"
               } transition-all`}
             >
               Annual
@@ -104,28 +96,28 @@ const Balance = ({ user }) => {
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-300">
-              <td className="text-xs font-semibold text-gray-800 p-2">
+              <td className="text-xs font-medium text-zinc-200 p-2">
                 Break Down
               </td>
-              <td className="text-xs font-semibold text-gray-800">
+              <td className="text-xs font-medium text-zinc-200">
                 {data[0] ? data[0].fiscal_date : ""}
               </td>
               {data[1] ? (
-                <td className="text-xs font-semibold text-gray-800">
+                <td className="text-xs font-medium text-zinc-200">
                   {data[1].fiscal_date}
                 </td>
               ) : (
                 ""
               )}
               {data[2] ? (
-                <td className="text-xs font-semibold text-gray-800">
+                <td className="text-xs font-medium text-zinc-200">
                   {data[2].fiscal_date}
                 </td>
               ) : (
                 ""
               )}
               {data[3] ? (
-                <td className="text-xs font-semibold text-gray-800">
+                <td className="text-xs font-medium text-zinc-200">
                   {data[3].fiscal_date}
                 </td>
               ) : (

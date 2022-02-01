@@ -52,10 +52,9 @@ const News = ({ isLoading, setNews }) => {
 
   return (
     <div className="mt-8 mb-12">
-      <div className="rounded-md shadow-lg shadow-gray-400/50 overflow-hidden">
-        <p className="items-center flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 sticky top-0">
-          <Image src={newsImage} height={20} width={20} />
-          <span className="ml-3">Latest News</span>
+      <div>
+        <p className="text-lg font-medium text-zinc-200">
+          Latest News
         </p>
         {data
           ? data.data.map((element, index) => {
@@ -64,7 +63,7 @@ const News = ({ isLoading, setNews }) => {
                   href={element.news_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center cursor-pointer mb-2 rounded-md p-2 hover:bg-zinc-800 transition-all duration-300"
+                  className="flex items-center cursor-pointer mb-1 rounded-md min-h-[160px] p-2 hover:bg-zinc-800 transition-all duration-300"
                   key={index}
                 >
                   <div className="rounded-md max-h-[128px] max-w-[217px] min-w-[217px] overflow-hidden">
@@ -81,7 +80,6 @@ const News = ({ isLoading, setNews }) => {
                     <p className="text-zinc-100 font-medium line-clamp-2 text-lg">
                       {element.title}
                     </p>
-
                     <div className="flex my-2 items-center">
                       <p
                         className={`text-xs font-medium w-fit px-1 py-0.5 rounded-md bg-gradient-to-br mr-4 ${

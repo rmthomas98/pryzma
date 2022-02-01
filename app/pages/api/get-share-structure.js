@@ -16,11 +16,15 @@ const handler = async (req, res) => {
     const backupResponse = await axios.get(
       `https://cloud.iexapis.com/stable/stock/${symbol}/stats?token=${process.env.IEX_CLOUD_API_KEY}`
     );
-    return res.status(200).json({
-      marketCap: backupResponse.data.marketcap,
-      sharesOutstanding: backupResponse.data.sharesOutstanding,
-      message: "iex",
-    });
+    if (backupResponse.data.length) {
+
+      return res.status(200).json({
+        marketCap: backupResponse.data.marketcap,
+        sharesOutstanding: backupResponse.data.sharesOutstanding,
+        message: "iex",
+      });
+    }
+    return res.status(200).json('data not available')
   } else {
     // if twelve data api responds with stat data
     // we send the information back to front end

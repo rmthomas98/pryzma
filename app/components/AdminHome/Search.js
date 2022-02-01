@@ -99,22 +99,24 @@ const Search = () => {
     if (router.pathname.endsWith('/admin') || router.pathname.endsWith('/manage-account')) return router.push('/admin/overview')
   }
 
+  if (router.pathname.endsWith('/manage-account')) return <div></div>
+
   return (
     <div className=' w-1/2 max-w-lg relative'>
     <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-lg relative' ref={ref}>
-    <input {...register('input', {onChange: (e) => setText(e.target.value)})} autoComplete='off' type="text" placeholder="Search Symbol or Company Name..." className="bg-gray-700 text-sm p-2 w-full transition-all border-gray-700 border-2 font-medium text-gray-300 focus:border-indigo-400 duration-300 rounded-md outline-none pr-10"/>
-    <button type='submit'>{isSubmitting ? <div className="absolute right-4 bottom-2.5 z-10"><ButtonSpinner /></div> : <MagnifyGlass className='text-gray-400 absolute right-4 bottom-2.5 z-10 text-xl hover:text-indigo-400 transition-all'/>}</button>
+    <input {...register('input', {onChange: (e) => setText(e.target.value)})} autoComplete='off' type="text" placeholder="Search Symbol or Company Name..." className="bg-zinc-800 text-sm p-2 w-full transition-all placeholder:text-zinc-500 border-zinc-800 border-2 font-medium text-zinc-300 focus:border-violet-500 duration-300 rounded-md outline-none pr-10"/>
+    <button type='submit'>{isSubmitting ? <div className="absolute right-4 bottom-2.5 z-10"><ButtonSpinner /></div> : <MagnifyGlass className='text-gray-400 absolute right-4 bottom-2.5 z-10 text-xl hover:text-violet-500 transition-all'/>}</button>
     </form>
     {results || text ?  
-    <div className='absolute w-full bg-gray-700 rounded-md mt-1 shadow-lg shadow-gray-700/50 overflow-hidden opacity-0 translate-y-2 animate-fadeInUpFast'>
+    <div className='absolute w-full bg-zinc-800 shadow-md shadow-black/50 rounded-md mt-1 overflow-hidden opacity-0 translate-y-2 animate-fadeInUpFast'>
       {results?.length ? results.map((element, index) => {
         if (element.exchange === 'OTCM') return 
         if (element.type !== 'cs' && element.type !== 'ad' || element.symbol.includes('-')) return 
           return (
-            <button onClick={handleResultClick} key={index} value={[element.symbol, element.name]} className='w-full flex p-2 items-center hover:bg-gray-800 transition duration-200 cursor-pointer'>
-              <p className='text-sm text-gray-100 font-medium pointer-events-none'>{element.symbol}</p>
-              <Dash className='text-gray-300 pointer-events-none'/>
-              <p className='text-gray-300 text-sm pointer-events-none'>{element.securityName}</p>
+            <button onClick={handleResultClick} key={index} value={[element.symbol, element.name]} className='w-full hover:bg-zinc-700 flex p-2 items-center transition duration-200 cursor-pointer'>
+              <p className='text-sm text-zinc-200 font-medium pointer-events-none'>{element.symbol}</p>
+              <Dash className='text-zinc-400 pointer-events-none'/>
+              <p className='text-zinc-400 text-sm pointer-events-none'>{element.securityName}</p>
             </button>
           )
       }) :  <div className='p-6 flex justify-center items-center'><ButtonSpinner /></div>}

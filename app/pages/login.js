@@ -114,10 +114,10 @@ const Login = () => {
           <button
             type="submit"
             disabled={isSubmitting ? true : false}
-            className={`mt-8 rounded-md h-[40px] flex items-center justify-center w-full font-medium text-sm text-white trasnition-all duration-300 ${
+            className={`mt-8 rounded-md h-[40px] flex items-center justify-center w-full font-medium text-sm text-violet-500 trasnition-all duration-300 ${
               isSubmitting
-                ? "bg-violet-400/75 hover:bg-violet-400/75"
-                : "bg-violet-600 hover:bg-violet-800"
+                ? "bg-zinc-400 hover:bg-zinc-400"
+                : "bg-zinc-200 hover:bg-white"
             }`}
           >
             {isSubmitting ? <ButtonSpinner /> : "Login"}

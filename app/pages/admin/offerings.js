@@ -47,46 +47,46 @@ const Offerings = ({ user }) => {
   return (
     <div className="p-4">
       <div className="max-w-7xl mx-auto">
-        <p className="font-bold text-gray-900 text-2xl mb-2">
+        <p className="font-medium text-zinc-200 text-2xl mb-2">
           Offerings & Shelf Registrations
         </p>
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-300">
-              <td className="font-semibold text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-200 text-xs p-2">
                 Form Type
               </td>
-              <td className="font-semibold text-gray-800 text-xs">Date</td>
-              <td className="font-semibold text-gray-800 text-xs">
+              <td className="font-medium text-zinc-200 text-xs">Date</td>
+              <td className="font-medium text-zinc-200 text-xs">
                 Description
               </td>
-              <td className="font-semibold text-gray-800 text-xs">Link</td>
+              <td className="font-medium text-zinc-200 text-xs">Link</td>
             </tr>
           </thead>
           <tbody>
             {data &&
               data.map((element, index) => {
                 return (
-                  <tr className="border-b border-gray-300" key={index}>
-                    <td className="font-medium text-gray-800 text-xs p-2">
+                  <tr className="border-b border-zinc-800" key={index}>
+                    <td className="font-medium text-zinc-400 text-xs p-2">
                       {element.formType}
                     </td>
-                    <td className="font-medium text-gray-800 text-xs">
-                      {format(new Date(element.date), "MMMM dd, yyyy")}
-                    </td>
-                    <td className="font-medium text-gray-800 text-xs">
+                    <td className="font-medium text-zinc-400 text-xs">
                       {element.formType.charAt(0) === "S"
-                        ? "Shelf Registration"
+                        ? element.formType.includes('A') ? 'Amended Shelf Registration' : 'Shelf Registration'
                         : "Prospectus Supplement"}
+                    </td>
+                    <td className="font-medium text-zinc-400 text-xs">
+                      {format(new Date(element.date), "MMMM dd, yyyy")}
                     </td>
                     <td>
                       <a
                         href={element.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs font-medium text-gray-800 flex items-center hover:underline"
+                        className="text-xs font-medium text-zinc-400 flex items-center hover:underline"
                       >
-                        <Link45deg className="mr-2" />
+                        <Link45deg className="mr-2 text-violet-500" />
                         View File
                       </a>
                     </td>
