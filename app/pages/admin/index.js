@@ -24,7 +24,7 @@ const AdminHome = ({ user, watchlist, news }) => {
   return (
     <div className="p-4">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between border-b border-zinc-700 pb-4">
+        <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
           <p className="font-semibold text-2xl text-zinc-200">
             Welcome, {user.user.firstName}
           </p>
@@ -106,7 +106,9 @@ export const getServerSideProps = withIronSession(
         }`
       );
       news = await axios.get(
-        `https://stocknewsapi.com/api/v1?tickers=${user.user.watchlist.join(',')}&items=50&token=${process.env.STOCK_NEWS_API_KEY}`
+        `https://stocknewsapi.com/api/v1?tickers=${user.user.watchlist.join(
+          ","
+        )}&items=50&token=${process.env.STOCK_NEWS_API_KEY}`
       );
     }
     // parse user to pass as props

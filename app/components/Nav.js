@@ -39,15 +39,15 @@ const Nav = () => {
           : ""
       } ${
         router.pathname.startsWith("/admin")
-          ? "bg-zinc-900 sticky top-0 z-10"
+          ? "bg-zinc-900 sticky mx-auto max-w-7xl top-0 z-10"
           : ""
       }`}
     >
       <div
-        className={`w-full flex justify-between items-center mx-auto pl-4 pr-4 relative ${
+        className={`w-full flex justify-between items-center mx-auto relative ${
           router.pathname.startsWith("/admin")
-            ? "pb-2 pt-2 pl-2 pr-2"
-            : "pb-6 pt-6 max-w-7xl"
+            ? "py-2"
+            : "pb-6 pt-6 px-4 max-w-7xl"
         }`}
       >
         {!router.pathname.startsWith("/admin") && (

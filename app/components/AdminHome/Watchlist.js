@@ -158,14 +158,14 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
       }
     });
     // we sent the symbol
-    setSortSymbol(searchSymbol);
+    setSymbol(searchSymbol);
     // then we redirect them to the overview page
     router.push("/admin/overview");
   };
 
   return (
     <div className="mt-6">
-      <p className="p-2 pl-0 text-zinc-200 font-semibold text-xl flex items-center">
+      <p className="p-2 pl-0 text-zinc-200 font-semibold text-xl">
         My Watchlist
       </p>
       <div className="rounded-md bg-zinc-800 overflow-hidden">

@@ -42,99 +42,101 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
 
   return (
     <div className="w-full mr-8">
-      {/* <p className="p-4 pl-0 text-gray-800 font-semibold text-xl flex items-center">
+      {/* <p className="p-4 pl-0 text-zinc-400 font-medium text-xl flex items-center">
         <Image src={profile} height={30} width={30} />
         <span className="ml-4">Company Profile</span>
       </p> */}
-      <div className="rounded-md shadow-lg shadow-gray-400/50 bg-gray-100 max-h-[364px] h-screen overflow-auto scrollbar-hide">
-        <p className="items-center flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 sticky top-0">
-          <Image src={profile} height={20} width={20} />
-          <span className="ml-3">Company Profile</span>
+      <div className="rounded-mdoverflow-auto scrollbar-hide">
+        <p className="items-center flex p-2 pl-0 text-lg font-medium text-zinc-200 border-b border-zinc-800">
+          <span>Company Profile</span>
         </p>
-        <div className="flex bg-gray-300 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24">Symbol</p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.symbol ? data.symbol : "-"}
-          </p>
+        <div className="flex">
+          <div className="mr-12">
+            <div className="flex py-2 items-center border-b border-zinc-800 justify-between">
+              <p className="font-medium text-zinc-200 text-xs">Symbol</p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.symbol ? data.symbol : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center border-b border-zinc-800 justify-between">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Exchange
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate justify-between">
+                {data.exchange ? data.exchange : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Company
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.companyName ? data.companyName : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Industry
+              </p>
+              <p className="text-xs text-zinc-400 truncate">
+                {data.industry ? data.industry : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Sector
+              </p>
+              <p className="text-xs text-zinc-400 truncate">
+                {data.sector ? data.sector : "-"}
+              </p>
+            </div>
+          </div>
+          <div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Website
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.website ? data.website : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Employees
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.employees ? data.employees.toLocaleString("en-us") : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Country
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.country ? data.country : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                City
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.city ? data.city : "-"}
+              </p>
+            </div>
+            <div className="flex py-2 items-center justify-between border-b border-zinc-800">
+              <p className="font-medium text-zinc-200 text-xs min-w-[96px]">
+                Address
+              </p>
+              <p className="text-xs font-medium text-zinc-400 truncate">
+                {data.address ? data.address : "-"}
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Exchange
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.exchange ? data.exchange : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-300 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Company
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.companyName ? data.companyName : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Industry
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.industry ? data.industry : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-300 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Sector
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.sector ? data.sector : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Website
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.website ? data.website : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-300 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Employees
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.employees ? data.employees.toLocaleString("en-us") : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Country
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.country ? data.country : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-300 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            City
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.city ? data.city : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-100 p-3 pl-4 items-center">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Address
-          </p>
-          <p className="text-xs font-semibold text-gray-800 truncate">
-            {data.address ? data.address : "-"}
-          </p>
-        </div>
-        <div className="flex bg-gray-300 p-3 pl-4">
-          <p className="font-bold text-gray-900 text-xs w-24 min-w-[96px]">
-            Description
-          </p>
-          <p className="text-xs font-semibold text-gray-800 leading-5">
-            {data.description ? data.description : "-"}
+        <div className="flex py-2 mt-4">
+          <p className="text-xs text-zinc-400 leading-5">
+            {data.description ? data.description : ""}
           </p>
         </div>
       </div>
@@ -148,18 +150,18 @@ export default CompanyProfile;
   /* <div className="flex p-4">
     <div className="w-full">
       <div></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900 mr-2">Symbol</p><p>{data.symbol}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900 mr-2">Exchange</p><p>{data.exchange}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900 mr-2">Company Name</p><p>{data.companyName}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900 mr-2">Industry</p><p>{data.industry}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900 mr-2">Sector</p><p>{data.sector}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200 mr-2">Symbol</p><p>{data.symbol}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200 mr-2">Exchange</p><p>{data.exchange}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200 mr-2">Company Name</p><p>{data.companyName}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200 mr-2">Industry</p><p>{data.industry}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200 mr-2">Sector</p><p>{data.sector}</p></div>
     </div>
     <div className="w-full">
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900">Website</p><a href={`https://${data.website}`} target="_blank" rel="noreferrer">{data.website}</a></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900">Employees</p><p>{data.employees}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900">Address</p><p>{data.address}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900">City</p><p>{data.city}</p></div>
-      <div className="w-fit flex text-sm"><p className="font-semibold text-gray-900">Country</p><p>{data.country}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200">Website</p><a href={`https://${data.website}`} target="_blank" rel="noreferrer">{data.website}</a></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200">Employees</p><p>{data.employees}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200">Address</p><p>{data.address}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200">City</p><p>{data.city}</p></div>
+      <div className="w-fit flex text-sm"><p className="font-medium text-zinc-200">Country</p><p>{data.country}</p></div>
     </div>
     </div> */
 }
