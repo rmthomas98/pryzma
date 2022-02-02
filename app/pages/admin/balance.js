@@ -71,13 +71,17 @@ const Balance = ({ user }) => {
     <div className="p-4 mb-12">
       <div className="mx-auto max-w-7xl">
         <div className="flex justify-between items-center">
-          <p className="font-medium text-zinc-200 text-2xl mb-2">Balance Sheet</p>
+          <p className="font-medium text-zinc-200 text-2xl mb-2">
+            Balance Sheet
+          </p>
           <div className="flex">
             <button
               onClick={handleSwitchPeriod}
               value="quarterly"
               className={`rounded-md text-xs font-medium px-2 py-1 mr-2 hover:text-violet-500 ${
-                period === "quarterly" ? "bg-white text-violet-500" : "bg-zinc-800 text-zinc-200"
+                period === "quarterly"
+                  ? "bg-white text-violet-500"
+                  : "bg-zinc-800 text-zinc-200"
               } transition-all`}
             >
               Quarterly
@@ -86,7 +90,9 @@ const Balance = ({ user }) => {
               onClick={handleSwitchPeriod}
               value="annual"
               className={`rounded-md text-xs font-medium hover:text-violet-500 px-2 py-1 ${
-                period === "annual" ? "bg-white text-violet-500" : "bg-zinc-800 text-zinc-200"
+                period === "annual"
+                  ? "bg-white text-violet-500"
+                  : "bg-zinc-800 text-zinc-200"
               } transition-all`}
             >
               Annual
@@ -95,7 +101,7 @@ const Balance = ({ user }) => {
         </div>
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               <td className="text-xs font-medium text-zinc-200 p-2">
                 Break Down
               </td>
@@ -126,33 +132,33 @@ const Balance = ({ user }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs bg-gray-100">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-200 p-2 text-xs">
                 Total Current Assets
               </td>
               {data[0] && (
-                <td className="bg-gray-100 font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.total_current_assets
                     ? data[0].assets.current_assets.total_current_assets
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="bg-gray-100 font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.total_current_assets
                     ? data[1].assets.current_assets.total_current_assets
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="bg-gray-100 font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.total_current_assets
                     ? data[2].assets.current_assets.total_current_assets
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="bg-gray-100 font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.total_current_assets
                     ? data[3].assets.current_assets.total_current_assets
                     : "-"}
