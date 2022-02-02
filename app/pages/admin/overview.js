@@ -26,9 +26,8 @@ const Overview = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    if (quote && companyProfile && stats && financials && news)
-      setIsLoading(false);
+    if (!quote || !companyProfile || !stats || financials || !news) setIsLoading(true)
+    if (quote && companyProfile && stats && financials && news) setIsLoading(false);
   }, [quote, companyProfile, stats, symbol, financials, news]);
 
   if (!symbol) return <p>Search a stock above to see an overview on it.</p>;

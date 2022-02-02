@@ -4,6 +4,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext";
 import SymbolContext from "../SymbolContext";
+import millify from "millify";
 
 const Balance = ({ user }) => {
   const { symbol } = useContext(SymbolContext);
@@ -133,1414 +134,1414 @@ const Balance = ({ user }) => {
           </thead>
           <tbody>
             <tr className="border-b border-zinc-800">
-              <td className="font-medium text-zinc-200 p-2 text-xs">
+              <td className="font-medium text-violet-500 p-2 text-xs">
                 Total Current Assets
               </td>
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.total_current_assets
-                    ? data[0].assets.current_assets.total_current_assets
+                    ? millify(data[0].assets.current_assets.total_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.total_current_assets
-                    ? data[1].assets.current_assets.total_current_assets
+                    ? millify(data[1].assets.current_assets.total_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.total_current_assets
-                    ? data[2].assets.current_assets.total_current_assets
+                    ? millify(data[2].assets.current_assets.total_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.total_current_assets
-                    ? data[3].assets.current_assets.total_current_assets
+                    ? millify(data[3].assets.current_assets.total_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">Cash</td>
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">Cash</td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.cash
-                    ? data[0].assets.current_assets.cash
+                    ? millify(data[0].assets.current_assets.cash, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.cash
-                    ? data[1].assets.current_assets.cash
+                    ? millify(data[1].assets.current_assets.cash, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.cash
-                    ? data[2].assets.current_assets.cash
+                    ? millify(data[2].assets.current_assets.cash, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.cash
-                    ? data[3].assets.current_assets.cash
+                    ? millify(data[3].assets.current_assets.cash, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Cash Equivalents
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.cash_equivalents
-                    ? data[0].assets.current_assets.cash_equivalents
+                    ? millify(data[0].assets.current_assets.cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.cash_equivalents
-                    ? data[1].assets.current_assets.cash_equivalents
+                    ? millify(data[1].assets.current_assets.cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.cash_equivalents
-                    ? data[2].assets.current_assets.cash_equivalents
+                    ? millify(data[2].assets.current_assets.cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.cash_equivalents
-                    ? data[3].assets.current_assets.cash_equivalents
+                    ? millify(data[3].assets.current_assets.cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Cash & Cash Equivalents
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.cash_and_cash_equivalents
-                    ? data[0].assets.current_assets.cash_and_cash_equivalents
+                    ? millify(data[0].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.cash_and_cash_equivalents
-                    ? data[1].assets.current_assets.cash_and_cash_equivalents
+                    ? millify(data[1].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.cash_and_cash_equivalents
-                    ? data[2].assets.current_assets.cash_and_cash_equivalents
+                    ? millify(data[2].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.cash_and_cash_equivalents
-                    ? data[3].assets.current_assets.cash_and_cash_equivalents
+                    ? millify(data[3].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Short Term Investments
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.other_short_term_investments
-                    ? data[0].assets.current_assets.other_short_term_investments
+                    ? millify(data[0].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.other_short_term_investments
-                    ? data[1].assets.current_assets.other_short_term_investments
+                    ? millify(data[1].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.other_short_term_investments
-                    ? data[2].assets.current_assets.other_short_term_investments
+                    ? millify(data[2].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.other_short_term_investments
-                    ? data[3].assets.current_assets.other_short_term_investments
+                    ? millify(data[3].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Accounts Receivable
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.accounts_receivable
-                    ? data[0].assets.current_assets.accounts_receivable
+                    ? millify(data[0].assets.current_assets.accounts_receivable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.accounts_receivable
-                    ? data[1].assets.current_assets.accounts_receivable
+                    ? millify(data[1].assets.current_assets.accounts_receivable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.accounts_receivable
-                    ? data[2].assets.current_assets.accounts_receivable
+                    ? millify(data[2].assets.current_assets.accounts_receivable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.accounts_receivable
-                    ? data[3].assets.current_assets.accounts_receivable
+                    ? millify(data[3].assets.current_assets.accounts_receivable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Other Receivables
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.other_receivables
-                    ? data[0].assets.current_assets.other_receivables
+                    ? millify(data[0].assets.current_assets.other_receivables, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.other_receivables
-                    ? data[1].assets.current_assets.other_receivables
+                    ? millify(data[1].assets.current_assets.other_receivables, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.other_receivables
-                    ? data[2].assets.current_assets.other_receivables
+                    ? millify(data[2].assets.current_assets.other_receivables, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.other_receivables
-                    ? data[3].assets.current_assets.other_receivables
+                    ? millify(data[3].assets.current_assets.other_receivables, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Inventory
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.inventory
-                    ? data[0].assets.current_assets.inventory
+                    ? millify(data[0].assets.current_assets.inventory, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.inventory
-                    ? data[1].assets.current_assets.inventory
+                    ? millify(data[1].assets.current_assets.inventory, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.inventory
-                    ? data[2].assets.current_assets.inventory
+                    ? millify(data[2].assets.current_assets.inventory, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.inventory
-                    ? data[3].assets.current_assets.inventory
+                    ? millify(data[3].assets.current_assets.inventory, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Prepaid Assets
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.prepaid_assets
-                    ? data[0].assets.prepaid_assets
+                    ? millify(data[0].assets.current_assets.prepaid_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.prepaid_assets
-                    ? data[1].assets.prepaid_assets
+                    ? millify(data[1].assets.current_assets.prepaid_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.prepaid_assets
-                    ? data[2].assets.prepaid_assets
+                    ? millify(data[2].assets.current_assets.prepaid_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.prepaid_assets
-                    ? data[3].assets.prepaid_assets
+                    ? millify(data[3].assets.current_assets.prepaid_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 text-xs p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 text-xs p-2">
                 Other Current Assets
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.other_current_assets
-                    ? data[0].assets.current_assets.other_current_assets
+                    ? millify(data[0].assets.current_assets.other_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.other_current_assets
-                    ? data[1].assets.current_assets.other_current_assets
+                    ? millify(data[1].assets.current_assets.other_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.other_current_assets
-                    ? data[2].assets.current_assets.other_current_assets
+                    ? millify(data[2].assets.current_assets.other_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.other_current_assets
-                    ? data[3].assets.current_assets.other_current_assets
+                    ? millify(data[3].assets.current_assets.other_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300 bg-gray-100">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-violet-500 p-2 text-xs">
                 Total Non Current Assets
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.total_non_current_assets
-                    ? data[0].assets.non_current_assets.total_non_current_assets
+                    ? millify(data[0].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.total_non_current_assets
-                    ? data[1].assets.non_current_assets.total_non_current_assets
+                    ? millify(data[1].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.total_non_current_assets
-                    ? data[2].assets.non_current_assets.total_non_current_assets
+                    ? millify(data[2].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.total_non_current_assets
-                    ? data[3].assets.non_current_assets.total_non_current_assets
+                    ? millify(data[3].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Properties
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.properties
-                    ? data[0].assets.non_current_assets.properties
+                    ? millify(data[0].assets.non_current_assets.properties, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.properties
-                    ? data[1].assets.non_current_assets.properties
+                    ? millify(data[1].assets.non_current_assets.properties, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.properties
-                    ? data[2].assets.non_current_assets.properties
+                    ? millify(data[2].assets.non_current_assets.properties, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.properties
-                    ? data[3].assets.non_current_assets.properties
+                    ? millify(data[3].assets.non_current_assets.properties, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Land & Improvements
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.land_and_improvements
-                    ? data[0].assets.non_current_assets.land_and_improvements
+                    ? millify(data[0].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.land_and_improvements
-                    ? data[1].assets.non_current_assets.land_and_improvements
+                    ? millify(data[1].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.land_and_improvements
-                    ? data[2].assets.non_current_assets.land_and_improvements
+                    ? millify(data[2].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.land_and_improvements
-                    ? data[3].assets.non_current_assets.land_and_improvements
+                    ? millify(data[3].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Machinery Equipment
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? data[0].assets.non_current_assets
-                        .machinery_furniture_equipment
+                    ? millify(data[0].assets.non_current_assets
+                        .machinery_furniture_equipment, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? data[1].assets.non_current_assets
-                        .machinery_furniture_equipment
+                    ? millify(data[1].assets.non_current_assets
+                        .machinery_furniture_equipment, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? data[2].assets.non_current_assets
-                        .machinery_furniture_equipment
+                    ? millify(data[2].assets.non_current_assets
+                        .machinery_furniture_equipment, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? data[3].assets.non_current_assets
-                        .machinery_furniture_equipment
+                    ? millify(data[3].assets.non_current_assets
+                        .machinery_furniture_equipment, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">Leases</td>
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">Leases</td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.leases
-                    ? data[0].assets.non_current_assets.leases
+                    ? millify(data[0].assets.non_current_assets.leases, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.leases
-                    ? data[1].assets.non_current_assets.leases
+                    ? millify(data[1].assets.non_current_assets.leases, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.leases
-                    ? data[2].assets.non_current_assets.leases
+                    ? millify(data[2].assets.non_current_assets.leases, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.leases
-                    ? data[3].assets.non_current_assets.leases
+                    ? millify(data[3].assets.non_current_assets.leases, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Accumulated Depreciation
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.accumulated_depreciation
-                    ? data[0].assets.non_current_assets.accumulated_depreciation
+                    ? millify(data[0].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.accumulated_depreciation
-                    ? data[1].assets.non_current_assets.accumulated_depreciation
+                    ? millify(data[1].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.accumulated_depreciation
-                    ? data[2].assets.non_current_assets.accumulated_depreciation
+                    ? millify(data[2].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.accumulated_depreciation
-                    ? data[3].assets.non_current_assets.accumulated_depreciation
+                    ? millify(data[3].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Intangible Assets
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.intangible_assets
-                    ? data[0].assets.non_current_assets.intangible_assets
+                    ? millify(data[0].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.intangible_assets
-                    ? data[1].assets.non_current_assets.intangible_assets
+                    ? millify(data[1].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.intangible_assets
-                    ? data[2].assets.non_current_assets.intangible_assets
+                    ? millify(data[2].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.intangible_assets
-                    ? data[3].assets.non_current_assets.intangible_assets
+                    ? millify(data[3].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Investments & Advances
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.investments_and_advances
-                    ? data[0].assets.non_current_assets.investments_and_advances
+                    ? millify(data[0].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.investments_and_advances
-                    ? data[1].assets.non_current_assets.investments_and_advances
+                    ? millify(data[1].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.investments_and_advances
-                    ? data[2].assets.non_current_assets.investments_and_advances
+                    ? millify(data[2].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.investments_and_advances
-                    ? data[3].assets.non_current_assets.investments_and_advances
+                    ? millify(data[3].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Other Non Current Assets
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.other_non_current_assets
-                    ? data[0].assets.non_current_assets.other_non_current_assets
+                    ? millify(data[0].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.other_non_current_assets
-                    ? data[1].assets.non_current_assets.other_non_current_assets
+                    ? millify(data[1].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.other_non_current_assets
-                    ? data[2].assets.non_current_assets.other_non_current_assets
+                    ? millify(data[2].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.other_non_current_assets
-                    ? data[3].assets.non_current_assets.other_non_current_assets
+                    ? millify(data[3].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300 bg-gray-200">
-              <td className="font-semibold text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800 bg-zinc-800">
+              <td className="font-medium text-white p-2 text-xs">
                 Total Assets
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[0].assets.total_assets
-                    ? data[0].assets.total_assets
+                    ? millify(data[0].assets.total_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[1].assets.total_assets
-                    ? data[1].assets.total_assets
+                    ? millify(data[1].assets.total_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[2].assets.total_assets
-                    ? data[2].assets.total_assets
+                    ? millify(data[2].assets.total_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[3].assets.total_assets
-                    ? data[3].assets.total_assets
+                    ? millify(data[3].assets.total_assets, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300 bg-gray-100">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-violet-500 p-2 text-xs">
                 Total Current Liabilities
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? data[0].liabilities.current_liabilities
-                        .total_current_liabilities
+                    ? millify(data[0].liabilities.current_liabilities
+                        .total_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? data[1].liabilities.current_liabilities
-                        .total_current_liabilities
+                    ? millify(data[1].liabilities.current_liabilities
+                        .total_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? data[2].liabilities.current_liabilities
-                        .total_current_liabilities
+                    ? millify(data[2].liabilities.current_liabilities
+                        .total_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? data[3].liabilities.current_liabilities
-                        .total_current_liabilities
+                    ? millify(data[3].liabilities.current_liabilities
+                        .total_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Accounts Payable
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.accounts_payable
-                    ? data[0].liabilities.current_liabilities.accounts_payable
+                    ? millify(data[0].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.accounts_payable
-                    ? data[1].liabilities.current_liabilities.accounts_payable
+                    ? millify(data[1].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.accounts_payable
-                    ? data[2].liabilities.current_liabilities.accounts_payable
+                    ? millify(data[2].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.accounts_payable
-                    ? data[3].liabilities.current_liabilities.accounts_payable
+                    ? millify(data[3].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Accrued Expenses
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.accrued_expenses
-                    ? data[0].liabilities.current_liabilities.accrues_expenses
+                    ? millify(data[0].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.accrued_expenses
-                    ? data[1].liabilities.current_liabilities.accrues_expenses
+                    ? millify(data[1].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.accrued_expenses
-                    ? data[2].liabilities.current_liabilities.accrues_expenses
+                    ? millify(data[2].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.accrued_expenses
-                    ? data[3].liabilities.current_liabilities.accrues_expenses
+                    ? millify(data[3].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Short Term Debt
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.short_term_debt
-                    ? data[0].liabilities.current_liabilities.short_term_debt
+                    ? millify(data[0].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.short_term_debt
-                    ? data[1].liabilities.current_liabilities.short_term_debt
+                    ? millify(data[1].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.short_term_debt
-                    ? data[2].liabilities.current_liabilities.short_term_debt
+                    ? millify(data[2].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.short_term_debt
-                    ? data[3].liabilities.current_liabilities.short_term_debt
+                    ? millify(data[3].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Deferred Revenue
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.deferred_revenue
-                    ? data[0].liabilities.current_liabilities.deferred_revenue
+                    ? millify(data[0].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.deferred_revenue
-                    ? data[1].liabilities.current_liabilities.deferred_revenue
+                    ? millify(data[1].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.deferred_revenue
-                    ? data[2].liabilities.current_liabilities.deferred_revenue
+                    ? millify(data[2].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.deferred_revenue
-                    ? data[3].liabilities.current_liabilities.deferred_revenue
+                    ? millify(data[3].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Other Current Liabilities
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? data[0].liabilities.current_liabilities
-                        .other_current_liabilities
+                    ? millify(data[0].liabilities.current_liabilities
+                        .other_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? data[1].liabilities.current_liabilities
-                        .other_current_liabilities
+                    ? millify(data[1].liabilities.current_liabilities
+                        .other_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? data[2].liabilities.current_liabilities
-                        .other_current_liabilities
+                    ? millify(data[2].liabilities.current_liabilities
+                        .other_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? data[3].liabilities.current_liabilities
-                        .other_current_liabilities
+                    ? millify(data[3].liabilities.current_liabilities
+                        .other_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Tax Payable
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.tax_payable
-                    ? data[0].liabilities.current_liabilities.tax_payable
+                    ? millify(data[0].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.tax_payable
-                    ? data[1].liabilities.current_liabilities.tax_payable
+                    ? millify(data[1].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.tax_payable
-                    ? data[2].liabilities.current_liabilities.tax_payable
+                    ? millify(data[2].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.tax_payable
-                    ? data[3].liabilities.current_liabilities.tax_payable
+                    ? millify(data[3].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300 bg-gray-100">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-violet-500 p-2 text-xs">
                 Total Non Current Liabilities
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? data[0].liabilities.non_current_liabilities
-                        .total_non_current_liabilities
+                    ? millify(data[0].liabilities.non_current_liabilities
+                        .total_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? data[1].liabilities.non_current_liabilities
-                        .total_non_current_liabilities
+                    ? millify(data[1].liabilities.non_current_liabilities
+                        .total_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? data[2].liabilities.non_current_liabilities
-                        .total_non_current_liabilities
+                    ? millify(data[2].liabilities.non_current_liabilities
+                        .total_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? data[3].liabilities.non_current_liabilities
-                        .total_non_current_liabilities
+                    ? millify(data[3].liabilities.non_current_liabilities
+                        .total_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Long Term Debt
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities.long_term_debt
-                    ? data[0].liabilities.non_current_liabilities.long_term_debt
+                    ? millify(data[0].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities.long_term_debt
-                    ? data[1].liabilities.non_current_liabilities.long_term_debt
+                    ? millify(data[1].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities.long_term_debt
-                    ? data[2].liabilities.non_current_liabilities.long_term_debt
+                    ? millify(data[2].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities.long_term_debt
-                    ? data[3].liabilities.non_current_liabilities.long_term_debt
+                    ? millify(data[3].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Provision for Risks & Charges
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? data[0].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges
+                    ? millify(data[0].liabilities.non_current_liabilities
+                        .provision_for_risks_and_charges, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? data[1].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges
+                    ? millify(data[1].liabilities.non_current_liabilities
+                        .provision_for_risks_and_charges, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? data[2].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges
+                    ? millify(data[2].liabilities.non_current_liabilities
+                        .provision_for_risks_and_charges, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? data[3].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges
+                    ? millify(data[3].liabilities.non_current_liabilities
+                        .provision_for_risks_and_charges, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Deferred Liabilities
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? data[0].liabilities.non_current_liabilities
-                        .deferred_liabilities
+                    ? millify(data[0].liabilities.non_current_liabilities
+                        .deferred_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? data[1].liabilities.non_current_liabilities
-                        .deferred_liabilities
+                    ? millify(data[1].liabilities.non_current_liabilities
+                        .deferred_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? data[2].liabilities.non_current_liabilities
-                        .deferred_liabilities
+                    ? millify(data[2].liabilities.non_current_liabilities
+                        .deferred_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? data[3].liabilities.non_current_liabilities
-                        .deferred_liabilities
+                    ? millify(data[3].liabilities.non_current_liabilities
+                        .deferred_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Other Non Current Liabilities
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? data[0].liabilities.non_current_liabilities
-                        .other_non_current_liabilities
+                    ? millify(data[0].liabilities.non_current_liabilities
+                        .other_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? data[1].liabilities.non_current_liabilities
-                        .other_non_current_liabilities
+                    ? millify(data[1].liabilities.non_current_liabilities
+                        .other_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? data[2].liabilities.non_current_liabilities
-                        .other_non_current_liabilities
+                    ? millify(data[2].liabilities.non_current_liabilities
+                        .other_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? data[3].liabilities.non_current_liabilities
-                        .other_non_current_liabilities
+                    ? millify(data[3].liabilities.non_current_liabilities
+                        .other_non_current_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Long Term Provisions
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? data[0].liabilities.non_current_liabilities
-                        .long_term_provisions
+                    ? millify(data[0].liabilities.non_current_liabilities
+                        .long_term_provisions, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? data[1].liabilities.non_current_liabilities
-                        .long_term_provisions
+                    ? millify(data[1].liabilities.non_current_liabilities
+                        .long_term_provisions, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? data[2].liabilities.non_current_liabilities
-                        .long_term_provisions
+                    ? millify(data[2].liabilities.non_current_liabilities
+                        .long_term_provisions, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? data[3].liabilities.non_current_liabilities
-                        .long_term_provisions
+                    ? millify(data[3].liabilities.non_current_liabilities
+                        .long_term_provisions, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300 bg-gray-200">
-              <td className="font-semibold text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800 bg-zinc-800">
+              <td className="font-medium text-white p-2 text-xs">
                 Total Liabilities
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[0].liabilities.total_liabilities
-                    ? data[0].liabilities.total_liabilities
+                    ? millify(data[0].liabilities.total_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[1].liabilities.total_liabilities
-                    ? data[1].liabilities.total_liabilities
+                    ? millify(data[1].liabilities.total_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[2].liabilities.total_liabilities
-                    ? data[2].liabilities.total_liabilities
+                    ? millify(data[2].liabilities.total_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-white text-xs">
                   {data[3].liabilities.total_liabilities
-                    ? data[3].liabilities.total_liabilities
+                    ? millify(data[3].liabilities.total_liabilities, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300 bg-gray-100">
-              <td className="font-medium text-gray-800 p-2 text-xs">
-                Total Shareholder Equity
-              </td>
-              {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
-                  {data[0].shareholders_equity.total_shareholders_equity
-                    ? data[0].shareholders_equity.total_shareholders_equity
-                    : "-"}
-                </td>
-              )}
-              {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
-                  {data[1].shareholders_equity.total_shareholders_equity
-                    ? data[1].shareholders_equity.total_shareholders_equity
-                    : "-"}
-                </td>
-              )}
-              {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
-                  {data[2].shareholders_equity.total_shareholders_equity
-                    ? data[2].shareholders_equity.total_shareholders_equity
-                    : "-"}
-                </td>
-              )}
-              {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
-                  {data[3].shareholders_equity.total_shareholders_equity
-                    ? data[3].shareholders_equity.total_shareholders_equity
-                    : "-"}
-                </td>
-              )}
-            </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Common Stock
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.common_stock
-                    ? data[0].shareholders_equity.common_stock
+                    ? millify(data[0].shareholders_equity.common_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.common_stock
-                    ? data[1].shareholders_equity.common_stock
+                    ? millify(data[1].shareholders_equity.common_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.common_stock
-                    ? data[2].shareholders_equity.common_stock
+                    ? millify(data[2].shareholders_equity.common_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.common_stock
-                    ? data[3].shareholders_equity.common_stock
+                    ? millify(data[3].shareholders_equity.common_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Retained Eearnings
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.retained_earnings
-                    ? data[0].shareholders_equity.retained_earnings
+                    ? millify(data[0].shareholders_equity.retained_earnings, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.retained_earnings
-                    ? data[1].shareholders_equity.retained_earnings
+                    ? millify(data[1].shareholders_equity.retained_earnings, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.retained_earnings
-                    ? data[2].shareholders_equity.retained_earnings
+                    ? millify(data[2].shareholders_equity.retained_earnings, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.retained_earnings
-                    ? data[3].shareholders_equity.retained_earnings
+                    ? millify(data[3].shareholders_equity.retained_earnings, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Other Shareholder Equity
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.other_shareholders_equity
-                    ? data[0].shareholders_equity.other_shareholders_equity
+                    ? millify(data[0].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.other_shareholders_equity
-                    ? data[1].shareholders_equity.other_shareholders_equity
+                    ? millify(data[1].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.other_shareholders_equity
-                    ? data[2].shareholders_equity.other_shareholders_equity
+                    ? millify(data[2].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.other_shareholders_equity
-                    ? data[3].shareholders_equity.other_shareholders_equity
+                    ? millify(data[3].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Additional Paid in Capital
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.additional_paid_in_capital
-                    ? data[0].shareholders_equity.additional_paid_in_capital
+                    ? millify(data[0].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.additional_paid_in_capital
-                    ? data[1].shareholders_equity.additional_paid_in_capital
+                    ? millify(data[1].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.additional_paid_in_capital
-                    ? data[2].shareholders_equity.additional_paid_in_capital
+                    ? millify(data[2].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.additional_paid_in_capital
-                    ? data[3].shareholders_equity.additional_paid_in_capital
+                    ? millify(data[3].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Treasury Stock
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.treasury_stock
-                    ? data[0].shareholders_equity.treasury_stock
+                    ? millify(data[0].shareholders_equity.treasury_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.treasury_stock
-                    ? data[1].shareholders_equity.treasury_stock
+                    ? millify(data[1].shareholders_equity.treasury_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.treasury_stock
-                    ? data[2].shareholders_equity.treasury_stock
+                    ? millify(data[2].shareholders_equity.treasury_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.treasury_stock
-                    ? data[3].shareholders_equity.treasury_stock
+                    ? millify(data[3].shareholders_equity.treasury_stock, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
-              <td className="font-medium text-gray-800 p-2 text-xs">
+            <tr className="border-b border-zinc-800">
+              <td className="font-medium text-zinc-400 p-2 text-xs">
                 Minority Interest
               </td>
               {data[0] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.minority_interest
-                    ? data[0].shareholders_equity.minority_interest
+                    ? millify(data[0].shareholders_equity.minority_interest, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.minority_interest
-                    ? data[1].shareholders_equity.minority_interest
+                    ? millify(data[1].shareholders_equity.minority_interest, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.minority_interest
-                    ? data[2].shareholders_equity.minority_interest
+                    ? millify(data[2].shareholders_equity.minority_interest, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="font-medium text-gray-800 text-xs">
+                <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.minority_interest
-                    ? data[3].shareholders_equity.minority_interest
+                    ? millify(data[3].shareholders_equity.minority_interest, {precision: 2, space: true})
+                    : "-"}
+                </td>
+              )}
+            </tr>
+            <tr className="border-b border-zinc-800 bg-zinc-800">
+              <td className="font-medium text-white p-2 text-xs">
+                Total Shareholder Equity
+              </td>
+              {data[0] && (
+                <td className="font-medium text-white text-xs">
+                  {data[0].shareholders_equity.total_shareholders_equity
+                    ? millify(data[0].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    : "-"}
+                </td>
+              )}
+              {data[1] && (
+                <td className="font-medium text-white text-xs">
+                  {data[1].shareholders_equity.total_shareholders_equity
+                    ? millify(data[1].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    : "-"}
+                </td>
+              )}
+              {data[2] && (
+                <td className="font-medium text-white text-xs">
+                  {data[2].shareholders_equity.total_shareholders_equity
+                    ? millify(data[2].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    : "-"}
+                </td>
+              )}
+              {data[3] && (
+                <td className="font-medium text-white text-xs">
+                  {data[3].shareholders_equity.total_shareholders_equity
+                    ? millify(data[3].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
                     : "-"}
                 </td>
               )}

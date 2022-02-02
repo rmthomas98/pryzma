@@ -164,7 +164,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
   };
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 animate-fadeIn opacity-0">
       <p className="p-2 pl-0 text-zinc-200 font-semibold text-xl">
         My Watchlist
       </p>
@@ -225,7 +225,6 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
               }`}
             />
           </p>
-          <span className="w-full max-w-[20px]"></span>
         </div>
         {watchListSymbols ? (
           watchListSymbols.map((element, index) => {
@@ -233,8 +232,10 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
             const { symbol, volume, change, changePercent, latestPrice } =
               element.quote;
             return (
+              <div className="relative">
               <div
-                className={`flex items-center p-2 pl-4 pr-4 cursor-pointer hover:bg-zinc-700 transition-[background-color] duration-300 ${
+              onClick={() => handleWatchlistClick(symbol)}
+                className={`flex items-center p-2 pl-4 pr-4 relative cursor-pointer hover:bg-zinc-700 transition-[background-color] duration-300 ${
                   index === watchListSymbols.length - 1
                     ? "border-b border-transparent"
                     : "border-b border-zinc-700"
@@ -242,13 +243,11 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                 key={symbol}
               >
                 <p
-                  onClick={() => handleWatchlistClick(symbol)}
                   className="w-full text-xs text-zinc-300 font-medium"
                 >
                   {symbol}
                 </p>
                 <p
-                  onClick={() => handleWatchlistClick(symbol)}
                   className="w-full text-xs text-zinc-300 font-medium"
                 >
                   <span className="mr-1">$</span>
@@ -258,7 +257,6 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                   })}
                 </p>
                 <p
-                  onClick={() => handleWatchlistClick(symbol)}
                   className={`w-full text-xs font-medium ${
                     Math.sign(change) === -1 ? "text-red-500" : "text-green-500"
                   }`}
@@ -269,7 +267,6 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                   })}
                 </p>
                 <p
-                  onClick={() => handleWatchlistClick(symbol)}
                   className={`w-full text-xs font-medium ${
                     Math.sign(changePercent) === -1
                       ? "text-red-500"
@@ -279,17 +276,17 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                   {changePercent.toFixed(2)}%
                 </p>
                 <p
-                  onClick={() => handleWatchlistClick(symbol)}
                   className="w-full text-xs text-zinc-300 font-medium"
                 >
                   {millify(volume, { space: true, precision: 2 })}
                 </p>
-                <button
+              </div>
+              <button
                   value={index}
                   onClick={handleDeleteSymbol}
-                  className="max-w-[20px] w-full cursor-pointer hover:text-rose-600 text-gray-400"
+                  className="max-w-[20px] w-full top-1/2 translate-y-[-50%] right-4 absolute cursor-pointer hover:text-rose-600 text-gray-400"
                 >
-                  <X className="  transition  pointer-events-none " size={20} />
+                  <X className="transition" size={20} />
                 </button>
               </div>
             );

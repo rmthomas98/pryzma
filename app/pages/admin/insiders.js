@@ -50,26 +50,26 @@ const Insiders = ({ user }) => {
   return (
     <div className="p-4">
       <div className="max-w-7xl mx-auto">
-        <p className="font-bold text-gray-900 text-2xl mb-2">Top Insiders</p>
+        <p className="font-medium text-zinc-200 text-2xl mb-2">Top Insiders</p>
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-300">
-              <td className="text-xs font-semibold text-gray-800 p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="text-xs font-medium text-zinc-200 p-2">
                 Holder
               </td>
-              <td className="text-xs font-semibold text-gray-800">Shares</td>
-              <td className="text-xs font-semibold text-gray-800">
+              <td className="text-xs font-medium text-zinc-200">Shares</td>
+              <td className="text-xs font-medium text-zinc-200">
                 Date Reported
               </td>
-              <td className="text-xs font-semibold text-gray-800">
+              <td className="text-xs font-medium text-zinc-200">
                 Current Value
               </td>
             </tr>
           </thead>
           <tbody>
             {data[0] && data[0].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[0].entityName
                     ? data[0].entityName
                         .split(" ")
@@ -79,7 +79,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[0].position
                     ? millify(data[0].position, {
                         precision: 2,
@@ -87,12 +87,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[0].reportDate
                     ? format(new Date(data[0].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[0].position
                     ? `$ ${millify(data[0].position * price, {
                         precision: 2,
@@ -103,8 +103,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[1] && data[1].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[1].entityName
                     ? data[1].entityName
                         .split(" ")
@@ -114,7 +114,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[1].position
                     ? millify(data[1].position, {
                         precision: 2,
@@ -122,12 +122,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[1].reportDate
                     ? format(new Date(data[1].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[1].position
                     ? `$ ${millify(data[1].position * price, {
                         precision: 2,
@@ -138,8 +138,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[2] && data[2].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[2].entityName
                     ? data[2].entityName
                         .split(" ")
@@ -149,7 +149,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[2].position
                     ? millify(data[2].position, {
                         precision: 2,
@@ -157,12 +157,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[2].reportDate
                     ? format(new Date(data[2].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[2].position
                     ? `$ ${millify(data[2].position * price, {
                         precision: 2,
@@ -173,8 +173,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[3] && data[3].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[3].entityName
                     ? data[3].entityName
                         .split(" ")
@@ -184,7 +184,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[3].position
                     ? millify(data[3].position, {
                         precision: 2,
@@ -192,12 +192,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[3].reportDate
                     ? format(new Date(data[3].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[3].position
                     ? `$ ${millify(data[3].position * price, {
                         precision: 2,
@@ -208,8 +208,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[4] && data[4].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[4].entityName
                     ? data[4].entityName
                         .split(" ")
@@ -219,7 +219,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[4].position
                     ? millify(data[4].position, {
                         precision: 2,
@@ -227,12 +227,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[4].reportDate
                     ? format(new Date(data[4].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[4].position
                     ? `$ ${millify(data[4].position * price, {
                         precision: 2,
@@ -243,8 +243,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[5] && data[5].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[5].entityName
                     ? data[5].entityName
                         .split(" ")
@@ -254,7 +254,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[5].position
                     ? millify(data[5].position, {
                         precision: 2,
@@ -262,12 +262,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[5].reportDate
                     ? format(new Date(data[5].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[5].position
                     ? `$ ${millify(data[5].position * price, {
                         precision: 2,
@@ -278,8 +278,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[6] && data[6].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[6].entityName
                     ? data[6].entityName
                         .split(" ")
@@ -289,7 +289,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[6].position
                     ? millify(data[6].position, {
                         precision: 2,
@@ -297,12 +297,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[6].reportDate
                     ? format(new Date(data[6].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[6].position
                     ? `$ ${millify(data[6].position * price, {
                         precision: 2,
@@ -313,8 +313,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[7] && data[7].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[7].entityName
                     ? data[7].entityName
                         .split(" ")
@@ -324,7 +324,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[7].position
                     ? millify(data[7].position, {
                         precision: 2,
@@ -332,12 +332,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[7].reportDate
                     ? format(new Date(data[7].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[7].position
                     ? `$ ${millify(data[7].position * price, {
                         precision: 2,
@@ -348,8 +348,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[8] && data[8].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[8].entityName
                     ? data[8].entityName
                         .split(" ")
@@ -359,7 +359,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[8].position
                     ? millify(data[8].position, {
                         precision: 2,
@@ -367,12 +367,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[8].reportDate
                     ? format(new Date(data[8].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[8].position
                     ? `$ ${millify(data[8].position * price, {
                         precision: 2,
@@ -383,8 +383,8 @@ const Insiders = ({ user }) => {
               </tr>
             )}
             {data[9] && data[9].position > 0 && (
-              <tr className="border-b border-gray-300">
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+              <tr className="border-b border-zinc-800">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[9].entityName
                     ? data[9].entityName
                         .split(" ")
@@ -394,7 +394,7 @@ const Insiders = ({ user }) => {
                         .toLowerCase()
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[9].position
                     ? millify(data[9].position, {
                         precision: 2,
@@ -402,12 +402,12 @@ const Insiders = ({ user }) => {
                       })
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[9].reportDate
                     ? format(new Date(data[9].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[9].position
                     ? `$ ${millify(data[9].position * price, {
                         precision: 2,

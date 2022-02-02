@@ -40,7 +40,9 @@ const Quote = ({ setQuote, isLoading }) => {
     getData();
   }, [symbol]);
 
-  if (isLoading || !data) return <div>quote is loading</div>;
+  if (!data || isLoading) return (
+    <div className="w-full bg-zinc-800 rounded-md animate-pulse"></div>
+  )
 
   return (
     <div className="w-full max-w-[280px] min-w-[280px]">
@@ -50,7 +52,7 @@ const Quote = ({ setQuote, isLoading }) => {
       </p> */}
       <div>
         <p className="flex items-center py-2 text-zinc-200 font-medium text-lg border-b border-zinc-800">
-          Price & Volume
+          Quote
           {/* <span>
           <span className="mr-4">Last Updated:</span>
             {format(new Date(data.latestUpdate), "MMMM dd, h:mm aa")}
@@ -148,6 +150,12 @@ const Quote = ({ setQuote, isLoading }) => {
           <p className="font-medium text-zinc-200 text-xs">52 Week Low</p>
           <p className="text-xs font-medium text-zinc-400">
             {data.week52Low ? `${data.week52Low.toFixed(2)}` : "-"}
+          </p>
+        </div>
+        <div className="flex justify-between py-2 border-b border-zinc-800">
+          <p className="font-medium text-zinc-200 text-xs">PE Ratio</p>
+          <p className="text-xs font-medium text-zinc-400">
+            {data.peRatio ? data.peRatio.toFixed(2) : "-"}
           </p>
         </div>
       </div>

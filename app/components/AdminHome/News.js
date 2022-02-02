@@ -12,7 +12,7 @@ const News = ({ news, watchListSymbols }) => {
   if (!newsList) return "";
 
   return (
-    <div className="mt-10 mb-8">
+    <div className="mt-10 mb-8 animate-fadeIn">
       <p className="p-2 pl-0 text-zinc-200 font-semibold text-xl flex items-center">
         Watchlist Specific News
       </p>

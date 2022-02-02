@@ -45,7 +45,7 @@ const ManageAccount = ({ user }) => {
   return (
     <div className="pr-4 pl-4 bg-zinc-900">
       <div className="max-w-screen-sm w-full mx-auto mt-40 mb-20">
-        <div className="flex justify-between mb-10 animate-fadeInUp translate-y-12 border-b border-zinc-600 relative">
+        <div className="flex justify-between mb-10 animate-fadeInUp translate-y-12 border-b border-zinc-800 relative">
           <span
             className={`content-none bg-violet-500 w-1/3 h-0.5 absolute bottom-[-1px] transition-all ease-in-out duration-500 rounded-full ${
               page === "account" && "left-0"

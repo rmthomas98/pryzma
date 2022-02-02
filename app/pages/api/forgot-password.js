@@ -36,7 +36,7 @@ const handler = async (req, res) => {
 
     // send email to the email proveded with magic link
     const transporter = nodemailer.createTransport({
-      host: "smtp.zoho.com",
+      host: "smtppro.zoho.com",
       port: 587,
       secure: false,
       auth: {

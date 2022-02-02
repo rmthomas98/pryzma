@@ -48,35 +48,35 @@ const Institutional = ({ user }) => {
   return (
     <div className="p-4">
       <div className="max-w-7xl mx-auto">
-        <p className="font-bold text-gray-900 text-2xl mb-2">
+        <p className="font-medium text-zinc-200 text-2xl mb-2">
           Top Institutional Owners
         </p>
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-300">
-              <td className="text-xs font-semibold text-gray-800 p-2">
+            <tr className="border-b border-zinc-800">
+              <td className="text-xs font-medium text-zinc-200 p-2">
                 Holder
               </td>
-              <td className="text-xs font-semibold text-gray-800">Shares</td>
-              <td className="text-xs font-semibold text-gray-800">
+              <td className="text-xs font-medium text-zinc-200">Shares</td>
+              <td className="text-xs font-medium text-zinc-200">
                 Date Reported
               </td>
-              <td className="text-xs font-semibold text-gray-800">
+              <td className="text-xs font-medium text-zinc-200">
                 Current Value
               </td>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[0].entityProperName
                     ? data[0].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[0].reportedHolding
                     ? millify(data[0].reportedHolding, {
                         precision: 2,
@@ -86,14 +86,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[0].reportDate
                     ? format(new Date(data[0].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[0] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[0].reportedHolding
                     ? `$ ${millify(data[0].reportedHolding * price, {
                         precision: 2,
@@ -103,16 +103,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[1].entityProperName
                     ? data[1].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[1].reportedHolding
                     ? millify(data[1].reportedHolding, {
                         precision: 2,
@@ -122,14 +122,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[1].reportDate
                     ? format(new Date(data[1].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[1] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[1].reportedHolding
                     ? `$ ${millify(data[1].reportedHolding * price, {
                         precision: 2,
@@ -139,16 +139,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[2].entityProperName
                     ? data[2].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[2].reportedHolding
                     ? millify(data[2].reportedHolding, {
                         precision: 2,
@@ -158,14 +158,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[2].reportDate
                     ? format(new Date(data[2].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[2] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[2].reportedHolding
                     ? `$ ${millify(data[2].reportedHolding * price, {
                         precision: 2,
@@ -175,16 +175,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[3].entityProperName
                     ? data[3].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[3].reportedHolding
                     ? millify(data[3].reportedHolding, {
                         precision: 2,
@@ -194,14 +194,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[3].reportDate
                     ? format(new Date(data[3].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[3] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[3].reportedHolding
                     ? `$ ${millify(data[3].reportedHolding * price, {
                         precision: 2,
@@ -211,16 +211,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[4] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[4].entityProperName
                     ? data[4].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[4] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[4].reportedHolding
                     ? millify(data[4].reportedHolding, {
                         precision: 2,
@@ -230,14 +230,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[4] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[4].reportDate
                     ? format(new Date(data[4].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[4] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[4].reportedHolding
                     ? `$ ${millify(data[4].reportedHolding * price, {
                         precision: 2,
@@ -247,16 +247,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[5] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[5].entityProperName
                     ? data[5].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[5] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[5].reportedHolding
                     ? millify(data[5].reportedHolding, {
                         precision: 2,
@@ -266,14 +266,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[5] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[5].reportDate
                     ? format(new Date(data[5].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[5] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[5].reportedHolding
                     ? `$ ${millify(data[5].reportedHolding * price, {
                         precision: 2,
@@ -283,16 +283,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[6] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[6].entityProperName
                     ? data[6].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[6] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[6].reportedHolding
                     ? millify(data[6].reportedHolding, {
                         precision: 2,
@@ -302,14 +302,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[6] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[6].reportDate
                     ? format(new Date(data[6].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[6] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[6].reportedHolding
                     ? `$ ${millify(data[6].reportedHolding * price, {
                         precision: 2,
@@ -319,16 +319,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[7] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[7].entityProperName
                     ? data[7].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[7] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[7].reportedHolding
                     ? millify(data[7].reportedHolding, {
                         precision: 2,
@@ -338,14 +338,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[7] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[7].reportDate
                     ? format(new Date(data[7].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[7] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[7].reportedHolding
                     ? `$ ${millify(data[7].reportedHolding * price, {
                         precision: 2,
@@ -355,16 +355,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[8] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[8].entityProperName
                     ? data[8].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[8] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[8].reportedHolding
                     ? millify(data[8].reportedHolding, {
                         precision: 2,
@@ -374,14 +374,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[8] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[8].reportDate
                     ? format(new Date(data[8].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[8] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[8].reportedHolding
                     ? `$ ${millify(data[8].reportedHolding * price, {
                         precision: 2,
@@ -391,16 +391,16 @@ const Institutional = ({ user }) => {
                 </td>
               )}
             </tr>
-            <tr className="border-b border-gray-300">
+            <tr className="border-b border-zinc-800">
               {data[9] && (
-                <td className="text-gray-800 font-medium text-xs p-2 capitalize">
+                <td className="text-zinc-400 font-medium text-xs p-2 capitalize">
                   {data[9].entityProperName
                     ? data[9].entityProperName.toLowerCase()
                     : "-"}
                 </td>
               )}
               {data[9] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[9].reportedHolding
                     ? millify(data[9].reportedHolding, {
                         precision: 2,
@@ -410,14 +410,14 @@ const Institutional = ({ user }) => {
                 </td>
               )}
               {data[9] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[9].reportDate
                     ? format(new Date(data[9].reportDate), "MMM dd, yyyy")
                     : "-"}
                 </td>
               )}
               {data[9] && (
-                <td className="text-gray-800 font-medium text-xs">
+                <td className="text-zinc-400 font-medium text-xs">
                   {data[9].reportedHolding
                     ? `$ ${millify(data[9].reportedHolding * price, {
                         precision: 2,

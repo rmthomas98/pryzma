@@ -29,20 +29,20 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
   return (
     <div
       ref={menu}
-      className={`transition-all duration-300 absolute top-12 right-2 bg-gray-50 shadow-xl shadow-gray-900/30 rounded-lg flex flex-col overflow-hidden items-center animate-fadeInUpFast translate-y-6`}
+      className={`transition-all duration-300 absolute top-12 right-0 bg-zinc-800 shadow-md rounded-md shadow-black/50 flex flex-col overflow-hidden items-center animate-fadeInUpFast translate-y-6`}
     >
       {userData && (
-        <p className="font-semibold text-center text-gray-700 text-sm p-2 pt-4 pb-0.5">{`${userData.firstName} ${userData.lastName}`}</p>
+        <p className="font-semibold text-center text-zinc-200 text-sm p-2 pt-4 pb-0.5">{`${userData.firstName} ${userData.lastName}`}</p>
       )}
       {userData && (
-        <p className="text-xs text-center text-gray-800 pl-6 pr-6 pb-2 border-b border-gray-300">
+        <p className="text-xs text-center text-zinc-200 pl-6 pr-6 pb-2 border-b border-zinc-700">
           {userData.email}
         </p>
       )}
       <Link href="/admin/manage-account">
         <a
           onClick={() => setDropDownActive(false)}
-          className="p-3 pl-6 pr-6 text-sm w-full font-medium text-gray-600 flex justify-center items-center hover:bg-gray-200 transition-all duration-300"
+          className="p-3 pl-6 pr-6 text-sm w-full font-medium text-zinc-300 flex justify-center items-center hover:bg-zinc-700 transition-all duration-300"
         >
           <Person className="mr-2 text-lg" />
           Manage Account
@@ -50,7 +50,7 @@ const DropDownNavMenu = ({ userData, active, setDropDownActive, button }) => {
       </Link>
       <p
         onClick={handleLogout}
-        className="cursor-pointer p-3 pl-6 pr-6 text-sm w-full font-medium text-rose-600 flex justify-center items-center hover:bg-gray-200 transition-all duration-300"
+        className="cursor-pointer p-3 pl-6 pr-6 text-sm w-full font-medium text-red-500 flex justify-center items-center hover:bg-zinc-700 transition-all duration-300"
       >
         <BoxArrowLeft className="mr-2 text-lg" />
         Logout

@@ -99,12 +99,12 @@ const Search = () => {
     if (router.pathname.endsWith('/admin') || router.pathname.endsWith('/manage-account')) return router.push('/admin/overview')
   }
 
-  if (router.pathname.endsWith('/manage-account')) return <div></div>
+  if (router.pathname.endsWith('/manage-account') || router.pathname.endsWith('/subscription-created') || router.pathname.endsWith('/subscription-deleted')) return <div></div>
 
   return (
     <div className=' w-1/2 max-w-lg relative'>
     <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-lg relative' ref={ref}>
-    <input {...register('input', {onChange: (e) => setText(e.target.value)})} autoComplete='off' type="text" placeholder="Search Symbol or Company Name..." className="bg-zinc-800 text-sm p-2 w-full transition-all placeholder:text-zinc-500 border-zinc-800 border-2 font-medium text-zinc-300 focus:border-violet-500 duration-300 rounded-md outline-none pr-10"/>
+    <input {...register('input', {onChange: (e) => setText(e.target.value)})} autoComplete='off' type="text" placeholder="Search Symbol or Company Name..." className="bg-zinc-800 text-sm p-2 w-full transition-all placeholder:text-zinc-500 border-zinc-800 border font-medium text-zinc-300 focus:border-violet-500 duration-300 rounded-md outline-none pr-10"/>
     <button type='submit'>{isSubmitting ? <div className="absolute right-4 bottom-2.5 z-10"><ButtonSpinner /></div> : <MagnifyGlass className='text-gray-400 absolute right-4 bottom-2.5 z-10 text-xl hover:text-violet-500 transition-all'/>}</button>
     </form>
     {results || text ?  

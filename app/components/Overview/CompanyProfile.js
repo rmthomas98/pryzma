@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
-import Image from "next/image";
-import profile from "../../static/images/profile.svg";
 
 const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
   // get symbol from context provider
@@ -38,7 +36,9 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     getData();
   }, [symbol]);
 
-  if (isLoading || !data) return <div>profile is loading</div>;
+  if (isLoading || !data) return (
+    <div className="w-full bg-zinc-800 rounded-md animate-pulse"></div>
+  )
 
   return (
     <div className="w-full mr-8">
