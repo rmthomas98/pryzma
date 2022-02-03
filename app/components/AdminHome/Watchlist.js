@@ -176,7 +176,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Symbol
             <CaretDownFill
-              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 transition-all duration-300 ${
                 sortSymbol ? "rotate-0" : "rotate-180"
               }`}
             />
@@ -187,7 +187,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Price
             <CaretDownFill
-              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 transition-all duration-300 ${
                 sortPrice ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -198,7 +198,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Change
             <CaretDownFill
-              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 transition-all duration-300 ${
                 sortChange ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -209,7 +209,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             % Change
             <CaretDownFill
-              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 transition-all duration-300 ${
                 sortPercent ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -220,7 +220,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
           >
             Volume
             <CaretDownFill
-              className={`text-violet-500 ml-1 mt-1 transition-all duration-300 ${
+              className={`text-violet-500 ml-1 transition-all duration-300 ${
                 sortVolume ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -233,55 +233,51 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
               element.quote;
             return (
               <div className="relative">
-              <div
-              onClick={() => handleWatchlistClick(symbol)}
-                className={`flex items-center p-2 pl-4 pr-4 relative cursor-pointer hover:bg-zinc-700 transition-[background-color] duration-300 ${
-                  index === watchListSymbols.length - 1
-                    ? "border-b border-transparent"
-                    : "border-b border-zinc-700"
-                }`}
-                key={symbol}
-              >
-                <p
-                  className="w-full text-xs text-zinc-300 font-medium"
-                >
-                  {symbol}
-                </p>
-                <p
-                  className="w-full text-xs text-zinc-300 font-medium"
-                >
-                  <span className="mr-1">$</span>
-                  {latestPrice.toLocaleString("en-US", {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                  })}
-                </p>
-                <p
-                  className={`w-full text-xs font-medium ${
-                    Math.sign(change) === -1 ? "text-red-500" : "text-green-500"
+                <div
+                  onClick={() => handleWatchlistClick(symbol)}
+                  className={`flex items-center p-2 pl-4 pr-4 relative cursor-pointer hover:bg-zinc-700 transition-[background-color] duration-300 ${
+                    index === watchListSymbols.length - 1
+                      ? "border-b border-transparent"
+                      : "border-b border-zinc-700"
                   }`}
+                  key={symbol}
                 >
-                  {change.toLocaleString("en-us", {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                  })}
-                </p>
-                <p
-                  className={`w-full text-xs font-medium ${
-                    Math.sign(changePercent) === -1
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  {changePercent.toFixed(2)}%
-                </p>
-                <p
-                  className="w-full text-xs text-zinc-300 font-medium"
-                >
-                  {millify(volume, { space: true, precision: 2 })}
-                </p>
-              </div>
-              <button
+                  <p className="w-full text-xs text-zinc-300 font-medium">
+                    {symbol}
+                  </p>
+                  <p className="w-full text-xs text-zinc-300 font-medium">
+                    <span className="mr-1">$</span>
+                    {latestPrice.toLocaleString("en-US", {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
+                  <p
+                    className={`w-full text-xs font-medium ${
+                      Math.sign(change) === -1
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    {change.toLocaleString("en-us", {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
+                  <p
+                    className={`w-full text-xs font-medium ${
+                      Math.sign(changePercent) === -1
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    {changePercent.toFixed(2)}%
+                  </p>
+                  <p className="w-full text-xs text-zinc-300 font-medium">
+                    {millify(volume, { space: true, precision: 2 })}
+                  </p>
+                </div>
+                <button
                   value={index}
                   onClick={handleDeleteSymbol}
                   className="max-w-[20px] w-full top-1/2 translate-y-[-50%] right-4 absolute cursor-pointer hover:text-rose-600 text-gray-400"
@@ -292,7 +288,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
             );
           })
         ) : (
-          <p className="p-8 text-center text-sm text-zinc-400 leading-7">
+          <p className="p-8 text-center text-sm text-zinc-300 leading-7">
             You don't have any stocks in your watchlist at this time.
             <br />
             Search for a stock above to add to your watchlist.

@@ -60,12 +60,35 @@ const Cash = ({ user }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
-
-  if (!data || isLoading) return <div>income statement is loading</div>;
+  if (!data || isLoading)
+    return (
+      <div className="px-4">
+        <div className="max-w-7xl mx-auto mt-4">
+          <div className="flex items-center justify-between">
+            <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
+            <div className="flex">
+              <div className="p-2 rounded-md w-[70px] bg-zinc-800 animate-pulse mr-4"></div>
+              <div className="p-2 rounded-md w-[70px] bg-zinc-800 animate-pulse"></div>
+            </div>
+          </div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+        </div>
+      </div>
+    );
 
   if (data === "data not available" || !data.length)
-    return <div>Data not available</div>;
+    return (
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+        <p className="font-medium text-zinc-200 text-sm">
+          No data available for {symbol[0]}
+        </p>
+      </div>
+    );
 
   return (
     <div className="p-4 mb-12">
@@ -79,7 +102,9 @@ const Cash = ({ user }) => {
               onClick={handleSwitchPeriod}
               value="quarterly"
               className={`rounded-md text-xs font-medium hover:text-violet-500 px-2 py-1 mr-2 ${
-                period === "quarterly" ? "text-violet-500 bg-white" : "bg-zinc-800 text-white"
+                period === "quarterly"
+                  ? "text-violet-500 bg-white"
+                  : "bg-zinc-800 text-white"
               } transition-all`}
             >
               Quarterly
@@ -88,7 +113,9 @@ const Cash = ({ user }) => {
               onClick={handleSwitchPeriod}
               value="annual"
               className={`rounded-md text-xs font-medium hover:text-violet-500 px-2 py-1 ${
-                period === "annual" ? "text-violet-500 bg-white" : "bg-zinc-800 text-white"
+                period === "annual"
+                  ? "text-violet-500 bg-white"
+                  : "bg-zinc-800 text-white"
               } transition-all`}
             >
               Annual

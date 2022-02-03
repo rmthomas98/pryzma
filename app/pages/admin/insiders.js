@@ -42,10 +42,29 @@ const Insiders = ({ user }) => {
 
   console.log(data);
 
-  if (!data || isLoading) return <div>insiders loading</div>;
+  if (!data || isLoading)
+    return (
+      <div className="px-4">
+        <div className="max-w-7xl mx-auto mt-4">
+          <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+        </div>
+      </div>
+    );
 
   if (data === "data not available" || !data.length)
-    return <div>Data not available</div>;
+    return (
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+        <p className="font-medium text-zinc-200 text-sm">
+          No data available for {symbol[0]}
+        </p>
+      </div>
+    );
 
   return (
     <div className="p-4">
@@ -54,9 +73,7 @@ const Insiders = ({ user }) => {
         <table className="w-full">
           <thead>
             <tr className="border-b border-zinc-800">
-              <td className="text-xs font-medium text-zinc-200 p-2">
-                Holder
-              </td>
+              <td className="text-xs font-medium text-zinc-200 p-2">Holder</td>
               <td className="text-xs font-medium text-zinc-200">Shares</td>
               <td className="text-xs font-medium text-zinc-200">
                 Date Reported

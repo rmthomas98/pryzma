@@ -40,12 +40,26 @@ const Quote = ({ setQuote, isLoading }) => {
     getData();
   }, [symbol]);
 
-  if (!data || isLoading) return (
-    <div className="w-full bg-zinc-800 rounded-md animate-pulse"></div>
-  )
+  if (!data || isLoading)
+    return (
+      <div className="w-full max-w-[300px] min-w-[300px] h-[400px] animate-fadeIn opacity-0">
+        <div className="animate-pulse p-4 rounded-md bg-zinc-800 w-full max-w-[100px]"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+        <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
+      </div>
+    );
 
   return (
-    <div className="w-full max-w-[280px] min-w-[280px]">
+    <div className="w-full max-w-[280px] min-w-[280px] opacity-0 animate-fadeIn">
       {/* <p className="p-4 pl-0 text-zinc-400 font-medium text-xl flex items-center">
         <Image src={quote} height={30} width={30} />
         <span className="ml-4">Price Statistics</span>

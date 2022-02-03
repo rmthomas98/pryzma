@@ -61,12 +61,35 @@ const Balance = ({ user }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
-
-  if (!data || isLoading) return <div>balance sheet is loading</div>;
+  if (!data || isLoading)
+    return (
+      <div className="px-4">
+        <div className="max-w-7xl mx-auto mt-4">
+          <div className="flex items-center justify-between">
+            <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
+            <div className="flex">
+              <div className="p-2 rounded-md w-[70px] bg-zinc-800 animate-pulse mr-4"></div>
+              <div className="p-2 rounded-md w-[70px] bg-zinc-800 animate-pulse"></div>
+            </div>
+          </div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+        </div>
+      </div>
+    );
 
   if (data === "data not available" || !data.length)
-    return <div>Data not available</div>;
+    return (
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+        <p className="font-medium text-zinc-200 text-sm">
+          No data available for {symbol[0]}
+        </p>
+      </div>
+    );
 
   return (
     <div className="p-4 mb-12">
@@ -134,34 +157,46 @@ const Balance = ({ user }) => {
           </thead>
           <tbody>
             <tr className="border-b border-zinc-800">
-              <td className="font-medium text-violet-500 p-2 text-xs">
+              <td className="font-medium text-violet-400 p-2 text-xs">
                 Total Current Assets
               </td>
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.total_current_assets
-                    ? millify(data[0].assets.current_assets.total_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.current_assets.total_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.total_current_assets
-                    ? millify(data[1].assets.current_assets.total_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.current_assets.total_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.total_current_assets
-                    ? millify(data[2].assets.current_assets.total_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.current_assets.total_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.total_current_assets
-                    ? millify(data[3].assets.current_assets.total_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.current_assets.total_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -171,28 +206,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.cash
-                    ? millify(data[0].assets.current_assets.cash, {precision: 2, space: true})
+                    ? millify(data[0].assets.current_assets.cash, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.cash
-                    ? millify(data[1].assets.current_assets.cash, {precision: 2, space: true})
+                    ? millify(data[1].assets.current_assets.cash, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.cash
-                    ? millify(data[2].assets.current_assets.cash, {precision: 2, space: true})
+                    ? millify(data[2].assets.current_assets.cash, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.cash
-                    ? millify(data[3].assets.current_assets.cash, {precision: 2, space: true})
+                    ? millify(data[3].assets.current_assets.cash, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -204,28 +251,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.cash_equivalents
-                    ? millify(data[0].assets.current_assets.cash_equivalents, {precision: 2, space: true})
+                    ? millify(data[0].assets.current_assets.cash_equivalents, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.cash_equivalents
-                    ? millify(data[1].assets.current_assets.cash_equivalents, {precision: 2, space: true})
+                    ? millify(data[1].assets.current_assets.cash_equivalents, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.cash_equivalents
-                    ? millify(data[2].assets.current_assets.cash_equivalents, {precision: 2, space: true})
+                    ? millify(data[2].assets.current_assets.cash_equivalents, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.cash_equivalents
-                    ? millify(data[3].assets.current_assets.cash_equivalents, {precision: 2, space: true})
+                    ? millify(data[3].assets.current_assets.cash_equivalents, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -237,28 +296,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.cash_and_cash_equivalents
-                    ? millify(data[0].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.current_assets.cash_and_cash_equivalents,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.cash_and_cash_equivalents
-                    ? millify(data[1].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.current_assets.cash_and_cash_equivalents,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.cash_and_cash_equivalents
-                    ? millify(data[2].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.current_assets.cash_and_cash_equivalents,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.cash_and_cash_equivalents
-                    ? millify(data[3].assets.current_assets.cash_and_cash_equivalents, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.current_assets.cash_and_cash_equivalents,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -270,28 +341,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.other_short_term_investments
-                    ? millify(data[0].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.current_assets
+                          .other_short_term_investments,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.other_short_term_investments
-                    ? millify(data[1].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.current_assets
+                          .other_short_term_investments,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.other_short_term_investments
-                    ? millify(data[2].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.current_assets
+                          .other_short_term_investments,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.other_short_term_investments
-                    ? millify(data[3].assets.current_assets.other_short_term_investments, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.current_assets
+                          .other_short_term_investments,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -303,28 +390,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.accounts_receivable
-                    ? millify(data[0].assets.current_assets.accounts_receivable, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.current_assets.accounts_receivable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.accounts_receivable
-                    ? millify(data[1].assets.current_assets.accounts_receivable, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.current_assets.accounts_receivable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.accounts_receivable
-                    ? millify(data[2].assets.current_assets.accounts_receivable, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.current_assets.accounts_receivable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.accounts_receivable
-                    ? millify(data[3].assets.current_assets.accounts_receivable, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.current_assets.accounts_receivable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -336,28 +435,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.other_receivables
-                    ? millify(data[0].assets.current_assets.other_receivables, {precision: 2, space: true})
+                    ? millify(data[0].assets.current_assets.other_receivables, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.other_receivables
-                    ? millify(data[1].assets.current_assets.other_receivables, {precision: 2, space: true})
+                    ? millify(data[1].assets.current_assets.other_receivables, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.other_receivables
-                    ? millify(data[2].assets.current_assets.other_receivables, {precision: 2, space: true})
+                    ? millify(data[2].assets.current_assets.other_receivables, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.other_receivables
-                    ? millify(data[3].assets.current_assets.other_receivables, {precision: 2, space: true})
+                    ? millify(data[3].assets.current_assets.other_receivables, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -369,28 +480,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.inventory
-                    ? millify(data[0].assets.current_assets.inventory, {precision: 2, space: true})
+                    ? millify(data[0].assets.current_assets.inventory, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.inventory
-                    ? millify(data[1].assets.current_assets.inventory, {precision: 2, space: true})
+                    ? millify(data[1].assets.current_assets.inventory, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.inventory
-                    ? millify(data[2].assets.current_assets.inventory, {precision: 2, space: true})
+                    ? millify(data[2].assets.current_assets.inventory, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.inventory
-                    ? millify(data[3].assets.current_assets.inventory, {precision: 2, space: true})
+                    ? millify(data[3].assets.current_assets.inventory, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -402,28 +525,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.prepaid_assets
-                    ? millify(data[0].assets.current_assets.prepaid_assets, {precision: 2, space: true})
+                    ? millify(data[0].assets.current_assets.prepaid_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.prepaid_assets
-                    ? millify(data[1].assets.current_assets.prepaid_assets, {precision: 2, space: true})
+                    ? millify(data[1].assets.current_assets.prepaid_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.prepaid_assets
-                    ? millify(data[2].assets.current_assets.prepaid_assets, {precision: 2, space: true})
+                    ? millify(data[2].assets.current_assets.prepaid_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.prepaid_assets
-                    ? millify(data[3].assets.current_assets.prepaid_assets, {precision: 2, space: true})
+                    ? millify(data[3].assets.current_assets.prepaid_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -435,61 +570,89 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.current_assets.other_current_assets
-                    ? millify(data[0].assets.current_assets.other_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.current_assets.other_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.current_assets.other_current_assets
-                    ? millify(data[1].assets.current_assets.other_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.current_assets.other_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.current_assets.other_current_assets
-                    ? millify(data[2].assets.current_assets.other_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.current_assets.other_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.current_assets.other_current_assets
-                    ? millify(data[3].assets.current_assets.other_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.current_assets.other_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
             </tr>
             <tr className="border-b border-zinc-800">
-              <td className="font-medium text-violet-500 p-2 text-xs">
+              <td className="font-medium text-violet-400 p-2 text-xs">
                 Total Non Current Assets
               </td>
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.total_non_current_assets
-                    ? millify(data[0].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets
+                          .total_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.total_non_current_assets
-                    ? millify(data[1].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets
+                          .total_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.total_non_current_assets
-                    ? millify(data[2].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets
+                          .total_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.total_non_current_assets
-                    ? millify(data[3].assets.non_current_assets.total_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets
+                          .total_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -501,28 +664,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.properties
-                    ? millify(data[0].assets.non_current_assets.properties, {precision: 2, space: true})
+                    ? millify(data[0].assets.non_current_assets.properties, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.properties
-                    ? millify(data[1].assets.non_current_assets.properties, {precision: 2, space: true})
+                    ? millify(data[1].assets.non_current_assets.properties, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.properties
-                    ? millify(data[2].assets.non_current_assets.properties, {precision: 2, space: true})
+                    ? millify(data[2].assets.non_current_assets.properties, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.properties
-                    ? millify(data[3].assets.non_current_assets.properties, {precision: 2, space: true})
+                    ? millify(data[3].assets.non_current_assets.properties, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -534,28 +709,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.land_and_improvements
-                    ? millify(data[0].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets.land_and_improvements,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.land_and_improvements
-                    ? millify(data[1].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets.land_and_improvements,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.land_and_improvements
-                    ? millify(data[2].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets.land_and_improvements,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.land_and_improvements
-                    ? millify(data[3].assets.non_current_assets.land_and_improvements, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets.land_and_improvements,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -568,8 +755,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? millify(data[0].assets.non_current_assets
-                        .machinery_furniture_equipment, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets
+                          .machinery_furniture_equipment,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -577,8 +767,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? millify(data[1].assets.non_current_assets
-                        .machinery_furniture_equipment, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets
+                          .machinery_furniture_equipment,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -586,8 +779,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? millify(data[2].assets.non_current_assets
-                        .machinery_furniture_equipment, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets
+                          .machinery_furniture_equipment,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -595,8 +791,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets
                     .machinery_furniture_equipment
-                    ? millify(data[3].assets.non_current_assets
-                        .machinery_furniture_equipment, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets
+                          .machinery_furniture_equipment,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -606,28 +805,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.leases
-                    ? millify(data[0].assets.non_current_assets.leases, {precision: 2, space: true})
+                    ? millify(data[0].assets.non_current_assets.leases, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.leases
-                    ? millify(data[1].assets.non_current_assets.leases, {precision: 2, space: true})
+                    ? millify(data[1].assets.non_current_assets.leases, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.leases
-                    ? millify(data[2].assets.non_current_assets.leases, {precision: 2, space: true})
+                    ? millify(data[2].assets.non_current_assets.leases, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.leases
-                    ? millify(data[3].assets.non_current_assets.leases, {precision: 2, space: true})
+                    ? millify(data[3].assets.non_current_assets.leases, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -639,28 +850,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.accumulated_depreciation
-                    ? millify(data[0].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets
+                          .accumulated_depreciation,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.accumulated_depreciation
-                    ? millify(data[1].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets
+                          .accumulated_depreciation,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.accumulated_depreciation
-                    ? millify(data[2].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets
+                          .accumulated_depreciation,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.accumulated_depreciation
-                    ? millify(data[3].assets.non_current_assets.accumulated_depreciation, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets
+                          .accumulated_depreciation,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -672,28 +899,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.intangible_assets
-                    ? millify(data[0].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets.intangible_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.intangible_assets
-                    ? millify(data[1].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets.intangible_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.intangible_assets
-                    ? millify(data[2].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets.intangible_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.intangible_assets
-                    ? millify(data[3].assets.non_current_assets.intangible_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets.intangible_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -705,28 +944,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.investments_and_advances
-                    ? millify(data[0].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets
+                          .investments_and_advances,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.investments_and_advances
-                    ? millify(data[1].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets
+                          .investments_and_advances,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.investments_and_advances
-                    ? millify(data[2].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets
+                          .investments_and_advances,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.investments_and_advances
-                    ? millify(data[3].assets.non_current_assets.investments_and_advances, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets
+                          .investments_and_advances,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -738,28 +993,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].assets.non_current_assets.other_non_current_assets
-                    ? millify(data[0].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[0].assets.non_current_assets
+                          .other_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].assets.non_current_assets.other_non_current_assets
-                    ? millify(data[1].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[1].assets.non_current_assets
+                          .other_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].assets.non_current_assets.other_non_current_assets
-                    ? millify(data[2].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[2].assets.non_current_assets
+                          .other_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].assets.non_current_assets.other_non_current_assets
-                    ? millify(data[3].assets.non_current_assets.other_non_current_assets, {precision: 2, space: true})
+                    ? millify(
+                        data[3].assets.non_current_assets
+                          .other_non_current_assets,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -771,42 +1042,57 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-white text-xs">
                   {data[0].assets.total_assets
-                    ? millify(data[0].assets.total_assets, {precision: 2, space: true})
+                    ? millify(data[0].assets.total_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-white text-xs">
                   {data[1].assets.total_assets
-                    ? millify(data[1].assets.total_assets, {precision: 2, space: true})
+                    ? millify(data[1].assets.total_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-white text-xs">
                   {data[2].assets.total_assets
-                    ? millify(data[2].assets.total_assets, {precision: 2, space: true})
+                    ? millify(data[2].assets.total_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-white text-xs">
                   {data[3].assets.total_assets
-                    ? millify(data[3].assets.total_assets, {precision: 2, space: true})
+                    ? millify(data[3].assets.total_assets, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
             </tr>
             <tr className="border-b border-zinc-800">
-              <td className="font-medium text-violet-500 p-2 text-xs">
+              <td className="font-medium text-violet-400 p-2 text-xs">
                 Total Current Liabilities
               </td>
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? millify(data[0].liabilities.current_liabilities
-                        .total_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities
+                          .total_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -814,8 +1100,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? millify(data[1].liabilities.current_liabilities
-                        .total_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities
+                          .total_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -823,8 +1112,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? millify(data[2].liabilities.current_liabilities
-                        .total_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities
+                          .total_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -832,8 +1124,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities
                     .total_current_liabilities
-                    ? millify(data[3].liabilities.current_liabilities
-                        .total_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities
+                          .total_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -845,28 +1140,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.accounts_payable
-                    ? millify(data[0].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities
+                          .accounts_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.accounts_payable
-                    ? millify(data[1].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities
+                          .accounts_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.accounts_payable
-                    ? millify(data[2].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities
+                          .accounts_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.accounts_payable
-                    ? millify(data[3].liabilities.current_liabilities.accounts_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities
+                          .accounts_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -878,28 +1189,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.accrued_expenses
-                    ? millify(data[0].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities
+                          .accrued_expenses,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.accrued_expenses
-                    ? millify(data[1].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities
+                          .accrued_expenses,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.accrued_expenses
-                    ? millify(data[2].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities
+                          .accrued_expenses,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.accrued_expenses
-                    ? millify(data[3].liabilities.current_liabilities.accrued_expenses, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities
+                          .accrued_expenses,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -911,28 +1238,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.short_term_debt
-                    ? millify(data[0].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities.short_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.short_term_debt
-                    ? millify(data[1].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities.short_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.short_term_debt
-                    ? millify(data[2].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities.short_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.short_term_debt
-                    ? millify(data[3].liabilities.current_liabilities.short_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities.short_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -944,28 +1283,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.deferred_revenue
-                    ? millify(data[0].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities
+                          .deferred_revenue,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.deferred_revenue
-                    ? millify(data[1].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities
+                          .deferred_revenue,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.deferred_revenue
-                    ? millify(data[2].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities
+                          .deferred_revenue,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.deferred_revenue
-                    ? millify(data[3].liabilities.current_liabilities.deferred_revenue, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities
+                          .deferred_revenue,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -978,8 +1333,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? millify(data[0].liabilities.current_liabilities
-                        .other_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities
+                          .other_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -987,8 +1345,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? millify(data[1].liabilities.current_liabilities
-                        .other_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities
+                          .other_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -996,8 +1357,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? millify(data[2].liabilities.current_liabilities
-                        .other_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities
+                          .other_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1005,8 +1369,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities
                     .other_current_liabilities
-                    ? millify(data[3].liabilities.current_liabilities
-                        .other_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities
+                          .other_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1018,42 +1385,57 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.current_liabilities.tax_payable
-                    ? millify(data[0].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.current_liabilities.tax_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.current_liabilities.tax_payable
-                    ? millify(data[1].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.current_liabilities.tax_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.current_liabilities.tax_payable
-                    ? millify(data[2].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.current_liabilities.tax_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.current_liabilities.tax_payable
-                    ? millify(data[3].liabilities.current_liabilities.tax_payable, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.current_liabilities.tax_payable,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
             </tr>
             <tr className="border-b border-zinc-800">
-              <td className="font-medium text-violet-500 p-2 text-xs">
+              <td className="font-medium text-violet-400 p-2 text-xs">
                 Total Non Current Liabilities
               </td>
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? millify(data[0].liabilities.non_current_liabilities
-                        .total_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.non_current_liabilities
+                          .total_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1061,8 +1443,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? millify(data[1].liabilities.non_current_liabilities
-                        .total_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.non_current_liabilities
+                          .total_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1070,8 +1455,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? millify(data[2].liabilities.non_current_liabilities
-                        .total_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.non_current_liabilities
+                          .total_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1079,8 +1467,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .total_non_current_liabilities
-                    ? millify(data[3].liabilities.non_current_liabilities
-                        .total_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.non_current_liabilities
+                          .total_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1092,28 +1483,44 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities.long_term_debt
-                    ? millify(data[0].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.non_current_liabilities
+                          .long_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities.long_term_debt
-                    ? millify(data[1].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.non_current_liabilities
+                          .long_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities.long_term_debt
-                    ? millify(data[2].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.non_current_liabilities
+                          .long_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities.long_term_debt
-                    ? millify(data[3].liabilities.non_current_liabilities.long_term_debt, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.non_current_liabilities
+                          .long_term_debt,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1126,8 +1533,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? millify(data[0].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.non_current_liabilities
+                          .provision_for_risks_and_charges,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1135,8 +1545,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? millify(data[1].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.non_current_liabilities
+                          .provision_for_risks_and_charges,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1144,8 +1557,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? millify(data[2].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.non_current_liabilities
+                          .provision_for_risks_and_charges,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1153,8 +1569,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .provision_for_risks_and_charges
-                    ? millify(data[3].liabilities.non_current_liabilities
-                        .provision_for_risks_and_charges, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.non_current_liabilities
+                          .provision_for_risks_and_charges,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1167,8 +1586,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? millify(data[0].liabilities.non_current_liabilities
-                        .deferred_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.non_current_liabilities
+                          .deferred_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1176,8 +1598,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? millify(data[1].liabilities.non_current_liabilities
-                        .deferred_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.non_current_liabilities
+                          .deferred_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1185,8 +1610,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? millify(data[2].liabilities.non_current_liabilities
-                        .deferred_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.non_current_liabilities
+                          .deferred_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1194,8 +1622,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .deferred_liabilities
-                    ? millify(data[3].liabilities.non_current_liabilities
-                        .deferred_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.non_current_liabilities
+                          .deferred_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1208,8 +1639,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? millify(data[0].liabilities.non_current_liabilities
-                        .other_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.non_current_liabilities
+                          .other_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1217,8 +1651,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? millify(data[1].liabilities.non_current_liabilities
-                        .other_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.non_current_liabilities
+                          .other_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1226,8 +1663,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? millify(data[2].liabilities.non_current_liabilities
-                        .other_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.non_current_liabilities
+                          .other_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1235,8 +1675,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .other_non_current_liabilities
-                    ? millify(data[3].liabilities.non_current_liabilities
-                        .other_non_current_liabilities, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.non_current_liabilities
+                          .other_non_current_liabilities,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1249,8 +1692,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? millify(data[0].liabilities.non_current_liabilities
-                        .long_term_provisions, {precision: 2, space: true})
+                    ? millify(
+                        data[0].liabilities.non_current_liabilities
+                          .long_term_provisions,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1258,8 +1704,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? millify(data[1].liabilities.non_current_liabilities
-                        .long_term_provisions, {precision: 2, space: true})
+                    ? millify(
+                        data[1].liabilities.non_current_liabilities
+                          .long_term_provisions,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1267,8 +1716,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? millify(data[2].liabilities.non_current_liabilities
-                        .long_term_provisions, {precision: 2, space: true})
+                    ? millify(
+                        data[2].liabilities.non_current_liabilities
+                          .long_term_provisions,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1276,8 +1728,11 @@ const Balance = ({ user }) => {
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].liabilities.non_current_liabilities
                     .long_term_provisions
-                    ? millify(data[3].liabilities.non_current_liabilities
-                        .long_term_provisions, {precision: 2, space: true})
+                    ? millify(
+                        data[3].liabilities.non_current_liabilities
+                          .long_term_provisions,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1289,28 +1744,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-white text-xs">
                   {data[0].liabilities.total_liabilities
-                    ? millify(data[0].liabilities.total_liabilities, {precision: 2, space: true})
+                    ? millify(data[0].liabilities.total_liabilities, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-white text-xs">
                   {data[1].liabilities.total_liabilities
-                    ? millify(data[1].liabilities.total_liabilities, {precision: 2, space: true})
+                    ? millify(data[1].liabilities.total_liabilities, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-white text-xs">
                   {data[2].liabilities.total_liabilities
-                    ? millify(data[2].liabilities.total_liabilities, {precision: 2, space: true})
+                    ? millify(data[2].liabilities.total_liabilities, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-white text-xs">
                   {data[3].liabilities.total_liabilities
-                    ? millify(data[3].liabilities.total_liabilities, {precision: 2, space: true})
+                    ? millify(data[3].liabilities.total_liabilities, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -1322,28 +1789,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.common_stock
-                    ? millify(data[0].shareholders_equity.common_stock, {precision: 2, space: true})
+                    ? millify(data[0].shareholders_equity.common_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.common_stock
-                    ? millify(data[1].shareholders_equity.common_stock, {precision: 2, space: true})
+                    ? millify(data[1].shareholders_equity.common_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.common_stock
-                    ? millify(data[2].shareholders_equity.common_stock, {precision: 2, space: true})
+                    ? millify(data[2].shareholders_equity.common_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.common_stock
-                    ? millify(data[3].shareholders_equity.common_stock, {precision: 2, space: true})
+                    ? millify(data[3].shareholders_equity.common_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -1355,28 +1834,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.retained_earnings
-                    ? millify(data[0].shareholders_equity.retained_earnings, {precision: 2, space: true})
+                    ? millify(data[0].shareholders_equity.retained_earnings, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.retained_earnings
-                    ? millify(data[1].shareholders_equity.retained_earnings, {precision: 2, space: true})
+                    ? millify(data[1].shareholders_equity.retained_earnings, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.retained_earnings
-                    ? millify(data[2].shareholders_equity.retained_earnings, {precision: 2, space: true})
+                    ? millify(data[2].shareholders_equity.retained_earnings, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.retained_earnings
-                    ? millify(data[3].shareholders_equity.retained_earnings, {precision: 2, space: true})
+                    ? millify(data[3].shareholders_equity.retained_earnings, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -1388,28 +1879,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.other_shareholders_equity
-                    ? millify(data[0].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[0].shareholders_equity.other_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.other_shareholders_equity
-                    ? millify(data[1].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[1].shareholders_equity.other_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.other_shareholders_equity
-                    ? millify(data[2].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[2].shareholders_equity.other_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.other_shareholders_equity
-                    ? millify(data[3].shareholders_equity.other_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[3].shareholders_equity.other_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1421,28 +1924,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.additional_paid_in_capital
-                    ? millify(data[0].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
+                    ? millify(
+                        data[0].shareholders_equity.additional_paid_in_capital,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.additional_paid_in_capital
-                    ? millify(data[1].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
+                    ? millify(
+                        data[1].shareholders_equity.additional_paid_in_capital,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.additional_paid_in_capital
-                    ? millify(data[2].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
+                    ? millify(
+                        data[2].shareholders_equity.additional_paid_in_capital,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.additional_paid_in_capital
-                    ? millify(data[3].shareholders_equity.additional_paid_in_capital, {precision: 2, space: true})
+                    ? millify(
+                        data[3].shareholders_equity.additional_paid_in_capital,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
@@ -1454,28 +1969,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.treasury_stock
-                    ? millify(data[0].shareholders_equity.treasury_stock, {precision: 2, space: true})
+                    ? millify(data[0].shareholders_equity.treasury_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.treasury_stock
-                    ? millify(data[1].shareholders_equity.treasury_stock, {precision: 2, space: true})
+                    ? millify(data[1].shareholders_equity.treasury_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.treasury_stock
-                    ? millify(data[2].shareholders_equity.treasury_stock, {precision: 2, space: true})
+                    ? millify(data[2].shareholders_equity.treasury_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.treasury_stock
-                    ? millify(data[3].shareholders_equity.treasury_stock, {precision: 2, space: true})
+                    ? millify(data[3].shareholders_equity.treasury_stock, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -1487,28 +2014,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[0].shareholders_equity.minority_interest
-                    ? millify(data[0].shareholders_equity.minority_interest, {precision: 2, space: true})
+                    ? millify(data[0].shareholders_equity.minority_interest, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[1].shareholders_equity.minority_interest
-                    ? millify(data[1].shareholders_equity.minority_interest, {precision: 2, space: true})
+                    ? millify(data[1].shareholders_equity.minority_interest, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[2].shareholders_equity.minority_interest
-                    ? millify(data[2].shareholders_equity.minority_interest, {precision: 2, space: true})
+                    ? millify(data[2].shareholders_equity.minority_interest, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-zinc-400 text-xs">
                   {data[3].shareholders_equity.minority_interest
-                    ? millify(data[3].shareholders_equity.minority_interest, {precision: 2, space: true})
+                    ? millify(data[3].shareholders_equity.minority_interest, {
+                        precision: 2,
+                        space: true,
+                      })
                     : "-"}
                 </td>
               )}
@@ -1520,28 +2059,40 @@ const Balance = ({ user }) => {
               {data[0] && (
                 <td className="font-medium text-white text-xs">
                   {data[0].shareholders_equity.total_shareholders_equity
-                    ? millify(data[0].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[0].shareholders_equity.total_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[1] && (
                 <td className="font-medium text-white text-xs">
                   {data[1].shareholders_equity.total_shareholders_equity
-                    ? millify(data[1].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[1].shareholders_equity.total_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[2] && (
                 <td className="font-medium text-white text-xs">
                   {data[2].shareholders_equity.total_shareholders_equity
-                    ? millify(data[2].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[2].shareholders_equity.total_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}
               {data[3] && (
                 <td className="font-medium text-white text-xs">
                   {data[3].shareholders_equity.total_shareholders_equity
-                    ? millify(data[3].shareholders_equity.total_shareholders_equity, {precision: 2, space: true})
+                    ? millify(
+                        data[3].shareholders_equity.total_shareholders_equity,
+                        { precision: 2, space: true }
+                      )
                     : "-"}
                 </td>
               )}

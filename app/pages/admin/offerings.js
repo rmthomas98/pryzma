@@ -39,10 +39,29 @@ const Offerings = ({ user }) => {
 
   console.log(data);
 
-  if (!data || isLoading) return <div>offerings loading</div>;
+  if (!data || isLoading)
+    return (
+      <div className="px-4">
+        <div className="max-w-7xl mx-auto mt-4">
+          <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+          <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+        </div>
+      </div>
+    );
 
   if (data === "data not available" || !data.length)
-    return <div>Data not available</div>;
+    return (
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+        <p className="font-medium text-zinc-200 text-sm">
+          No data available for {symbol[0]}
+        </p>
+      </div>
+    );
 
   return (
     <div className="p-4">
@@ -57,9 +76,7 @@ const Offerings = ({ user }) => {
                 Form Type
               </td>
               <td className="font-medium text-zinc-200 text-xs">Date</td>
-              <td className="font-medium text-zinc-200 text-xs">
-                Description
-              </td>
+              <td className="font-medium text-zinc-200 text-xs">Description</td>
               <td className="font-medium text-zinc-200 text-xs">Link</td>
             </tr>
           </thead>
@@ -73,7 +90,9 @@ const Offerings = ({ user }) => {
                     </td>
                     <td className="font-medium text-zinc-400 text-xs">
                       {element.formType.charAt(0) === "S"
-                        ? element.formType.includes('A') ? 'Amended Shelf Registration' : 'Shelf Registration'
+                        ? element.formType.includes("A")
+                          ? "Amended Shelf Registration"
+                          : "Shelf Registration"
                         : "Prospectus Supplement"}
                     </td>
                     <td className="font-medium text-zinc-400 text-xs">

@@ -33,7 +33,7 @@ const News = ({ isLoading, setNews }) => {
     getData();
   }, [symbol]);
 
-  if (isLoading || !data) return <div>news loading</div>;
+  if (isLoading || !data) return <div></div>;
 
   if (data === "no data available")
     return (
@@ -53,9 +53,7 @@ const News = ({ isLoading, setNews }) => {
   return (
     <div className="mt-8 mb-12">
       <div>
-        <p className="text-lg font-medium text-zinc-200">
-          Latest News
-        </p>
+        <p className="text-lg font-medium text-zinc-200">Latest News</p>
         {data
           ? data.data.map((element, index) => {
               return (

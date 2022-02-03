@@ -40,7 +40,10 @@ const Stats = ({ isLoading, setStats }) => {
     getData();
   }, [symbol]);
 
-  if (isLoading || !data) return <div>stats is loading</div>;
+  if (isLoading || !data)
+    return (
+      <div className="w-full p-10 mt-8 rounded-lg bg-zinc-800 animate-pulse"></div>
+    );
 
   return (
     <div className="mt-8">
@@ -138,8 +141,12 @@ const Stats = ({ isLoading, setStats }) => {
               </td>
               <td className="text-xs font-medium text-zinc-200">Shares Outs</td>
               <td className="text-xs font-medium text-zinc-200">Float</td>
-              <td className="text-xs font-medium text-zinc-200">Shares Short</td>
-              <td className="text-xs font-medium text-zinc-200">Short Float %</td>
+              <td className="text-xs font-medium text-zinc-200">
+                Shares Short
+              </td>
+              <td className="text-xs font-medium text-zinc-200">
+                Short Float %
+              </td>
               <td className="text-xs font-medium text-zinc-200">Insider Own</td>
               <td className="text-xs font-medium text-zinc-200">Inst Own</td>
             </tr>

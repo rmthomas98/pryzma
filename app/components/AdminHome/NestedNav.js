@@ -25,7 +25,7 @@ const NestedNav = () => {
   }, [router.pathname]);
 
   return (
-    <div className="bg-zinc-800 max-w-[230px] w-full h-screen overflow-auto sticky top-0 flex flex-col">
+    <div className="bg-zinc-800 max-w-[230px] min-w-[230px] w-full h-screen overflow-auto sticky top-0 flex flex-col">
       <p className="text-2xl mx-auto pt-3">
         <Image src={logo} layout="fixed" height={29} width={100} />
       </p>

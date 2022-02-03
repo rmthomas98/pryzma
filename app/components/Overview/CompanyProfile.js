@@ -36,12 +36,35 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     getData();
   }, [symbol]);
 
-  if (isLoading || !data) return (
-    <div className="w-full bg-zinc-800 rounded-md animate-pulse"></div>
-  )
+  if (isLoading || !data)
+    return (
+      <div className="w-full h-[400px] mr-6 opacity-0 animate-fadeIn">
+        <div className="p-4 w-full max-w-[200px] rounded-md bg-zinc-800 animate-pulse"></div>
+        <div className="flex">
+          <div className="w-full mr-6 max-w-[300px]">
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+          </div>
+          <div className="w-full max-w-[300px]">
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+            <div className="p-2 w-full rounded-md bg-zinc-800 animate-pulse mt-2"></div>
+          </div>
+        </div>
+        <div className="p-2 rounded-md bg-zinc-800 animate-pulse mt-6"></div>
+        <div className="p-2 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+        <div className="p-2 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+        <div className="p-2 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
+      </div>
+    );
 
   return (
-    <div className="w-full mr-8">
+    <div className="w-full mr-8 opacity-0 animate-fadeIn">
       {/* <p className="p-4 pl-0 text-zinc-400 font-medium text-xl flex items-center">
         <Image src={profile} height={30} width={30} />
         <span className="ml-4">Company Profile</span>

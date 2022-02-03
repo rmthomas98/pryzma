@@ -62,9 +62,11 @@ const Financials = ({ setFinancials, isLoading }) => {
           setMessage("prep");
           // set the data from the response from backend
           setData({
-            balanceSheet: response.data.balanceSheet && response.data.balanceSheet[0],
+            balanceSheet:
+              response.data.balanceSheet && response.data.balanceSheet[0],
             cashFlow: response.data.cashflow && response.data.cashflow[0],
-            incomeStatement: response.data.incomeStatement && response.data.incomeStatement[0],
+            incomeStatement:
+              response.data.incomeStatement && response.data.incomeStatement[0],
           });
           // set the financials to loaded so the main
           // overview component knows
@@ -83,7 +85,10 @@ const Financials = ({ setFinancials, isLoading }) => {
 
   console.log(data);
 
-  if (isLoading || !data) return <div>financials are loading</div>;
+  if (isLoading || !data)
+    return (
+      <div className="w-full p-10 mt-8 rounded-lg bg-zinc-800 animate-pulse"></div>
+    );
 
   if (message === "data not available")
     return (
@@ -95,25 +100,34 @@ const Financials = ({ setFinancials, isLoading }) => {
           <table className="w-full table-fixed">
             <thead>
               <tr className="border-b border-zinc-800">
-              <td className="text-xs font-medium text-zinc-200 p-3 pl-4">Cash</td>
-              <td className="text-xs font-medium text-zinc-200">Liabilities</td>
+                <td className="text-xs font-medium text-zinc-200 p-3 pl-4">
+                  Cash
+                </td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Liabilities
+                </td>
                 <td className="text-xs font-medium text-zinc-200">Assets</td>
                 <td className="text-xs font-medium text-zinc-200">Debt</td>
-                <td className="text-xs font-medium text-zinc-200">Net Income</td>
-                <td className="text-xs font-medium text-zinc-200">Operating Expenses</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Net Income
+                </td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Operating Expenses
+                </td>
               </tr>
-              
             </thead>
             <tbody>
-                <tr className="border-b border-zinc-800">
-                <td className="text-xs font-medium text-zinc-200 p-3 pl-4">-</td>
-              <td className="text-xs font-medium text-zinc-200">-</td>
+              <tr className="border-b border-zinc-800">
+                <td className="text-xs font-medium text-zinc-200 p-3 pl-4">
+                  -
+                </td>
                 <td className="text-xs font-medium text-zinc-200">-</td>
                 <td className="text-xs font-medium text-zinc-200">-</td>
                 <td className="text-xs font-medium text-zinc-200">-</td>
                 <td className="text-xs font-medium text-zinc-200">-</td>
-                </tr>
-              </tbody>
+                <td className="text-xs font-medium text-zinc-200">-</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -132,66 +146,70 @@ const Financials = ({ setFinancials, isLoading }) => {
                 <td className="text-xs font-medium text-zinc-200 p-3 pl-4">
                   Cash
                 </td>
-                <td className="text-xs font-medium text-zinc-200">Liabilities</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Liabilities
+                </td>
                 <td className="text-xs font-medium text-zinc-200">Assets</td>
                 <td className="text-xs font-medium text-zinc-200">Debt</td>
-                <td className="text-xs font-medium text-zinc-200">Net Income</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Net Income
+                </td>
                 <td className="text-xs font-medium text-zinc-200">
                   Operating Expenses
                 </td>
               </tr>
             </thead>
             <tbody>
-            <tr className="border-b border-zinc-800">
-              <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
-                {data.cashflow?.cashAtEndOfPeriod
-                  ? `$ ${millify(data.cashflow?.cashAtEndOfPeriod, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.balanceSheet?.totalLiabilities
-                  ? `$ ${millify(data.balanceSheet?.totalLiabilities, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.balanceSheet?.totalAssets
-                  ? `$ ${millify(data.balanceSheet?.totalAssets, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.balanceSheet?.totalDebt ||
-                data.balanceSheet?.totalDebt === 0
-                  ? `$ ${millify(data.balanceSheet?.totalDebt, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.incomeStatement?.netIncome
-                  ? `$ ${millify(data.incomeStatement?.netIncome, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-300">
-                {data.incomeStatement?.operatingExpenses
-                  ? `$ ${millify(data.incomeStatement?.operatingExpenses, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
+              <tr className="border-b border-zinc-800">
+                <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
+                  {data.cashflow?.cashAtEndOfPeriod
+                    ? `$ ${millify(data.cashflow?.cashAtEndOfPeriod, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.balanceSheet?.totalLiabilities
+                    ? `$ ${millify(data.balanceSheet?.totalLiabilities, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.balanceSheet?.totalAssets
+                    ? `$ ${millify(data.balanceSheet?.totalAssets, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.balanceSheet?.totalDebt ||
+                  data.balanceSheet?.totalDebt === 0
+                    ? `$ ${millify(data.balanceSheet?.totalDebt, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.incomeStatement?.netIncome
+                    ? `$ ${millify(data.incomeStatement?.netIncome, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-300">
+                  {data.incomeStatement?.operatingExpenses
+                    ? `$ ${millify(data.incomeStatement?.operatingExpenses, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -212,53 +230,57 @@ const Financials = ({ setFinancials, isLoading }) => {
                 <td className="text-xs font-medium text-zinc-200 p-3 pl-4">
                   Cash & Equivalents
                 </td>
-                <td className="text-xs font-medium text-zinc-200">Liabilities</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Liabilities
+                </td>
                 <td className="text-xs font-medium text-zinc-200">Assets</td>
                 <td className="text-xs font-medium text-zinc-200">Debt</td>
-                <td className="text-xs font-medium text-zinc-200">Net Income</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Net Income
+                </td>
                 <td className="text-xs font-medium text-zinc-200">
                   Operating Expenses
                 </td>
               </tr>
             </thead>
             <tbody>
-            <tr className="border-b border-zinc-800">
-              <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
-                {data.balanceSheet?.assets.current_assets
-                  .cash_and_cash_equivalents
-                  ? `$ ${millify(
-                      data.balanceSheet?.assets.current_assets
-                        .cash_and_cash_equivalents,
-                      { precision: 2, space: true }
-                    )}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.balanceSheet?.liabilities.total_liabilities
-                  ? `$ ${millify(
-                      data.balanceSheet?.liabilities.total_liabilities,
-                      { precision: 2, space: true }
-                    )}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.balanceSheet?.assets.total_assets
-                  ? `$ ${millify(data.balanceSheet?.assets.total_assets, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-zinc-400">-</td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.cashflow?.operating_activities.net_income
-                  ? `$ ${millify(
-                      data.cashflow?.operating_activities.net_income,
-                      { precision: 2, space: true }
-                    )}`
-                  : "-"}
-              </td>
-              <td className="text-zinc-400">-</td>
+              <tr className="border-b border-zinc-800">
+                <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
+                  {data.balanceSheet?.assets.current_assets
+                    .cash_and_cash_equivalents
+                    ? `$ ${millify(
+                        data.balanceSheet?.assets.current_assets
+                          .cash_and_cash_equivalents,
+                        { precision: 2, space: true }
+                      )}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.balanceSheet?.liabilities.total_liabilities
+                    ? `$ ${millify(
+                        data.balanceSheet?.liabilities.total_liabilities,
+                        { precision: 2, space: true }
+                      )}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.balanceSheet?.assets.total_assets
+                    ? `$ ${millify(data.balanceSheet?.assets.total_assets, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-zinc-400">-</td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.cashflow?.operating_activities.net_income
+                    ? `$ ${millify(
+                        data.cashflow?.operating_activities.net_income,
+                        { precision: 2, space: true }
+                      )}`
+                    : "-"}
+                </td>
+                <td className="text-zinc-400">-</td>
               </tr>
             </tbody>
           </table>
@@ -279,65 +301,69 @@ const Financials = ({ setFinancials, isLoading }) => {
                 <td className="text-xs font-medium text-zinc-200 p-3 pl-4">
                   Cash
                 </td>
-                <td className="text-xs font-medium text-zinc-200">Liabilities</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Liabilities
+                </td>
                 <td className="text-xs font-medium text-zinc-200">Assets</td>
                 <td className="text-xs font-medium text-zinc-200">Debt</td>
-                <td className="text-xs font-medium text-zinc-200">Net Income</td>
+                <td className="text-xs font-medium text-zinc-200">
+                  Net Income
+                </td>
                 <td className="text-xs font-medium text-zinc-200">
                   Operating Expenses
                 </td>
               </tr>
             </thead>
             <tbody>
-            <tr className="border-b border-zinc-800">
-              <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
-                {data.totalCash
-                  ? `$ ${millify(data.totalCash, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.totalLiabilities
-                  ? `$ ${millify(data.totalLiabilities, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.totalAssets
-                  ? `$ ${millify(data.totalAssets, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.totalDebt
-                  ? `$ ${millify(data.totalDebt, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.netIncome
-                  ? `$ ${millify(data.netIncome, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
-              <td className="text-xs font-medium text-zinc-400">
-                {data.operatingExpense
-                  ? `$ ${millify(data.operatingExpense, {
-                      precision: 2,
-                      space: true,
-                    })}`
-                  : "-"}
-              </td>
+              <tr className="border-b border-zinc-800">
+                <td className="text-xs font-medium text-zinc-400 p-3 pl-4">
+                  {data.totalCash
+                    ? `$ ${millify(data.totalCash, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.totalLiabilities
+                    ? `$ ${millify(data.totalLiabilities, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.totalAssets
+                    ? `$ ${millify(data.totalAssets, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.totalDebt
+                    ? `$ ${millify(data.totalDebt, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.netIncome
+                    ? `$ ${millify(data.netIncome, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
+                <td className="text-xs font-medium text-zinc-400">
+                  {data.operatingExpense
+                    ? `$ ${millify(data.operatingExpense, {
+                        precision: 2,
+                        space: true,
+                      })}`
+                    : "-"}
+                </td>
               </tr>
             </tbody>
           </table>
