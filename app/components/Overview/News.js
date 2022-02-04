@@ -33,25 +33,25 @@ const News = ({ isLoading, setNews }) => {
     getData();
   }, [symbol]);
 
-  if (isLoading || !data) return <div></div>;
+  if (isLoading || !data || data === "no data available") return <div></div>;
 
-  if (data === "no data available")
-    return (
-      <div className="mt-8">
-        <div className="rounded-md shadow-lg shadow-gray-400/50 overflow-hidden">
-          <p className="items-center flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 sticky top-0">
-            <Image src={newsImage} height={20} width={20} />
-            <span className="ml-3">Latest News</span>
-          </p>
-          <p className="text-xs font-medium text-gray-800 p-6 text-center">
-            News is not available for {symbol[0]}.
-          </p>
-        </div>
-      </div>
-    );
+  // if (data === "no data available")
+  //   return (
+  //     <div className="mt-8">
+  //       <div className="rounded-md shadow-lg shadow-gray-400/50 overflow-hidden">
+  //         <p className="items-center flex p-3 bg-gray-800 pl-4 pr-4 text-sm text-gray-100 sticky top-0">
+  //           <Image src={newsImage} height={20} width={20} />
+  //           <span className="ml-3">Latest News</span>
+  //         </p>
+  //         <p className="text-xs font-medium text-gray-800 p-6 text-center">
+  //           News is not available for {symbol[0]}.
+  //         </p>
+  //       </div>
+  //     </div>
+  //   );
 
   return (
-    <div className="mt-8 mb-12">
+    <div className="mt-8 mb-12 animate-fadeIn opacity-0">
       <div>
         <p className="text-lg font-medium text-zinc-200">Latest News</p>
         {data

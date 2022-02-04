@@ -1,15 +1,12 @@
-import { useRouter } from "next/router";
 import SymbolContext from "../../pages/SymbolContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import UserContext from "../../pages/UserContext";
+import Image from "next/image";
 
 const SymbolNav = () => {
   const { symbol } = useContext(SymbolContext);
   const { user, setUser } = useContext(UserContext);
-  const router = useRouter();
-
-  console.log(symbol);
 
   // keep track of whether or not the watchlist is updating
   const [isSubmitting, setIsSubmitting] = useState(false);

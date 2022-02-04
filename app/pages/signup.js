@@ -3,6 +3,7 @@ import ContactInformation from "../components/SignUpForm/ContactInformation";
 import Plan from "../components/SignUpForm/Plan";
 import ElementsProvider from "../components/SignUpForm/ElementsProvider";
 import { withIronSession } from "next-iron-session";
+import Head from "next/head";
 
 // reducer function
 const reducer = (state, action) => {
@@ -28,7 +29,13 @@ const Signup = () => {
 
   return (
     <div className="h-[calc(100vh-80px)] min-h-[900px] flex">
-      <div className="w-full max-w-screen-sm mx-auto mt-40">
+      <Head>
+        <title>Pryzma - Sign up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Create an account at Pryzma." />
+        <meta name="keywords" content="pryzma, sign up, create account" />
+      </Head>
+      <div className="w-full max-w-screen-sm mx-auto mt-40 animate-fadeIn">
         <div className="mb-2 font-medium text-zinc-300">Step {step.step}/3</div>
         <div className="flex mb-6">
           <span
@@ -36,16 +43,12 @@ const Signup = () => {
           ></span>
           <span
             className={`h-0.5 w-full mr-2 rounded-full ${
-              step.step >= 2
-                ? "bg-violet-500"
-                : "bg-zinc-700"
+              step.step >= 2 ? "bg-violet-500" : "bg-zinc-700"
             }`}
           ></span>
           <span
             className={`h-0.5 w-full mr-2 rounded-full ${
-              step.step === 3
-                ? "bg-violet-500 "
-                : "bg-zinc-700"
+              step.step === 3 ? "bg-violet-500 " : "bg-zinc-700"
             }`}
           ></span>
         </div>

@@ -42,7 +42,7 @@ const Quote = ({ setQuote, isLoading }) => {
 
   if (!data || isLoading)
     return (
-      <div className="w-full max-w-[300px] min-w-[300px] h-[400px] animate-fadeIn opacity-0">
+      <div className="w-full max-w-[300px] min-w-[300px] h-[400px]">
         <div className="animate-pulse p-4 rounded-md bg-zinc-800 w-full max-w-[100px]"></div>
         <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>
         <div className="animate-pulse p-3 rounded-md bg-zinc-800 w-full mt-2"></div>

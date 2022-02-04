@@ -6,6 +6,7 @@ import UserContext from "../UserContext";
 import SymbolContext from "../SymbolContext";
 import millify from "millify";
 import { format } from "date-fns";
+import Head from "next/head";
 
 const Institutional = ({ user }) => {
   const { symbol } = useContext(SymbolContext);
@@ -40,9 +41,40 @@ const Institutional = ({ user }) => {
     getData();
   }, [symbol]);
 
+  if (!symbol)
+    return (
+      <div className="p-4 opacity-0 animate-fadeIn">
+        <Head>
+          <title>Pryzma - Institutional Ownership</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Institutional Ownership" />
+          <meta name="keywords" content="pryzma, instiutional ownership" />
+        </Head>
+        <div className="max-w-7xl mx-auto">
+          <div className="mx-auto w-fit p-4 border border-violet-500 rounded-md bg-zinc-800 mt-10">
+            <p className="text-zinc-300 font-medium text-sm text-center">
+              Search for a stock above to view info
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+
   if (!data || isLoading)
     return (
       <div className="px-4">
+        <Head>
+          <title>Pryzma - Institutional Ownership - {symbol[0]}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Institutional Ownership" />
+          <meta name="keywords" content="pryzma, instiutional ownership" />
+        </Head>
         <div className="max-w-7xl mx-auto mt-4">
           <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
           <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
@@ -57,7 +89,16 @@ const Institutional = ({ user }) => {
 
   if (data === "data not available" || !data.length)
     return (
-      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10 opacity-0 animate-fadeIn">
+        <Head>
+          <title>Pryzma - Institutional Ownership - {symbol[0]}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Institutional Ownership" />
+          <meta name="keywords" content="pryzma, instiutional ownership" />
+        </Head>
         <p className="font-medium text-zinc-200 text-sm">
           No data available for {symbol[0]}
         </p>
@@ -65,7 +106,13 @@ const Institutional = ({ user }) => {
     );
 
   return (
-    <div className="p-4">
+    <div className="p-4 opacity-0 animate-fadeIn">
+      <Head>
+        <title>Pryzma - Institutional Ownership - {symbol[0]}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Institutional Ownership" />
+        <meta name="keywords" content="pryzma, instiutional ownership" />
+      </Head>
       <div className="max-w-7xl mx-auto">
         <p className="font-medium text-zinc-200 text-2xl mb-2">
           Top Institutional Owners

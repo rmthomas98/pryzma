@@ -8,12 +8,12 @@ import Quote from "../../components/Overview/Quote";
 import Stats from "../../components/Overview/Stats";
 import Financials from "../../components/Overview/Financials";
 import News from "../../components/Overview/News";
+import Head from "next/head";
 
 const Overview = ({ user }) => {
-
   const { symbol } = useContext(SymbolContext);
   const { setUser } = useContext(UserContext);
-  
+
   const [companyProfile, setCompanyProfile] = useState();
   const [quote, setQuote] = useState();
   const [stats, setStats] = useState();
@@ -26,14 +26,48 @@ const Overview = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    if (!quote || !companyProfile || !stats || financials || !news) setIsLoading(true)
-    if (quote && companyProfile && stats && financials && news) setIsLoading(false);
+    if (!quote || !companyProfile || !stats || financials || !news)
+      setIsLoading(true);
+    if (quote && companyProfile && stats && financials && news)
+      setIsLoading(false);
   }, [quote, companyProfile, stats, symbol, financials, news]);
 
-  if (!symbol) return <p>Search a stock above to see an overview on it.</p>;
+  if (!symbol)
+    return (
+      <div className="p-4">
+        <Head>
+          <title>Pryzma - Overview</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Stock Overview" />
+          <meta
+            name="keywords"
+            content="pryzma, overview, news, stats, financials, quote, profile"
+          />
+        </Head>
+        <div className="max-w-7xl mx-auto">
+          <div className="mx-auto w-fit p-4 border border-violet-500 rounded-md bg-zinc-800 mt-10">
+            <p className="text-zinc-300 font-medium text-sm">
+              Search for a stock above to see an overview on it.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
 
   return (
     <div className="p-4">
+      <Head>
+        <title>Pryzma - Overview - {symbol[0]}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Stock Overview" />
+        <meta
+          name="keywords"
+          content="pryzma, overview, news, stats, financials, quote, profile"
+        />
+      </Head>
       <div className="max-w-7xl mx-auto">
         <div className="flex">
           <CompanyProfile

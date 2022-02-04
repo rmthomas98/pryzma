@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import ButtonSpinner from "../components/ButtonSpinner";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const ForgotPassword = () => {
   const router = useRouter();
@@ -48,7 +49,13 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="max-w-sm w-full mx-auto h-[calc(100vh-80px)] min-h-[600px] flex flex-col">
+    <div className="max-w-sm w-full mx-auto h-[calc(100vh-80px)] min-h-[600px] flex flex-col opacity-0 animate-fadeIn">
+      <Head>
+        <title>Pryzma - Forgot Password</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Forgot Password" />
+        <meta name="keywords" content="forgot password" />
+      </Head>
       {errorMessage && (
         <div className="absolute top-[100px] max-w-[300px] left-[50%] translate-x-[-50%] p-4 rounded-md bg-gradient-to-br from-red-400 to-red-600">
           <p className="text-xs font-semibold text-center text-black leading-5">

@@ -46,7 +46,7 @@ const Stats = ({ isLoading, setStats }) => {
     );
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 animate-fadeIn opacity-0">
       <div>
         <p className="text-zinc-200 font-medium text-lg py-2 border-b border-zinc-800">
           Statistics

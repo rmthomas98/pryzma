@@ -36,7 +36,7 @@ const Payment = () => {
   };
 
   return (
-    <form className="w-full">
+    <form className="w-full animate-fadeIn opacity-0">
       {errorMessage && (
         <div className="mt-6 mx-auto w-full max-w-[300px] absolute top-[100px] left-1/2 translate-x-[-50%] p-4 bg-gradient-to-br from-red-400 to-red-600 rounded-md">
           <p className="text-xs font-semibold text-center text-black">

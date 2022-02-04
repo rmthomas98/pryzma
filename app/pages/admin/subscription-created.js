@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const SubscriptionCreated = () => {
   const router = useRouter();
@@ -8,7 +9,13 @@ const SubscriptionCreated = () => {
   };
 
   return (
-    <div className="mt-24 justify-center flex flex-col items-center">
+    <div className="mt-24 justify-center flex flex-col items-center opacity-0 animate-fadeIn">
+      <Head>
+        <title>Pryzma - Subscription Created</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Subscription Created" />
+        <meta name="keywords" content="pryzma, subscription" />
+      </Head>
       <p className="text-center text-3xl font-semibold text-zinc-200 mb-2">
         Your subscription has been created!
       </p>

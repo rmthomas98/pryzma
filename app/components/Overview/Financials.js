@@ -83,8 +83,6 @@ const Financials = ({ setFinancials, isLoading }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
-
   if (isLoading || !data)
     return (
       <div className="w-full p-10 mt-8 rounded-lg bg-zinc-800 animate-pulse"></div>
@@ -92,7 +90,7 @@ const Financials = ({ setFinancials, isLoading }) => {
 
   if (message === "data not available")
     return (
-      <div className="mt-8">
+      <div className="mt-8 animate-fadeIn opacity-0">
         <div>
           <p className="text-lg font-medium text-zinc-200 py-2 border-b border-zinc-800">
             Financials
@@ -135,7 +133,7 @@ const Financials = ({ setFinancials, isLoading }) => {
 
   if (message === "prep")
     return (
-      <div className="mt-8">
+      <div className="mt-8 opacity-0 animate-fadeIn">
         <div>
           <p className="font-medium text-zinc-200 text-lg py-2 border-b border-zinc-800">
             Financials
@@ -219,7 +217,7 @@ const Financials = ({ setFinancials, isLoading }) => {
 
   if (message === "twelve")
     return (
-      <div className="mt-8">
+      <div className="mt-8 animate-fadeIn opacity-0">
         <div>
           <p className="py-2 text-zinc-200 text-lg font-medium border-b border-zinc-800">
             Financials
@@ -290,7 +288,7 @@ const Financials = ({ setFinancials, isLoading }) => {
 
   if (message === "iex")
     return (
-      <div className="mt-8">
+      <div className="mt-8 animate-fadeIn opacity-0">
         <div>
           <p className="py-2 border-b border-zinc-800 text-lg font-medium text-zinc-200">
             Financials

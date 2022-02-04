@@ -5,6 +5,7 @@ import AccountInformation from "../../components/ManageAccount/AccountInformatio
 import Password from "../../components/ManageAccount/Password";
 import SubscriptionInformation from "../../components/ManageAccount/SubscriptionInformation";
 import clientPromise from "../../lib/mongodb";
+import Head from "next/head";
 
 const ManageAccount = ({ user }) => {
   const router = useRouter();
@@ -44,6 +45,12 @@ const ManageAccount = ({ user }) => {
 
   return (
     <div className="pr-4 pl-4 bg-zinc-900">
+      <Head>
+        <title>Pryzma - Manage Account</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Manage Account" />
+        <meta name="keywords" content="pryzma, manage account, subscription" />
+      </Head>
       <div className="max-w-screen-sm w-full mx-auto mt-40 mb-20">
         <div className="flex justify-between mb-10 animate-fadeInUp translate-y-12 border-b border-zinc-800 relative">
           <span

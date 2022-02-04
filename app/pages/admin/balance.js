@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext";
 import SymbolContext from "../SymbolContext";
 import millify from "millify";
+import Head from "next/head";
 
 const Balance = ({ user }) => {
   const { symbol } = useContext(SymbolContext);
@@ -61,9 +62,40 @@ const Balance = ({ user }) => {
     getData();
   }, [symbol]);
 
+  if (!symbol)
+    return (
+      <div className="p-4 opacity-0 animate-fadeIn">
+        <Head>
+          <title>Pryzma - Balance Sheet</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Balance Sheet" />
+          <meta name="keywords" content="pryzma, balance sheet" />
+        </Head>
+        <div className="max-w-7xl mx-auto">
+          <div className="mx-auto w-fit p-4 border border-violet-500 rounded-md bg-zinc-800 mt-10">
+            <p className="text-zinc-300 font-medium text-sm text-center">
+              Search for a stock above to view info
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+
   if (!data || isLoading)
     return (
       <div className="px-4">
+        <Head>
+          <title>Pryzma - Balance Sheet - {symbol[0]}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Balance Sheet" />
+          <meta name="keywords" content="pryzma, balance sheet" />
+        </Head>
         <div className="max-w-7xl mx-auto mt-4">
           <div className="flex items-center justify-between">
             <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
@@ -84,7 +116,16 @@ const Balance = ({ user }) => {
 
   if (data === "data not available" || !data.length)
     return (
-      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10 opacity-0 animate-fadeIn">
+        <Head>
+          <title>Pryzma - Balance Sheet - {symbol[0]}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Balance Sheet" />
+          <meta name="keywords" content="pryzma, balance sheet" />
+        </Head>
         <p className="font-medium text-zinc-200 text-sm">
           No data available for {symbol[0]}
         </p>
@@ -92,11 +133,17 @@ const Balance = ({ user }) => {
     );
 
   return (
-    <div className="p-4 mb-12">
+    <div className="p-4 mb-12 animate-fadeIn opacity-0">
+      <Head>
+        <title>Pryzma - Balance Sheet - {symbol[0]}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Balance Sheet" />
+        <meta name="keywords" content="pryzma, balance sheet" />
+      </Head>
       <div className="mx-auto max-w-7xl">
         <div className="flex justify-between items-center">
-          <p className="font-medium text-zinc-200 text-2xl mb-2">
-            Balance Sheet
+          <p className="font-medium text-zinc-200 text-2xl mb-2 capitalize">
+            Balance Sheet - {period}
           </p>
           <div className="flex">
             <button

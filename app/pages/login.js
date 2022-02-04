@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import { withIronSession } from "next-iron-session";
 import Link from "next/link";
+import Head from "next/head";
 
 const Login = () => {
   const router = useRouter();
@@ -42,7 +43,13 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-80px)] min-h-[600px] flex justify-center">
+    <div className="h-[calc(100vh-80px)] min-h-[600px] flex justify-center animate-fadeIn opacity-0">
+      <Head>
+        <title>Pryzma - Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Login" />
+        <meta name="keywords" content="pryzma, login" />
+      </Head>
       {router.query?.newAccount && (
         <div className="absolute top-[100px] left-[50%] translate-x-[-50%] w-full max-w-[300px] p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-md">
           <p className="text-xs font-semibold text-center text-black leading-5">
@@ -114,7 +121,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={isSubmitting ? true : false}
-            className={`mt-8 rounded-md h-[40px] flex items-center justify-center w-full font-medium text-sm text-violet-500 trasnition-all duration-300 ${
+            className={`mt-8 rounded-md h-[40px] flex items-center justify-center w-full font-semibold text-sm text-violet-500 trasnition-all duration-300 ${
               isSubmitting
                 ? "bg-zinc-400 hover:bg-zinc-400"
                 : "bg-zinc-200 hover:bg-white"

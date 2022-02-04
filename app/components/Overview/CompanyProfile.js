@@ -36,9 +36,11 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     getData();
   }, [symbol]);
 
+  console.log(data);
+
   if (isLoading || !data)
     return (
-      <div className="w-full h-[400px] mr-6 opacity-0 animate-fadeIn">
+      <div className="w-full h-[400px] mr-6">
         <div className="p-4 w-full max-w-[200px] rounded-md bg-zinc-800 animate-pulse"></div>
         <div className="flex">
           <div className="w-full mr-6 max-w-[300px]">
@@ -64,12 +66,12 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     );
 
   return (
-    <div className="w-full mr-8 opacity-0 animate-fadeIn">
+    <div className="w-full mr-8 animate-fadeIn opacity-0">
       {/* <p className="p-4 pl-0 text-zinc-400 font-medium text-xl flex items-center">
         <Image src={profile} height={30} width={30} />
         <span className="ml-4">Company Profile</span>
       </p> */}
-      <div className="rounded-mdoverflow-auto scrollbar-hide">
+      <div className="rounded-md ">
         <p className="items-center flex p-2 pl-0 text-lg font-medium text-zinc-200 border-b border-zinc-800">
           <span>Company Profile</span>
         </p>
@@ -94,7 +96,7 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
                 Company
               </p>
               <p className="text-xs font-medium text-zinc-400 truncate">
-                {data.companyName ? data.companyName : "-"}
+                {data.name ? data.name : "-"}
               </p>
             </div>
             <div className="flex py-2 items-center justify-between border-b border-zinc-800">

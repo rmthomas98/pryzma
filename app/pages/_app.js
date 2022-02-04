@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
     return (
       <>
         <NextNProgress
-          color="#818CF8"
+          color="#A78BFA"
           startPosition={0.7}
           stopDelayMs={50}
           height={2}
@@ -31,7 +31,8 @@ function MyApp({ Component, pageProps }) {
                 <div className="w-full bg-zinc-900">
                   <Nav />
                   {router.pathname.endsWith("/admin") ||
-                  router.pathname.endsWith("/manage-account") ? (
+                  router.pathname.endsWith("/manage-account") ||
+                  router.pathname.endsWith("/movers") ? (
                     ""
                   ) : (
                     <SymbolNav />

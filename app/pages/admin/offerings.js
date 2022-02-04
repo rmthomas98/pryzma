@@ -6,6 +6,7 @@ import UserContext from "../UserContext";
 import SymbolContext from "../SymbolContext";
 import { format } from "date-fns";
 import { Link45deg } from "react-bootstrap-icons";
+import Head from "next/head";
 
 const Offerings = ({ user }) => {
   const { symbol } = useContext(SymbolContext);
@@ -37,11 +38,46 @@ const Offerings = ({ user }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
+  if (!symbol)
+    return (
+      <div className="p-4 opacity-0 animate-fadeIn">
+        <Head>
+          <title>Pryzma - Offerings</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Offerings" />
+          <meta
+            name="keywords"
+            content="pryzma, offerings, shelf registrations"
+          />
+        </Head>
+        <div className="max-w-7xl mx-auto">
+          <div className="mx-auto w-fit p-4 border border-violet-500 rounded-md bg-zinc-800 mt-10">
+            <p className="text-zinc-300 font-medium text-sm text-center">
+              Search for a stock above to view info
+            </p>
+          </div>
+        </div>
+      </div>
+    );
 
   if (!data || isLoading)
     return (
       <div className="px-4">
+        <Head>
+          <title>Pryzma - Offerings - {symbol[0]}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Offerings" />
+          <meta
+            name="keywords"
+            content="pryzma, offerings, shelf registrations"
+          />
+        </Head>
         <div className="max-w-7xl mx-auto mt-4">
           <div className="p-4 max-w-[300px] w-full bg-zinc-800 animate-pulse rounded-md"></div>
           <div className="w-full p-4 rounded-md bg-zinc-800 animate-pulse mt-3"></div>
@@ -56,7 +92,19 @@ const Offerings = ({ user }) => {
 
   if (data === "data not available" || !data.length)
     return (
-      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10">
+      <div className="p-4 mx-auto rounded-md border w-fit border-violet-500 bg-zinc-800 mt-10 animate-fadeIn opacity-0">
+        <Head>
+          <title>Pryzma - Offerings - {symbol[0]}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Offerings" />
+          <meta
+            name="keywords"
+            content="pryzma, offerings, shelf registrations"
+          />
+        </Head>
         <p className="font-medium text-zinc-200 text-sm">
           No data available for {symbol[0]}
         </p>
@@ -64,7 +112,16 @@ const Offerings = ({ user }) => {
     );
 
   return (
-    <div className="p-4">
+    <div className="p-4 animate-fadeIn opacity-0">
+      <Head>
+        <title>Pryzma - Offerings - {symbol[0]}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Offerings" />
+        <meta
+          name="keywords"
+          content="pryzma, offerings, shelf registrations"
+        />
+      </Head>
       <div className="max-w-7xl mx-auto">
         <p className="font-medium text-zinc-200 text-2xl mb-2">
           Offerings & Shelf Registrations
@@ -89,7 +146,8 @@ const Offerings = ({ user }) => {
                       {element.formType}
                     </td>
                     <td className="font-medium text-zinc-400 text-xs">
-                      {element.formType.charAt(0) === "S"
+                      {element.formType.charAt(0) === "S" ||
+                      element.formType.charAt(0) === "F"
                         ? element.formType.includes("A")
                           ? "Amended Shelf Registration"
                           : "Shelf Registration"

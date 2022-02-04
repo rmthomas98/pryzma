@@ -17,13 +17,12 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
   const { setSymbol } = useContext(SymbolContext);
   const router = useRouter();
 
-  console.log(watchListSymbols);
-
   const handleDeleteSymbol = (e) => {
     // This function deltes symbols from watchlist
     const newArr = [...watchListSymbols];
     // get the index from the target value and remove it from the array
     newArr.splice(e.target.value, 1);
+    console.log(e.target.value);
     // set the new array list with the one deleted
     setWatchListSymbols(newArr);
     // create a list without the one that was just deleted
@@ -50,7 +49,6 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
       const newArr = oldArr.sort((a, b) =>
         a.quote.symbol.toLowerCase() > b.quote.symbol.toLowerCase() ? 1 : -1
       );
-      console.log(newArr);
       setWatchListSymbols(newArr);
       setSortSymbol(true);
     } else {
@@ -58,7 +56,6 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
       const newArr = oldArr.sort((a, b) =>
         b.quote.symbol.toLowerCase() > a.quote.symbol.toLowerCase() ? 1 : -1
       );
-      console.log(newArr);
       setWatchListSymbols(newArr);
       setSortSymbol(false);
     }
@@ -232,7 +229,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
             const { symbol, volume, change, changePercent, latestPrice } =
               element.quote;
             return (
-              <div className="relative">
+              <div className="relative" key={symbol}>
                 <div
                   onClick={() => handleWatchlistClick(symbol)}
                   className={`flex items-center p-2 pl-4 pr-4 relative cursor-pointer hover:bg-zinc-700 transition-[background-color] duration-300 ${
@@ -240,7 +237,6 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                       ? "border-b border-transparent"
                       : "border-b border-zinc-700"
                   }`}
-                  key={symbol}
                 >
                   <p className="w-full text-xs text-zinc-300 font-medium">
                     {symbol}
@@ -282,7 +278,7 @@ const WatchList = ({ user, watchListSymbols, setWatchListSymbols }) => {
                   onClick={handleDeleteSymbol}
                   className="max-w-[20px] w-full top-1/2 translate-y-[-50%] right-4 absolute cursor-pointer hover:text-rose-600 text-gray-400"
                 >
-                  <X className="transition" size={20} />
+                  <X className="transition pointer-events-none" size={20} />
                 </button>
               </div>
             );

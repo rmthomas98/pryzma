@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import News from "../../components/AdminHome/News";
 import UserContext from "../../pages/UserContext";
+import Head from "next/head";
 
 const AdminHome = ({ user, watchlist, news }) => {
   const { setUser } = useContext(UserContext);
@@ -23,6 +24,12 @@ const AdminHome = ({ user, watchlist, news }) => {
 
   return (
     <div className="p-4">
+      <Head>
+        <title>Pryzma - Admin Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Admin Home" />
+        <meta name="keywords" content="pryzma, admin, home" />
+      </Head>
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between border-b border-zinc-800 pb-4 animate-fadeIn">
           <p className="font-semibold text-2xl text-zinc-200">

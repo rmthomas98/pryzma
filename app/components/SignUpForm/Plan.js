@@ -43,7 +43,7 @@ const Plan = ({ increment, email }) => {
   };
 
   return (
-    <div>
+    <div className="animate-fadeIn opacity-0">
       {errorMessage && (
         <div className="mx-auto w-full max-w-[300px] absolute top-[100px] left-1/2 translate-x-[-50%] p-4 rounded-md bg-gradient-to-br from-red-400 to-red-600">
           <p className="text-xs font-semibold text-center text-black">

@@ -46,10 +46,33 @@ const NestedNav = () => {
               number === 1 || router.pathname.endsWith("/admin")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 ease-in content-none left-0 bottom-0 my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 ease-in content-none left-0 bottom-0 my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={home} height={20} width={20} layout="fixed" />
           <span className="ml-3">Home</span>
+        </a>
+      </Link>
+      <Link href="/admin/movers">
+        <a
+          onMouseEnter={() => setNumber(6)}
+          onMouseLeave={() =>
+            !router.pathname.endsWith("/movers") && setNumber(0)
+          }
+          className={`text-white text-xs p-2 pl-4 hover:opacity-100 hover:bg-zinc-700/25 relative transition-all duration-200 flex items-center ${
+            router.pathname.endsWith("/movers")
+              ? "opacity-100 bg-zinc-700/25"
+              : "opacity-60"
+          }`}
+        >
+          <span
+            className={`${
+              number === 6 || router.pathname.endsWith("/movers")
+                ? "h-full"
+                : "h-0"
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
+          ></span>
+          <Image src={stats} height={20} width={20} layout="fixed" />
+          <span className="ml-3">Top Movers</span>
         </a>
       </Link>
       <Link href="/admin/overview">
@@ -70,7 +93,7 @@ const NestedNav = () => {
               number === 2 || router.pathname.endsWith("/overview")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all ease-in  content-none left-0 bottom-0 my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all ease-in  content-none left-0 bottom-0 my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={overview} height={20} width={20} layout="fixed" />
           <span className="ml-3">Overview</span>
@@ -80,19 +103,36 @@ const NestedNav = () => {
         <a onMouseEnter={() => setNumber(4)}
           onMouseLeave={() =>
             !router.pathname.endsWith("/financials") && setNumber(0)
-          } className={`text-white text-xs p-2 pl-4 flex items-center relative hover:opacity-100 duration-200 hover:bg-zinc-700/25 transition-all ${router.pathname.endsWith('/financials') ? 'bg-zinc-700/25 opacity-100' : 'opacity-60'}`}><span className={`${number === 4 || router.pathname.endsWith("/financials") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}></span><Image src={financials} height={20} width={20} layout="fixed"/><span className="ml-3">Financials</span></a>
+          } className={`text-white text-xs p-2 pl-4 flex items-center relative hover:opacity-100 duration-200 hover:bg-zinc-700/25 transition-all ${router.pathname.endsWith('/financials') ? 'bg-zinc-700/25 opacity-100' : 'opacity-60'}`}><span className={`${number === 4 || router.pathname.endsWith("/financials") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}></span><Image src={financials} height={20} width={20} layout="fixed"/><span className="ml-3">Financials</span></a>
       </Link>
       <Link href="/admin/statistics">
         <a onMouseEnter={() => setNumber(5)}
           onMouseLeave={() =>
             !router.pathname.endsWith("/statistics") && setNumber(0)
-          } className={`text-white text-xs p-2 pl-4 relative hover:opacity-100 hover:bg-zinc-700/25 duration-200 transition-all ${router.pathname.endsWith('/statistics') ? 'bg-zinc-700/25 opacity-100' : 'opacity-60'}`}><span className={`${number === 5 || router.pathname.endsWith("/statistics") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}></span><Image src={stats} height={20} width={20} layout="fixed"/><span className="ml-3">Statistics</span></a>
+          } className={`text-white text-xs p-2 pl-4 relative hover:opacity-100 hover:bg-zinc-700/25 duration-200 transition-all ${router.pathname.endsWith('/statistics') ? 'bg-zinc-700/25 opacity-100' : 'opacity-60'}`}><span className={`${number === 5 || router.pathname.endsWith("/statistics") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}></span><Image src={stats} height={20} width={20} layout="fixed"/><span className="ml-3">Statistics</span></a>
       </Link> */}
-      {/* <Link href="/admin/filings">
-        <a onMouseEnter={() => setNumber(6)}
+      {/* <Link href="/admin/movers">
+        <a
+          onMouseEnter={() => setNumber(6)}
           onMouseLeave={() =>
-            !router.pathname.endsWith("/filings") && setNumber(0)
-          } className={`text-white text-xs p-2 pl-4 hover:opacity-100 hover:bg-zinc-700/25 relative transition-all duration-200 flex items-center ${router.pathname.endsWith('/filings') ? 'opacity-100 bg-zinc-700/25' : 'opacity-60'}`}><span className={`${number === 6 || router.pathname.endsWith("/filings") ? "h-full" : 'h-0'} absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}></span><Image src={filings} height={20} width={20} layout="fixed" /><span className="ml-3">SEC FIlings</span></a>
+            !router.pathname.endsWith("/movers") && setNumber(0)
+          }
+          className={`text-white text-xs p-2 pl-4 hover:opacity-100 hover:bg-zinc-700/25 relative transition-all duration-200 flex items-center ${
+            router.pathname.endsWith("/movers")
+              ? "opacity-100 bg-zinc-700/25"
+              : "opacity-60"
+          }`}
+        >
+          <span
+            className={`${
+              number === 6 || router.pathname.endsWith("/movers")
+                ? "h-full"
+                : "h-0"
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
+          ></span>
+          <Image src={stats} height={20} width={20} layout="fixed" />
+          <span className="ml-3">Top Movers</span>
+        </a>
       </Link> */}
       <Link href="/admin/offerings">
         <a
@@ -111,7 +151,7 @@ const NestedNav = () => {
               number === 7 || router.pathname.endsWith("/offerings")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={offerings} height={20} width={20} layout="fixed" />
           <span className="ml-3">Offerings</span>
@@ -134,7 +174,7 @@ const NestedNav = () => {
               number === 8 || router.pathname.endsWith("/income")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={income} height={20} width={20} layout="fixed" />
           <span className="ml-3">Income Statement</span>
@@ -157,7 +197,7 @@ const NestedNav = () => {
               number === 9 || router.pathname.endsWith("/balance")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={balance} height={20} width={20} layout="fixed" />
           <span className="ml-3">Balance Sheet</span>
@@ -180,7 +220,7 @@ const NestedNav = () => {
               number === 10 || router.pathname.endsWith("/cash")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={cash} height={20} width={20} layout="fixed" />
           <span className="ml-3">Cash Flow</span>
@@ -203,7 +243,7 @@ const NestedNav = () => {
               number === 11 || router.pathname.endsWith("/institutional")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={institution} height={20} width={20} layout="fixed" />
           <span className="ml-3">Institutional Ownership</span>
@@ -226,7 +266,7 @@ const NestedNav = () => {
               number === 12 || router.pathname.endsWith("/insiders")
                 ? "h-full"
                 : "h-0"
-            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-500`}
+            } absolute h-0 origin-center transition-all duration-200 content-none left-0 bottom-0 ease-in my-auto top-0 w-0.5 rounded-full bg-violet-400`}
           ></span>
           <Image src={insider} height={20} width={20} layout="fixed" />
           <span className="ml-3">Insider Ownership</span>
