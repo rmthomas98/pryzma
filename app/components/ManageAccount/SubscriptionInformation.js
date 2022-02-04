@@ -162,17 +162,17 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
       <div className="bg-zinc-800 p-3 w-full rounded-md text-sm flex justify-between items-center mb-4 animate-fadeInUp translate-y-12">
         <p className="text-zinc-200">
           <span className="font-medium">Pryzma Monthly</span>{" "}
-          <span>($19.99/mo)</span>
+          <span>($14.99/mo)</span>
         </p>
         <button
           onClick={handleSubscriptionChange}
-          value="price_1KFhUZF124ucKAQoKJD5oDgr"
+          value="price_1KPWKjIUx22VK4GNd2bVhQ27"
           disabled={
             plan === "monthly" || user.paymentStatus === "failed" ? true : false
           }
-          className={`p-2 w-[116px] rounded-md font-medium transition-all duration-300 ${
+          className={`p-2 w-[116px] rounded-md font-medium transition-all bg-left bg-[length:200%] duration-300 ${
             plan === "monthly"
-              ? "bg-gradient-to-r from-rose-600 to-indigo-600 text-white"
+              ? "bg-gradient-to-r from-indigo-600 to-rose-600 text-white"
               : "border border-violet-500 text-violet-500 hover:bg-violet-600 hover:border-violet-600 hover:text-white"
           } ${user.paymentStatus === "failed" ? "cursor-not-allowed" : ""}`}
         >
@@ -184,17 +184,17 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
       <div className="bg-zinc-800 p-3 w-full rounded-md text-sm flex justify-between items-center animate-fadeInUp translate-y-12">
         <p className="text-zinc-200">
           <span className="font-medium">Pryzma Annual</span>{" "}
-          <span>($199.99/yr)</span>
+          <span>($149.99/yr)</span>
         </p>
         <button
           onClick={handleSubscriptionChange}
-          value="price_1KFhV3F124ucKAQoEPMNXfBN"
+          value="price_1KPWKjIUx22VK4GNALchjwAk"
           disabled={
             plan === "annual" || user.paymentStatus === "failed" ? true : false
           }
-          className={`p-2 w-[116px] rounded-md font-medium transition-all duration-300 ${
+          className={`p-2 w-[116px] rounded-md font-medium transition-all bg-left bg-[length:200%] duration-300 ${
             plan === "annual"
-              ? "bg-gradient-to-r from-rose-600 to-indigo-600 text-white"
+              ? "bg-gradient-to-r from-indigo-600 to-rose-600 text-white"
               : "border border-violet-500 text-violet-500 hover:bg-violet-600 hover:border-violet-600 hover:text-white"
           } ${user.paymentStatus === "failed" ? "cursor-not-allowed" : ""}`}
         >
@@ -205,7 +205,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
       </div>
       <div className="flex mt-4 animate-fadeInUp translate-y-12">
         <div className="bg-zinc-800 p-4 w-full mr-4 rounded-md">
-          <p className="font-semibold text-center mb-4 text-violet-500">
+          <p className="font-medium text-center mb-4 text-zinc-200">
             Payment Method
           </p>
           <div className="flex items-center justify-center">
@@ -221,7 +221,7 @@ const SubscriptionInformation = ({ user, accountMessage, refreshData }) => {
           </div>
         </div>
         <div className="p-4 bg-zinc-800 w-full rounded-md">
-          <p className="font-semibold text-center mb-4 text-violet-500">
+          <p className="font-medium text-center mb-4 text-zinc-200">
             Next Billing Period
           </p>
           {user.cancelAtPeriodEnd ? (

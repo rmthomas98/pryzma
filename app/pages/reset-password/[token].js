@@ -16,8 +16,6 @@ const ResetPassword = ({ query }) => {
     formState: { errors },
   } = useForm();
 
-  console.log(query);
-
   const onSubmit = async (data) => {
     const { password, confirmPassword } = data;
     if (password !== confirmPassword)

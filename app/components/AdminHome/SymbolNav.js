@@ -2,7 +2,6 @@ import SymbolContext from "../../pages/SymbolContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import UserContext from "../../pages/UserContext";
-import Image from "next/image";
 
 const SymbolNav = () => {
   const { symbol } = useContext(SymbolContext);

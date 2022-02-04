@@ -1,12 +1,10 @@
 import clientPromise from "../../lib/mongodb";
 import { withIronSession } from "next-iron-session";
-const stripe = require("stripe")(
-  "sk_test_51JAxp2F124ucKAQocBFd1Ivxxpj4YRPSHcNVnZWdB5rhpBXegcyNigbf6E4tEuPDsrj7XzX0dh6xKK12QK8M8Qa900TYmxILAG"
-);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const handler = async (req, res, session) => {
   try {
-    // getting info received from front end 
+    // getting info received from front end
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const newEmail = req.body.newEmail;
@@ -22,8 +20,8 @@ const handler = async (req, res, session) => {
 
     // checking if new email is already in use
     if (user.email !== newEmail) {
-      const emailisTaken = await collection.findOne({email: newEmail});
-      if (emailisTaken) return res.status(200).json('email is already in use')
+      const emailisTaken = await collection.findOne({ email: newEmail });
+      if (emailisTaken) return res.status(200).json("email is already in use");
     }
 
     const updateUser = {
@@ -35,22 +33,22 @@ const handler = async (req, res, session) => {
     };
 
     // update user
-    await collection.updateOne({_id: user._id}, updateUser);
+    await collection.updateOne({ _id: user._id }, updateUser);
     // get updated user form database
-    const updatedUser = await collection.findOne({email: newEmail});
+    const updatedUser = await collection.findOne({ email: newEmail });
 
     // update stripe customer
     await stripe.customers.update(user.stripeCustomerId, {
       name: `${updatedUser.firstName} ${updatedUser.lastName}`,
-      email: updatedUser.email
-    })
+      email: updatedUser.email,
+    });
 
     // set new session with updated info
-    req.session.set('user', {
+    req.session.set("user", {
       id: user._id,
-      user: updatedUser
-    })
-    await req.session.save()
+      user: updatedUser,
+    });
+    await req.session.save();
     // send response back to frontend
     res.status(200).json("user has been updated");
   } catch (e) {
@@ -60,11 +58,11 @@ const handler = async (req, res, session) => {
 
 // setting cookie
 const setCookie = withIronSession(handler, {
-  cookieName: 'user',
+  cookieName: "user",
   password: process.env.IRON_SESSION_PASSWORD,
   cookieOptions: {
-    secure: process.env.NODE_ENV === 'production'
-  }
-})
+    secure: process.env.NODE_ENV === "production",
+  },
+});
 
 export default setCookie;

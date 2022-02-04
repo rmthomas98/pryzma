@@ -24,7 +24,7 @@ const Income = ({ user }) => {
       symbol: symbol[0],
       period: e.target.value,
     });
-    console.log(response.data);
+
     if (response.data.income_statement) {
       setData(response.data.income_statement);
       return setIsLoading(false);

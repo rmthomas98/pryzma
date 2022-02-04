@@ -87,7 +87,6 @@ const Search = () => {
       const response = await axios.get(
         `https://cloud.iexapis.com/stable/search/${value}?token=pk_ca6a1d7ec33745b1bfeb585df0bbf978`
       );
-      console.log(response.data);
       setResults(response.data);
     };
     getSearchResults();

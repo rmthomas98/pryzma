@@ -1,5 +1,3 @@
-import quote from "../../static/images/check.svg";
-import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";

@@ -12,7 +12,7 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
   const handleButtonClick = async (e) => {
     setIsSubmitting(true);
     const plan =
-      e.target.value === "price_1KFhUZF124ucKAQoKJD5oDgr"
+      e.target.value === "price_1KPWKjIUx22VK4GNd2bVhQ27"
         ? "monthly"
         : "annual";
     setPrice(plan);
@@ -28,7 +28,6 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
       .catch((e) => console.error(e));
 
     if (response) {
-      console.log(response);
       if (
         response.data === "subscription created" ||
         response.data === "subscription updated"
@@ -68,12 +67,12 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
             Monthly
           </p>
           <p className="text-center mt-2 mb-4">
-            <span className="text-3xl font-medium text-zinc-200">$19.99</span>
+            <span className="text-3xl font-medium text-zinc-200">$14.99</span>
             <span className="text-zinc-400 text-sm"> /mo</span>
           </p>
           <p className="flex items-center mt-6">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Real Time Quotes</span>
+            <span className="text-zinc-300 text-sm">Top Movers</span>
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
@@ -93,10 +92,6 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Financial Statements</span>
-          </p>
-          <p className="flex items-center">
-            <Check className="text-violet-400 text-lg mr-2 mb-2" />
             <span className="text-zinc-300 text-sm">Offerings</span>
           </p>
           <p className="flex items-center">
@@ -112,7 +107,7 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
           <button
             disabled={isSubmitting ? true : false}
             onClick={handleButtonClick}
-            value="price_1KFhUZF124ucKAQoKJD5oDgr"
+            value="price_1KPWKjIUx22VK4GNd2bVhQ27"
             className={`w-full flex justify-center items-center h-[42px] font-medium text-sm border rounded-md  hover:text-white transition-all duration-300 ${
               monthlyLoader
                 ? "bg-violet-400 hover:bg-violet-400 border-violet-400"
@@ -130,12 +125,12 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
             Annual
           </p>
           <p className="text-center mt-2 mb-4">
-            <span className="text-3xl font-medium text-zinc-200">$199.99</span>
+            <span className="text-3xl font-medium text-zinc-200">$149.99</span>
             <span className="text-zinc-400 text-sm"> /yr</span>
           </p>
           <p className="flex items-center mt-6">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Real Time Quotes</span>
+            <span className="text-zinc-300 text-sm">Top Movers</span>
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
@@ -155,10 +150,6 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Financial Statements</span>
-          </p>
-          <p className="flex items-center">
-            <Check className="text-violet-400 text-lg mr-2 mb-2" />
             <span className="text-zinc-300 text-sm">Offerings</span>
           </p>
           <p className="flex items-center">
@@ -174,11 +165,11 @@ const ChoosePlan = ({ increment, user, setPrice }) => {
           <button
             disabled={isSubmitting ? true : false}
             onClick={handleButtonClick}
-            value="price_1KFhV3F124ucKAQoEPMNXfBN"
+            value="price_1KPWKjIUx22VK4GNALchjwAk"
             className={`w-full h-[42px] flex text-sm justify-center bg-[length:200%] bg-left hover:bg-right items-center text-white font-medium rounded-md transition-all duration-500 ${
               annualLoader
-                ? "bg-gradient-to-r from-rose-400 to-indigo-400 hover:bg-left"
-                : "bg-gradient-to-r from-rose-600 to-indigo-600"
+                ? "bg-gradient-to-r from-indigo-400 to-rose-400 hover:bg-left"
+                : "bg-gradient-to-r from-indigo-600 to-rose-600"
             }`}
           >
             {annualLoader ? <ButtonSpinner /> : "Select Plan"}

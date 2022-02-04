@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
-import newsImage from "../../static/images/news.svg";
-import Image from "next/image";
 import { format } from "date-fns";
+import Image from "next/image";
 
 const News = ({ isLoading, setNews }) => {
   // get symbol from context

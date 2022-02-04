@@ -1,5 +1,3 @@
-import watchList from "../../static/images/watchlist.svg";
-import Image from "next/image";
 import { CaretDownFill, Router, X } from "react-bootstrap-icons";
 import axios from "axios";
 import { useState, useContext } from "react";

@@ -24,7 +24,6 @@ const Cash = ({ user }) => {
       symbol: symbol[0],
       period: e.target.value,
     });
-    console.log(response.data);
     if (response.data.cash_flow) {
       setData(response.data.cash_flow);
       return setIsLoading(false);

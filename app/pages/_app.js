@@ -7,6 +7,7 @@ import SymbolContext from "./SymbolContext";
 import UserContext from "./UserContext";
 import { useState } from "react";
 import SymbolNav from "../components/AdminHome/SymbolNav";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   const [symbol, setSymbol] = useState(null);
@@ -17,6 +18,17 @@ function MyApp({ Component, pageProps }) {
   if (router.pathname.startsWith("/admin")) {
     return (
       <>
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_CODE}`}
+        />
+        <Script strategy="lazyOnload">
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', ${process.env.GOOGLE_ANALYTICS_CODE});`}
+        </Script>
         <NextNProgress
           color="#A78BFA"
           startPosition={0.7}
@@ -48,10 +60,23 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <div className="font-monts bg-zinc-900">
-      <Nav />
-      <Component {...pageProps} />
-    </div>
+    <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_CODE}`}
+      />
+      <Script strategy="lazyOnload">
+        {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', ${process.env.GOOGLE_ANALYTICS_CODE});`}
+      </Script>
+      <div className="font-monts bg-zinc-900">
+        <Nav />
+        <Component {...pageProps} />
+      </div>
+    </>
   );
 }
 

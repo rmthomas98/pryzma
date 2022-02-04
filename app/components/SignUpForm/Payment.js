@@ -25,7 +25,7 @@ const Payment = () => {
     const result = await stripe.confirmSetup({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/login?newAccount=true",
+        return_url: "https://pryzma.io/login?newAccount=true",
       },
     });
     // if errors

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
-import financialsImage from "../../static/images/financials.svg";
-import Image from "next/image";
 import millify from "millify";
 
 const Financials = ({ setFinancials, isLoading }) => {

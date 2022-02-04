@@ -14,11 +14,11 @@ const Plan = ({ increment, email }) => {
   const handleButtonClick = async (e) => {
     // make call to backend to create subscription
     setIsSubmitting(true);
-    if (e.target.value === "price_1KFhUZF124ucKAQoKJD5oDgr") {
+    if (e.target.value === "price_1KPWKjIUx22VK4GNd2bVhQ27") {
       setMonthlyLoader(true);
       plan.current = "monthly";
     }
-    if (e.target.value === "price_1KFhV3F124ucKAQoEPMNXfBN") {
+    if (e.target.value === "price_1KPWKjIUx22VK4GNALchjwAk") {
       setAnnualLoader(true);
       plan.current = "annual";
     }
@@ -55,8 +55,8 @@ const Plan = ({ increment, email }) => {
         Select Pricing Plan
       </p>
       <p className="mt-2 text-sm text-zinc-400 font-medium">
-        You will have a 7 day free trial come with your subscription. You can
-        cancel anytime before the seven days are over and not get charged.
+        A 7 day free trial come with your subscription. You can cancel anytime
+        before the seven days are over and not get charged.
       </p>
       <div className="flex mt-6">
         <div className="w-full mr-6 bg-zinc-800 rounded-md p-6">
@@ -64,12 +64,12 @@ const Plan = ({ increment, email }) => {
             Monthly
           </p>
           <p className="text-center mt-2 mb-4">
-            <span className="text-3xl font-medium text-zinc-200">$19.99</span>
+            <span className="text-3xl font-medium text-zinc-200">$14.99</span>
             <span className="text-zinc-400 text-sm"> /mo</span>
           </p>
           <p className="flex items-center mt-6">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Real Time Quotes</span>
+            <span className="text-zinc-300 text-sm">Top Movers</span>
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
@@ -89,10 +89,6 @@ const Plan = ({ increment, email }) => {
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Financial Statements</span>
-          </p>
-          <p className="flex items-center">
-            <Check className="text-violet-400 text-lg mr-2 mb-2" />
             <span className="text-zinc-300 text-sm">Offerings</span>
           </p>
           <p className="flex items-center">
@@ -108,7 +104,7 @@ const Plan = ({ increment, email }) => {
           <button
             disabled={isSubmitting ? true : false}
             onClick={handleButtonClick}
-            value="price_1KFhUZF124ucKAQoKJD5oDgr"
+            value="price_1KPWKjIUx22VK4GNd2bVhQ27"
             className={`w-full flex justify-center items-center h-[42px] font-medium text-sm border rounded-md  hover:text-white transition-all duration-300 ${
               monthlyLoader
                 ? "bg-violet-400 hover:bg-violet-400 border-violet-400"
@@ -126,12 +122,12 @@ const Plan = ({ increment, email }) => {
             Annual
           </p>
           <p className="text-center mt-2 mb-4">
-            <span className="text-3xl font-medium text-zinc-200">$199.99</span>
+            <span className="text-3xl font-medium text-zinc-200">$149.99</span>
             <span className="text-zinc-400 text-sm"> /yr</span>
           </p>
           <p className="flex items-center mt-6">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Real Time Quotes</span>
+            <span className="text-zinc-300 text-sm">Top Movers</span>
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
@@ -151,10 +147,6 @@ const Plan = ({ increment, email }) => {
           </p>
           <p className="flex items-center">
             <Check className="text-violet-400 text-lg mr-2 mb-2" />
-            <span className="text-zinc-300 text-sm">Financial Statements</span>
-          </p>
-          <p className="flex items-center">
-            <Check className="text-violet-400 text-lg mr-2 mb-2" />
             <span className="text-zinc-300 text-sm">Offerings</span>
           </p>
           <p className="flex items-center">
@@ -170,7 +162,7 @@ const Plan = ({ increment, email }) => {
           <button
             disabled={isSubmitting ? true : false}
             onClick={handleButtonClick}
-            value="price_1KFhV3F124ucKAQoEPMNXfBN"
+            value="price_1KPWKjIUx22VK4GNALchjwAk"
             className={`w-full h-[42px] flex text-sm justify-center bg-[length:200%] bg-left hover:bg-right items-center text-white font-medium rounded-md transition-all duration-500 ${
               annualLoader
                 ? "bg-gradient-to-r from-rose-400 to-indigo-400 hover:bg-left"

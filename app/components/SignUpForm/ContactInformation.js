@@ -41,7 +41,6 @@ const ContactInformation = ({ increment, email }) => {
         "Email already exists, please try a different email, or login instead."
       );
     }
-    console.log(response.data.data);
   };
 
   useEffect(() => {
@@ -114,7 +113,6 @@ const ContactInformation = ({ increment, email }) => {
             className="p-2.5 rounded-md text-zinc-400 border w-full border-zinc-700 outline-none focus:shadow-[0px_0px_0px_2px_rgba(139,92,246,0.3)] focus:border-violet-500/60 bg-zinc-800 transition-all duration-200"
             {...register("password", { required: true, minLength: 8 })}
           />
-          {console.log(errors)}
           {errors.password?.type === "required" && (
             <p className="text-xs font-medium text-rose-600 mt-0.5 absolute">
               *required field

@@ -36,8 +36,6 @@ const CompanyProfile = ({ setCompanyProfile, isLoading }) => {
     getData();
   }, [symbol]);
 
-  console.log(data);
-
   if (isLoading || !data)
     return (
       <div className="w-full h-[400px] mr-6">

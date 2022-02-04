@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { ArrowRight, CaretDownFill, Person } from "react-bootstrap-icons";
 import DropDownNavMenu from "./DropDownNavMenu";
 import Search from "./AdminHome/Search";
-import logo from "../static/images/logo.png";
+import logo from "../public/images/logo.png";
 import Image from "next/image";
 
 const Nav = () => {

@@ -28,7 +28,6 @@ const Balance = ({ user }) => {
       symbol: symbol[0],
       period: e.target.value,
     });
-    console.log(response.data);
     if (response.data.balance_sheet) {
       setData(response.data.balance_sheet);
       return setIsLoading(false);

@@ -10,7 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 const stripeLoader = loadStripe(
-  "pk_test_51JAxp2F124ucKAQo7KtdCwvLoHXJy7tjvh5nCaPnxnrQKG0zjblM9tm7xVTA4UWSnav1b8UBPR6QglyGvMkTYsRr00i7L4aPdQ"
+  "pk_live_51KPVUKIUx22VK4GND2UgrqFocX2ESC1sH0gVucnDlPBFdAZGWesOUuPwspcBohLxfZAIj333jIcTrGWtUTzCUEJY00Paw2X5xG"
 );
 
 const AddPayment = ({ user, price }) => {
@@ -86,7 +86,7 @@ const Payment = ({ user, price }) => {
       const result = await stripe.confirmSetup({
         elements,
         confirmParams: {
-          return_url: "http://localhost:3000/admin/subscription-created",
+          return_url: "https://pryzma.io/admin/subscription-created",
         },
       });
 
@@ -100,7 +100,7 @@ const Payment = ({ user, price }) => {
       const result = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: "http://localhost:3000/admin/subscription-created",
+          return_url: "https://pryzma.io/admin/subscription-created",
         },
       });
 
@@ -126,7 +126,7 @@ const Payment = ({ user, price }) => {
         <p className="mb-6 text-sm text-zinc-300">
           You are now signing up for the{" "}
           {price === "monthly" ? "monthly" : "annual"} plan for{" "}
-          {price === "monthly" ? "$19.99/mo" : "$199.99/yr"}
+          {price === "monthly" ? "$14.99/mo" : "$149.99/yr"}
         </p>
       )}
       <PaymentElement />
@@ -142,7 +142,7 @@ const Payment = ({ user, price }) => {
         {isSubmitting ? (
           <ButtonSpinner />
         ) : user.isCanceled ? (
-          `Pay ${price === "monthly" ? "$19.99" : "$199.99"}`
+          `Pay ${price === "monthly" ? "$14.99" : "$149.99"}`
         ) : (
           "Submit"
         )}

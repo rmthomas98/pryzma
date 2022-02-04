@@ -1,7 +1,5 @@
 import clientPromise from "../../lib/mongodb";
-const stripe = require("stripe")(
-  "sk_test_51JAxp2F124ucKAQocBFd1Ivxxpj4YRPSHcNVnZWdB5rhpBXegcyNigbf6E4tEuPDsrj7XzX0dh6xKK12QK8M8Qa900TYmxILAG"
-);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const handler = async (req, res) => {
   let customer;
@@ -14,7 +12,6 @@ const handler = async (req, res) => {
   const db = client.db();
   const users = db.collection("users");
 
-  console.log(event);
   // Handle the event
   switch (event.type) {
     // CASE FOR WHEN USER SETTING UP ACCOUNT FOR FREE TRIAL
@@ -26,7 +23,7 @@ const handler = async (req, res) => {
         $set: {
           paymentStatus: "succeeded",
           defaultPaymentMethod: event.data.object.payment_method,
-          trial: true
+          trial: true,
         },
       };
 
@@ -36,10 +33,10 @@ const handler = async (req, res) => {
         },
       });
 
-      await users.updateOne({email: user.email}, updatePaymentStatus);
+      await users.updateOne({ email: user.email }, updatePaymentStatus);
       console.log("Setup intent was successfull!");
       break;
-    case 'payment_intent.succeeded':
+    case "payment_intent.succeeded":
       customer = event.data.object.customer;
       user = await users.findOne({ stripeCustomerId: customer });
 
@@ -56,7 +53,7 @@ const handler = async (req, res) => {
         },
       });
 
-      await users.updateOne({email: user.email}, updatePaymentStatus);
+      await users.updateOne({ email: user.email }, updatePaymentStatus);
       console.log("Payment intent was successfull!");
       break;
     // CASE FOR PAYMENT FAILED
@@ -68,7 +65,7 @@ const handler = async (req, res) => {
           paymentStatus: "failed",
         },
       };
-      await users.updateOne({email: user.email}, updatePaymentStatus);
+      await users.updateOne({ email: user.email }, updatePaymentStatus);
       console.log("Payment Failed!");
       break;
     // CASE FOR PAYMENT SUCCEEDED
@@ -76,17 +73,17 @@ const handler = async (req, res) => {
       customer = event.data.object.customer;
       const subId = event.data.object.subscription;
       const subscription = await stripe.subscriptions.retrieve(subId);
-      const periodEnd = subscription.current_period_end
+      const periodEnd = subscription.current_period_end;
       user = await users.findOne({ stripeCustomerId: customer });
-        updatePaymentStatus = {
-          $set: {
-            paymentStatus: "succeeded",
-            isCanceled: false,
-            nextInvoice: periodEnd
-          },
-        };
-        await users.updateOne({email: user.email}, updatePaymentStatus);
-        console.log("Payment Succeeded!");
+      updatePaymentStatus = {
+        $set: {
+          paymentStatus: "succeeded",
+          isCanceled: false,
+          nextInvoice: periodEnd,
+        },
+      };
+      await users.updateOne({ email: user.email }, updatePaymentStatus);
+      console.log("Payment Succeeded!");
       break;
     // IF CUSTOMER CANCELS THERE SUBSCRIPTION
     case "customer.subscription.deleted":
@@ -103,51 +100,54 @@ const handler = async (req, res) => {
           cancelAtPeriodEnd: false,
           isCanceled: true,
           clientSecret: null,
-          nextInvoice: null
+          nextInvoice: null,
         },
       };
 
       await stripe.customers.update(user.stripeCustomerId, {
         invoice_settings: {
-          default_payment_method: null
+          default_payment_method: null,
         },
       });
 
-      await users.updateOne({email: user.email}, updateSubscriptionDeleted);
-      console.log('Subscription Canceled!')
+      await users.updateOne({ email: user.email }, updateSubscriptionDeleted);
+      console.log("Subscription Canceled!");
       break;
     // GET CARD DETAILS
-    case 'payment_method.attached':
+    case "payment_method.attached":
       customer = event.data.object.customer;
-      user = await users.findOne({stripeCustomerId: customer});
+      user = await users.findOne({ stripeCustomerId: customer });
 
       // update card details in mongodb
       const cardDetails = {
         $set: {
-          cardDetails: {brand: event.data.object.card.brand, last4: event.data.object.card.last4}
-        }
-      }
+          cardDetails: {
+            brand: event.data.object.card.brand,
+            last4: event.data.object.card.last4,
+          },
+        },
+      };
 
       // update customer in mongodb
-      await users.updateOne({stripeCustomerId: customer}, cardDetails);
+      await users.updateOne({ stripeCustomerId: customer }, cardDetails);
 
-      console.log('Payment method attached!')
+      console.log("Payment method attached!");
       break;
-    case 'customer.subscription.updated':
+    case "customer.subscription.updated":
       customer = event.data.object.customer;
-      user = await users.findOne({stripeCustomerId: customer});
+      user = await users.findOne({ stripeCustomerId: customer });
       const nextBillingPeriod = event.data.object.current_period_end;
 
       const updateBillingPeriod = {
         $set: {
-          nextInvoice: nextBillingPeriod
-        }
-      }
+          nextInvoice: nextBillingPeriod,
+        },
+      };
 
       //update in mongodb
-      await users.update({stripeCustomerId: customer}, updateBillingPeriod)
-      console.log('subscription updated')
-    // unhandled event types get logged to the console  
+      await users.update({ stripeCustomerId: customer }, updateBillingPeriod);
+      console.log("subscription updated");
+    // unhandled event types get logged to the console
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

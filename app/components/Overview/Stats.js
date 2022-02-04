@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import SymbolContext from "../../pages/SymbolContext";
-import Image from "next/image";
-import statsImage from "../../static/images/stats.svg";
 import millify from "millify";
 
 const Stats = ({ isLoading, setStats }) => {

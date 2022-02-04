@@ -28,7 +28,7 @@ const ChangeSubscriptionModal = ({
       .catch((e) => console.error(e));
     if (!response) return setErrorMessage(true);
     if (response.data === "subscription updated") {
-      priceId === "price_1KFhUZF124ucKAQoKJD5oDgr"
+      priceId === "price_1KPWKjIUx22VK4GNd2bVhQ27"
         ? setPlan("monthly")
         : setPlan("annual");
       setChangeSubscriptionActive(false);

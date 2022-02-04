@@ -32,7 +32,6 @@ const AccountInformation = ({ user }) => {
         lastName: data.lastName,
       })
       .catch((e) => console.error(e));
-    console.log(response);
     if (response.data !== "email is already in use") {
       setIsSubmitting(false);
       setSuccess(true);
